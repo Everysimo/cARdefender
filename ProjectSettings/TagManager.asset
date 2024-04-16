@@ -7,6 +7,9 @@ TagManager:
   - HelpObject
   - FxTemporaire
   - zomBunny
+  - Anchor
+  - Pick Up
+  - Meteor
   layers:
   - Default
   - TransparentFX

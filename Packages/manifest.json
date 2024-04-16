@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.rmc.rmc-mini-mvcs": "https://github.com/SamuelAsherRivello/rmc-mini-mvcs.git",
+    "com.unity.ai.navigation": "1.1.4",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.development": "1.0.1",
     "com.unity.feature.vr": "1.0.0",
