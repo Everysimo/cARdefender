@@ -111,7 +111,7 @@ namespace RMC.Core.Architectures.Mini.Samples.Login.WithMini.Mini.View
             bool isValidInput = _usernameInputField.text.Length > 0 && 
                                 _passwordInputField.text.Length > 0;
             
-            bool hasValidInput = _usernameInputField.text.Length > 0 && 
+            bool hasValidInput = _usernameInputField.text.Length > 0 || 
                                 _passwordInputField.text.Length > 0;
 
             _loginButton.interactable = isValidInput;

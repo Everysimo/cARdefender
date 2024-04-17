@@ -49,6 +49,8 @@ namespace RMC.Core.Architectures.Mini.Samples.RollABall.WithMini.Mini.View
                 //
                 Context.CommandManager.AddCommandListener<InputCommand>(
                     OnInputCommand);
+                Context.CommandManager.AddCommandListener<JumpCommand>(
+                    OnJumpCommand);
             }
         }
 
@@ -90,6 +92,13 @@ namespace RMC.Core.Architectures.Mini.Samples.RollABall.WithMini.Mini.View
             RequireIsInitialized();
             
             _rigidBody.AddForce (inputCommand.Value * _speed);
+        }
+        
+        private void OnJumpCommand(JumpCommand jumpCommand)
+        {
+            RequireIsInitialized();
+            
+            _rigidBody.AddForce(new Vector3(0,200,0));
         }
     }
 }

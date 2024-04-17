@@ -3,6 +3,7 @@ using RMC.Core.Architectures.Mini.Context;
 using RMC.Core.Architectures.Mini.View;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 namespace RMC.Core.Architectures.Mini.Samples.RollABall.WithMini.Mini.View
 {
@@ -19,6 +20,8 @@ namespace RMC.Core.Architectures.Mini.Samples.RollABall.WithMini.Mini.View
         //  Events ----------------------------------------
         [HideInInspector] 
         public readonly OnInputUnityEvent OnInput = new OnInputUnityEvent();
+        [HideInInspector]
+        public readonly UnityEvent OnJump = new UnityEvent();
 
         //  Properties ------------------------------------
         public bool IsInitialized { get { return _isInitialized;} }
@@ -60,6 +63,11 @@ namespace RMC.Core.Architectures.Mini.Samples.RollABall.WithMini.Mini.View
             Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
             OnInput.Invoke(movement);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                OnJump.Invoke();
+            }
         }
 
         //  Methods ---------------------------------------

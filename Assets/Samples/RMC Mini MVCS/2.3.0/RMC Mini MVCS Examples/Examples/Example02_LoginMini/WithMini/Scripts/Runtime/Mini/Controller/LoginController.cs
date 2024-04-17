@@ -87,6 +87,8 @@ namespace RMC.Core.Architectures.Mini.Samples.Login.WithMini.Mini.Controller
         private void View_OnClear()
         {
             RequireIsInitialized();
+            
+            Context.CommandManager.InvokeCommand(new ClearCommand());
         }
             
         private void Service_OnLoginCompleted(UserData userData, bool wasSuccess)

@@ -78,6 +78,7 @@ namespace RMC.Core.Architectures.Mini.Samples.RollABall.WithMini.Mini.Controller
                 
                 //View
                 _inputView.OnInput.AddListener(InputView_OnInput);
+                _inputView.OnJump.AddListener(InputView_OnJump);
                 _uiView.OnRestart.AddListener(UIView_OnRestart);
                 _playerView.OnPickup.AddListener(PlayerView_OnPickup);
                 
@@ -152,6 +153,19 @@ namespace RMC.Core.Architectures.Mini.Samples.RollABall.WithMini.Mini.Controller
             
             Context.CommandManager.InvokeCommand(new InputCommand(input));
         }
+        
+        private void InputView_OnJump()
+        {
+            RequireIsInitialized();
+            
+            if (_model.IsGameOver.Value || _model.IsGamePaused.Value)
+            {
+                return;
+            }
+            
+            Context.CommandManager.InvokeCommand(new JumpCommand());
+        }
+
         
         public void PlayerView_OnPickup(PickupComponent pickupComponent)
         {
