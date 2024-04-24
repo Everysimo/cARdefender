@@ -46,8 +46,8 @@ namespace RMC.Core.Architectures.Mini.Samples.Calculator.Mini.Controller
                 Context = context;
                 
                 //
-                _calculatorView.OnAdd.AddListener(View_OnAdd);
-                _calculatorView.OnReset.AddListener(View_OnReset);
+                //_calculatorView.OnAdd.AddListener(View_OnAdd);
+               // _calculatorView.OnReset.AddListener(View_OnReset);
                 View_OnReset();
 
             }
@@ -71,9 +71,9 @@ namespace RMC.Core.Architectures.Mini.Samples.Calculator.Mini.Controller
         {
             RequireIsInitialized();
             
-            _calculatorModel.A.Value = 0;
-            _calculatorModel.B.Value = 0;
-            _calculatorModel.Result.Value = 0;
+            //_calculatorModel.A.Value = 0;
+            //_calculatorModel.B.Value = 0;
+            //_calculatorModel.Result.Value = 0;
             
             //Alternative Solution (Not Needed)
             //Context.CommandManager.InvokeCommand(new ResetCommand());
@@ -84,9 +84,9 @@ namespace RMC.Core.Architectures.Mini.Samples.Calculator.Mini.Controller
         {
             RequireIsInitialized();
 
-            _calculatorModel.A.Value = Int32.Parse(_calculatorView.AInputField.text);
-            _calculatorModel.B.Value = Int32.Parse(_calculatorView.BInputField.text);
-            _calculatorModel.Result.Value = _calculatorModel.A.Value + _calculatorModel.B.Value;
+            //_calculatorModel.A.Value = Int32.Parse(_calculatorView.AInputField.text);
+            //_calculatorModel.B.Value = Int32.Parse(_calculatorView.BInputField.text);
+            //_calculatorModel.Result.Value = _calculatorModel.A.Value + _calculatorModel.B.Value;
         }
     }
 }

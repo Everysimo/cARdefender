@@ -55,14 +55,14 @@ namespace RMC.Core.Architectures.Mini.Samples.Calculator.Mini.View
                 
                 //
                 CalculatorModel calculatorModel = Context.ModelLocator.GetItem<CalculatorModel>();
-                calculatorModel.A.OnValueChanged.AddListener(
-                    (p, c) => _aInputField.text = c.ToString());
+                //calculatorModel.A.OnValueChanged.AddListener(
+                //    (p, c) => _aInputField.text = c.ToString());
                 
-                calculatorModel.B.OnValueChanged.AddListener(
-                    (p, c) => _bInputField.text = c.ToString());
+                //calculatorModel.B.OnValueChanged.AddListener(
+                 //   (p, c) => _bInputField.text = c.ToString());
                 
-                calculatorModel.Result.OnValueChanged.AddListener(
-                    (p, c) => _resultInputField.text = c.ToString());
+                //calculatorModel.Result.OnValueChanged.AddListener(
+                //    (p, c) => _resultInputField.text = c.ToString());
                 
                 //
                 //Alternative Solution (Not Needed)

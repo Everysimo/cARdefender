@@ -48,13 +48,13 @@ namespace RMC.Core.Architectures.Mini.Samples.Calculator.Mini
                 //View
 
                 //Controller
-                CalculatorController calculatorController = 
-                    new CalculatorController(calculatorModel, _calculatorView);
+                //CalculatorController calculatorController = 
+                 //   new CalculatorController(calculatorModel, _calculatorView);
 
                 //Initialize 
                 calculatorModel.Initialize(_context);       //Do 1st. Registers ModelLocator
                 _calculatorView.Initialize(_context);       //Do 2nd, Uses ModelLocator
-                calculatorController.Initialize(_context);  //Do last
+                //calculatorController.Initialize(_context);  //Do last
             }
             
         }

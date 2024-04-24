@@ -89,7 +89,7 @@ MonoBehaviour:
   objectDetectionModel: 2
   objectDetectionMaxRange: 40
   objectDetectionPredictionTimeout: 0.2
-  objectDetectionAllowReducedPrecisionInference: 0
+  objectDetectionAllowReducedPrecisionInference: 1
   objectDetectionFilteringMode: 1
   OD_personDetectionConfidenceThreshold: 60
   OD_vehicleDetectionConfidenceThreshold: 60
@@ -183,7 +183,7 @@ MonoBehaviour:
   HMDSyncRotation: {x: 0, y: 0, z: 0, w: 0}
   advancedPanelOpen: 0
   spatialMappingFoldoutOpen: 0
-  objectDetectionFoldoutOpen: 0
+  objectDetectionFoldoutOpen: 1
   bodyTrackingFoldoutOpen: 0
   recordingFoldoutOpen: 0
   streamingOutFoldoutOpen: 0
