@@ -22,6 +22,7 @@ public class ZEDManager : MonoBehaviour
     /// <summary>
     /// Static function to get instance of the ZEDManager with a given camera_ID. See sl.ZED_CAMERA_ID for the available choices.
     /// </summary>
+    public bool noMovement = true;
     public static object grabLock;
     static ZEDManager[] ZEDManagerInstance = null;
     public static ZEDManager GetInstance(sl.ZED_CAMERA_ID _id)
@@ -2608,9 +2609,12 @@ public class ZEDManager : MonoBehaviour
             OriginRotation = initialRotation;
         }
 
-        //Set the original transform for the Rig
-        zedRigRoot.localPosition = OriginPosition;
-        zedRigRoot.localRotation = OriginRotation;
+        if (!noMovement)
+        {
+            //Set the original transform for the Rig
+            zedRigRoot.localPosition = OriginPosition;
+            zedRigRoot.localRotation = OriginRotation; 
+        }
 
     }
 
@@ -2728,8 +2732,12 @@ public class ZEDManager : MonoBehaviour
                             Debug.LogError("ZED Tracking disabled: Not available during SVO playback when Loop is enabled.");
                         }
                     }
-                    zedRigRoot.localPosition = initialPosition;
-                    zedRigRoot.localRotation = initialRotation;
+
+                    if (!noMovement)
+                    {
+                        zedRigRoot.localPosition = initialPosition;
+                        zedRigRoot.localRotation = initialRotation;
+                    }
                 }
             }
 
@@ -2765,8 +2773,11 @@ public class ZEDManager : MonoBehaviour
 
                 arRig.ExtractLatencyPose(imageTimeStamp); //Find what HMD's pose was at ZED image's timestamp for latency compensation.
                 arRig.AdjustTrackingAR(zedPosition, zedOrientation, out r, out v, setIMUPriorInAR);
-                zedRigRoot.localRotation = r;
-                zedRigRoot.localPosition = v;
+                if (!noMovement)
+                {
+                    zedRigRoot.localRotation = r;
+                    zedRigRoot.localPosition = v; 
+                }
                 //Debug.DrawLine(new Vector3(0, 0.05f, 0), (r * Vector3.one * 5) + new Vector3(0, 0.05f, 0), Color.red);
                 //Debug.DrawLine(Vector3.zero, zedOrientation * Vector3.one * 5, Color.green);
 
@@ -2778,8 +2789,11 @@ public class ZEDManager : MonoBehaviour
             }
             else //Not AR pass-through mode.
             {
-                zedRigRoot.localRotation = zedOrientation;
-                if (!ZEDSupportFunctions.IsVector3NaN(zedPosition))
+                if (!noMovement)
+                {
+                    zedRigRoot.localRotation = zedOrientation;
+                }
+                if (!ZEDSupportFunctions.IsVector3NaN(zedPosition) && !noMovement)
                     zedRigRoot.localPosition = zedPosition;
             }
         }
@@ -2787,8 +2801,11 @@ public class ZEDManager : MonoBehaviour
         {
             isCameraTracked = true;
             arRig.ExtractLatencyPose(imageTimeStamp); //Find what HMD's pose was at ZED image's timestamp for latency compensation.
-            zedRigRoot.localRotation = arRig.LatencyPose().rotation;
-            zedRigRoot.localPosition = arRig.LatencyPose().translation;
+            if (!noMovement)
+            {
+                zedRigRoot.localRotation = arRig.LatencyPose().rotation;
+                zedRigRoot.localPosition = arRig.LatencyPose().translation;
+            }
         }
         else //The ZED is not tracked by itself or an HMD.
             isCameraTracked = false;

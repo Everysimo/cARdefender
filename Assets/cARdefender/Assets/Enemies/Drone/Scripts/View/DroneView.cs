@@ -15,6 +15,8 @@ using UnityEngine.UI;
 
 //  Class Attributes ----------------------------------
 public class DroneHittedUnityEvent : UnityEvent<float>{}
+
+public class DroneShootProjectileUnityEvent : UnityEvent<float,GameObject,Transform,Transform>{}
 public class InitializeDroneEvent : UnityEvent<float,float,float,float>{}
 
 
@@ -25,7 +27,10 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
 {
     //  Events ----------------------------------------
     [HideInInspector] public readonly DroneHittedUnityEvent OnDroneHitted = new DroneHittedUnityEvent();
+    [HideInInspector] public readonly DroneShootProjectileUnityEvent OnDroneShootProjectile = new DroneShootProjectileUnityEvent();
     [HideInInspector] public readonly InitializeDroneEvent OnInitializeDroneEvent = new InitializeDroneEvent();
+    
+    private Coroutine _coroutine;
 
     //  Properties ------------------------------------
     public void RequireIsInitialized()
@@ -63,7 +68,22 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     [SerializeField] 
     private float shootSpeed;
     
+    [SerializeField] 
+    private float projectileSpeed;
     
+    [SerializeField]
+    [Tooltip("The projectile that's created")]
+    GameObject projectilePrefab = null;
+
+    [SerializeField]
+    [Tooltip("The point that the project is created")]
+    Transform[] startPoints = null;
+    
+    [SerializeField]
+    [Tooltip("The target object to aim to")]
+    Transform targetObject = null;
+
+    private int lastStartPointWeaponNumber = 0;
 
     //  Initialization  -------------------------------
     public void Initialize(IContext context)
@@ -89,15 +109,36 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
        OnDroneHitted.Invoke(damage);
     }
 
-
-    //  Unity Methods ---------------------------------
-        
-        
-    protected void OnDestroy()
+    public IEnumerator OnShootProjectile()
     {
-       
+        while (true)
+        {
+            yield return new WaitForSeconds(shootSpeed);
+            
+            OnDroneShootProjectile.Invoke(projectileSpeed,projectilePrefab,startPoints[lastStartPointWeaponNumber],targetObject);
+            lastStartPointWeaponNumber = (lastStartPointWeaponNumber + 1 )% (startPoints.Length);
+            
+            //audioSource.PlayOneShot(spitSound);
+        }
     }
 
+
+    //  Unity Methods ---------------------------------
+
+    private void OnEnable()
+    {
+        _coroutine = StartCoroutine(OnShootProjectile());
+    }
+
+    private void OnDisable()
+    {
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+            _coroutine = null;
+        }
+    }
+    
 
     //  Methods ---------------------------------------
 

@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ZED/Examples/Object Detection/Scenes/3D Object Detection.unity
     guid: efeaf06729c047145af41b28c33b8b26
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ZedTesting/MixedReality/MixedReality.unity
     guid: 7e002f75673e2b4439a52658ddf7a040
   m_configObjects:

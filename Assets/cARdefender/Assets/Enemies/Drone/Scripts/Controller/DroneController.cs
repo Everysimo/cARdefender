@@ -75,6 +75,7 @@ public class DroneController : IController
             //View
             _droneView.OnInitializeDroneEvent.AddListener(View_Drone_OnInitializeDroneEvent);
             _droneView.OnDroneHitted.AddListener(View_Drone_OnDroneHitted);
+            _droneView.OnDroneShootProjectile.AddListener(View_Drone_OnDroneShootProjectile);
 
             //Servie
             //_service.OnSumCalculatedEvent.AddListener(Service_OnSumCalculated);
@@ -128,6 +129,14 @@ public class DroneController : IController
         _droneModel.Life.Value -= damage;
     }
 
+    private void View_Drone_OnDroneShootProjectile(float projectileSpeed, GameObject projectilePrefab, Transform startPoint, Transform target)
+    {
+        RequireIsInitialized();
+
+        Context.CommandManager.InvokeCommand(
+            new ShootProjectileToTargetCommand(projectileSpeed, projectilePrefab, startPoint, target));
+    }
+    
     //Model
     public void Model_Drone_OnLifeValueChanged(float previousValue, float currentValue)
     {
@@ -147,6 +156,6 @@ public class DroneController : IController
         Console.Write("Sparato");
 
         Context.CommandManager.InvokeCommand(
-            new FireCommand(shootSpeed,projectilePrefab,startPoint));
+            new ShootProjectileWithGravity(shootSpeed,projectilePrefab,startPoint));
     }
 }
