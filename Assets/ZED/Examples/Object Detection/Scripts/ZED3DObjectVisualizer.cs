@@ -142,7 +142,7 @@ public class ZED3DObjectVisualizer : MonoBehaviour
     /// All active GameObjects that were instantiated to the prefab and that currently represent a detected object.
     /// Key is the object's objectID.
     /// </summary>
-    private Dictionary<int, GameObject> liveBBoxes = new Dictionary<int, GameObject>();
+    public Dictionary<int, GameObject> liveBBoxes = new Dictionary<int, GameObject>();
 
     /// <summary>
     /// Used to know which of the available colors will be assigned to the next bounding box to be used.
