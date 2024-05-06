@@ -29,7 +29,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         //Model
         private DroneModel _droneModel;
         private GunModel _gunModel;
-        private PlayerModel _playerModel;
+        public PlayerModel _playerModel;
         
         
         //View

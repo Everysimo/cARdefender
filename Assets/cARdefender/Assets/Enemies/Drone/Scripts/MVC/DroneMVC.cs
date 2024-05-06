@@ -22,15 +22,17 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         [SerializeField] 
         private PlayerView _playerView;
 
+        public DroneMvcsManager droneMvcsManager;
+
 
         
         //  Unity Methods  --------------------------------
         protected void Start()
         {
-            DroneMvcsManager droneMvcs = 
+            droneMvcsManager = 
                 new DroneMvcsManager(_droneView,_gunView,_playerView);
             
-            droneMvcs.Initialize();
+            droneMvcsManager.Initialize();
         }
 
 

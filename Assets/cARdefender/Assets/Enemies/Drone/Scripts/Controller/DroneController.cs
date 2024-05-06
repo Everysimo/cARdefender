@@ -45,7 +45,7 @@ public class DroneController : IController
     //Model
     private GunModel _gunModel;
     private DroneModel _droneModel;
-    private PlayerModel _playerModel;
+    public PlayerModel _playerModel;
 
     //View
     private GunView _gunView;
