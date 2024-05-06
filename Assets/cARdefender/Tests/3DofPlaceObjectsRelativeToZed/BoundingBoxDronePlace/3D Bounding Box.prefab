@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4047903173329720}
   - component: {fileID: 33366876335988836}
   - component: {fileID: 23298718721252580}
-  - component: {fileID: 114307721911944248}
   m_Layer: 0
   m_Name: 3D Bounding Box
   m_TagString: Untagged
@@ -84,27 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &114307721911944248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438017172825460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 272a8d67ec7c17948b9f59238604dcb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  labelRoot: {fileID: 0}
-  text2D: {fileID: 0}
-  backgroundImage: {fileID: 0}
-  backgroundOutline: {fileID: 0}
-  heightFromBoxCeiling: 0.05
-  applyColorToText2D: 1
-  applyColorToBackgroundImage: 0
-  applyColorToBackgroundOutline: 1
-  showID: 1
-  showDistance: 1
-  useLabelMaxDistScaling: 0
-  maxDistBeforeScaling: 12

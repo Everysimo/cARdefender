@@ -24,12 +24,19 @@ public class DroneController : IController
 
 
     //  Properties ------------------------------------
-    public bool IsInitialized { get { return _isInitialized;} }
-    public IContext Context { get { return _context;} }
-        
+    public bool IsInitialized
+    {
+        get { return _isInitialized; }
+    }
+
+    public IContext Context
+    {
+        get { return _context; }
+    }
+
     //  Fields ----------------------------------------
     private bool _isInitialized = false;
-        
+
     //Context
     private IContext _context;
 
@@ -38,24 +45,31 @@ public class DroneController : IController
     //Model
     private GunModel _gunModel;
     private DroneModel _droneModel;
+    private PlayerModel _playerModel;
 
     //View
     private GunView _gunView;
     private DroneView _droneView;
+    private PlayerView _playerView;
 
     //Controller
     //private AudioController _audioController;
 
     //Service
     DroneService _droneService;
-    
 
-    public DroneController(DroneModel droneModel, GunModel gunModel, GunView gunView, DroneView droneView, DroneService droneService)
+
+    public DroneController(DroneModel droneModel, GunModel gunModel, PlayerModel playerModel, GunView gunView,
+        DroneView droneView,PlayerView playerView, DroneService droneService)
     {
         _gunModel = gunModel;
         _droneModel = droneModel;
+        _playerModel = playerModel;
+        
         _gunView = gunView;
         _droneView = droneView;
+        _playerView = playerView;
+        
         _droneService = droneService;
     }
 
@@ -68,7 +82,7 @@ public class DroneController : IController
             _context = context;
 
 
-            //DRONE
+            //----DRONE----
             //Model
             _droneModel.Life.OnValueChanged.AddListener(Model_Drone_OnLifeValueChanged);
 
@@ -80,17 +94,25 @@ public class DroneController : IController
             //Servie
             //_service.OnSumCalculatedEvent.AddListener(Service_OnSumCalculated);
 
-            //GUN
+            //----GUN----
             //Model
 
             //View
             _gunView.OnShootButtonPressed.AddListener(View_Gun_OnShootButtonPressed);
+            _gunView.OnInitializeGunEvent.AddListener(View_Gun_OnInitializeGunEvent);
 
             //Servie
+            
+            //----PLAYER----
+            //Model
+
+            //View
+            _playerView.OnPlayerHitted.AddListener(View_Player_OnPlayerHitted);
+
 
 
             //Commands
-            
+
             // Demo - Controller may update model DIRECTLY...
 
 
@@ -111,11 +133,12 @@ public class DroneController : IController
 
 
     //  Event Handlers --------------------------------
-    
-    //DRONE
-    
+
+    //-----DRONE-----
+
     //View
-    private void View_Drone_OnInitializeDroneEvent(float droneLife, float movementSpeed, float shootDamage, float shootSpeed)
+    private void View_Drone_OnInitializeDroneEvent(float droneLife, float movementSpeed, float shootDamage,
+        float shootSpeed)
     {
         RequireIsInitialized();
 
@@ -127,16 +150,19 @@ public class DroneController : IController
         RequireIsInitialized();
 
         _droneModel.Life.Value -= damage;
+
+        Debug.Log("Vita Drone" + _droneModel.Life.Value);
     }
 
-    private void View_Drone_OnDroneShootProjectile(float projectileSpeed, GameObject projectilePrefab, Transform startPoint, Transform target)
+    private void View_Drone_OnDroneShootProjectile(float projectileSpeed, GameObject projectilePrefab,
+        Transform startPoint, Transform target)
     {
         RequireIsInitialized();
 
         Context.CommandManager.InvokeCommand(
             new ShootProjectileToTargetCommand(projectileSpeed, projectilePrefab, startPoint, target));
     }
-    
+
     //Model
     public void Model_Drone_OnLifeValueChanged(float previousValue, float currentValue)
     {
@@ -145,17 +171,41 @@ public class DroneController : IController
         if (currentValue <= 0)
         {
             Console.Write("Drone distrutto");
+            _droneView.DestroyDrone();
         }
     }
-    
-    //GUN
+
+    //-----GUN-----
+
+    //View
+    private void View_Gun_OnInitializeGunEvent(int maxAmmo, float reloadSpeed, float shootDamage, float shootSpeed)
+    {
+        RequireIsInitialized();
+
+        _gunModel.SetGunStats(maxAmmo, maxAmmo, reloadSpeed, shootDamage, shootSpeed);
+    }
+
     private void View_Gun_OnShootButtonPressed(float shootSpeed, GameObject projectilePrefab, Transform startPoint)
     {
         RequireIsInitialized();
-        
-        Console.Write("Sparato");
+
 
         Context.CommandManager.InvokeCommand(
-            new ShootProjectileWithGravity(shootSpeed,projectilePrefab,startPoint));
+            new ShootProjectileWithGravity(shootSpeed, projectilePrefab, startPoint, _gunModel.ShootDamage.Value));
+    }
+    
+    //----PLAYER-----
+    
+    //View
+    private void View_Player_OnPlayerHitted(float damage)
+    {
+        RequireIsInitialized();
+        
+        Debug.Log("Drone damage " + damage);
+
+        _playerModel.Life.Value = _playerModel.Life.Value - damage;
+        
+        Debug.Log("Vita Giocatore " + _playerModel.Life.Value);
+        
     }
 }

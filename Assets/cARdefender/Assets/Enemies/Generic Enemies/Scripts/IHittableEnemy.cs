@@ -16,6 +16,6 @@ public interface IHittableEnemy
     /// </summary>
     /// <param name="damage">How much damage to deal.</param>
     
-    void OnTakeDamage(int damage);
+    void OnTakeDamage(float damage);
 
 }

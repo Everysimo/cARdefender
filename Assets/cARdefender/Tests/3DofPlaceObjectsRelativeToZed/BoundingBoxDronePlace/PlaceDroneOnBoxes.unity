@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18275428, g: 0.22846201, b: 0.3070545, a: 1}
+  m_IndirectSpecularColor: {r: 0.18275452, g: 0.22846243, b: 0.30705515, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -767,7 +767,7 @@ MonoBehaviour:
   - {r: 1, g: 0.7254902, b: 0, a: 1}
   - {r: 0.98823535, g: 0.38823533, b: 0.41960788, a: 1}
   boxesFaceCamera: 0
-  transformBoxScale: 1
+  transformBoxScale: 0
   transformBoxToTouchFloor: 0
   floorBBoxPosition: 0
   showONTracked: 1

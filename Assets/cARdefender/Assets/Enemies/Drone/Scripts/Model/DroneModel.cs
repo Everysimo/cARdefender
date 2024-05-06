@@ -40,7 +40,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
                 base.Initialize(context);
 
                 // Set Defaults
-                _life.Value = 100f;
+                _life.Value = 50f;
             }
         }
         

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2448240708444327553}
   - component: {fileID: 4480181683119295964}
   - component: {fileID: 1815294400256254082}
+  - component: {fileID: 4522982687075523949}
   m_Layer: 0
   m_Name: DroneProjectile
   m_TagString: Untagged
@@ -103,7 +104,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -162,6 +163,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4522982687075523949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403701147342793504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c7f8844535b140498219dc67a992442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoDamage: 2
 --- !u!1 &5388270799924976633
 GameObject:
   m_ObjectHideFlags: 0

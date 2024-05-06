@@ -81,10 +81,7 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
                 _isInitialized = true;
             
                 _context = context;
-            
-            
-                //
-                OnInitializeGunEvent.Invoke(maxAmmo,reloadSpeed,shootDamage,shootSpeed);
+                
             
                 //
 
@@ -93,10 +90,15 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
 
             }
         }
-    
+
+        private void Start()
+        {
+            
+            OnInitializeGunEvent.Invoke(maxAmmo,reloadSpeed,shootDamage,shootSpeed);
+        }
+
         public void ShootButtonPressed()
         {
-            Console.Write("Sparato 1");
             OnShootButtonPressed.Invoke(shootSpeed,projectilePrefab,startPoint);
         }
     
@@ -119,6 +121,7 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
 
 
         //  Event Handlers --------------------------------
+        
 
     }
 }

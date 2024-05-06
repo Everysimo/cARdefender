@@ -1,3 +1,4 @@
+using cARdefender.Assets.Interactable.Ammo.Scripts;
 using RMC.Core.Architectures.Mini.Controller.Commands;
 using UnityEngine;
 
@@ -16,14 +17,20 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.Commands
         private Transform _startPoint;
         
         
-        public ShootProjectileWithGravity(float shootSpeed, GameObject projectilePrefab, Transform startPoint)
+        public ShootProjectileWithGravity(float shootSpeed, GameObject projectilePrefab, Transform startPoint, float gunDamage)
         {
             _shootSpeed = shootSpeed;
             _projectilePrefab = projectilePrefab;
             _startPoint = startPoint;
             
-            GameObject newObject = Instantiate(ProjectilePrefab, _startPoint.position, _startPoint.rotation, null) as GameObject;
+            GameObject newObject = Instantiate(ProjectilePrefab, _startPoint.position, _startPoint.rotation, null);
 
+            if (newObject.TryGetComponent(out AmmoComponent ammoComponent))
+            {
+                ammoComponent.ammoDamage = gunDamage;
+                Debug.Log("Danno proiettili "+ ammoComponent.ammoDamage);
+            }
+                
             if (newObject.TryGetComponent(out Rigidbody rigidBody))
                 ApplyForce(rigidBody);
         }

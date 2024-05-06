@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using RMC.Core.Architectures.Mini.Context;
@@ -68,13 +69,16 @@ public class GunModel : IModel
 
     public void RequireIsInitialized()
     {
-        throw new System.NotImplementedException();
+        if (!_isInitialized)
+        {
+            throw new Exception("MustBeInitialized");
+        }
     }
     
 
     //  Methods ---------------------------------------
 
-    public void SetGunStats(int maxAmmo,int actualAmmo, float reloadSpeed,float shootDamage, float shootSpeed)
+    public void SetGunStats(int maxAmmo, int actualAmmo, float reloadSpeed, float shootDamage, float shootSpeed)
     {
 
         _maxAmmo.Value = maxAmmo;
@@ -82,9 +86,7 @@ public class GunModel : IModel
         _reloadSpeed.Value = reloadSpeed;
         _shootDamage.Value = shootDamage;
         _shootSpeed.Value = shootSpeed;
-        
     }
-    
 
     //  Event Handlers --------------------------------
 

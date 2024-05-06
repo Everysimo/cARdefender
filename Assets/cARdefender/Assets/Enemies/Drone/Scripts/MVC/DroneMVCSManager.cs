@@ -29,11 +29,13 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         //Model
         private DroneModel _droneModel;
         private GunModel _gunModel;
+        private PlayerModel _playerModel;
         
         
         //View
         private DroneView _droneView;
         private GunView _gunView;
+        private PlayerView _playerView;
 
         
         //Controller
@@ -44,10 +46,11 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
 
 
         //  Initialization  -------------------------------
-        public DroneMvcsManager(DroneView droneView,GunView gunView)
+        public DroneMvcsManager(DroneView droneView,GunView gunView, PlayerView playerView)
         {
             _droneView = droneView;
             _gunView = gunView;
+            _playerView = playerView;
         }
         
         
@@ -64,6 +67,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                 //Model
                 _droneModel = new DroneModel();
                 _gunModel = new GunModel();
+                _playerModel = new PlayerModel();
    
                 //Service
                 _droneService = new DroneService();
@@ -72,16 +76,20 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                 _droneController = new DroneController(
                     _droneModel,
                     _gunModel,
+                    _playerModel,
                     _gunView,
                     _droneView,
+                    _playerView,
                     _droneService);
             
                 //Model
                 _droneModel.Initialize(_context);
                 _gunModel.Initialize(_context);
+                _playerModel.Initialize(_context);
                 
                 //View
                 _droneView.Initialize(_context);
+                _gunView.Initialize(_context);
                 _gunView.Initialize(_context);
                 
                 //Service

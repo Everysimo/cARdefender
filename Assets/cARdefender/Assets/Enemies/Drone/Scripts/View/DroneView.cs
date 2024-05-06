@@ -94,17 +94,19 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
             _context = context;
             
             //
-            OnInitializeDroneEvent.Invoke(droneLife,movementSpeed,shootDamage,shootSpeed);
-            
-            //
 
             
             //
 
         }
     }
-    
-    public void OnTakeDamage(int damage)
+
+    private void Start()
+    {
+        OnInitializeDroneEvent.Invoke(droneLife,movementSpeed,shootDamage,shootSpeed);
+    }
+
+    public void OnTakeDamage(float damage)
     {
        OnDroneHitted.Invoke(damage);
     }
@@ -142,7 +144,11 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
 
     //  Methods ---------------------------------------
 
+    public void DestroyDrone()
+    {
+        Destroy(gameObject);
+    }
 
     //  Event Handlers --------------------------------
-
+    
 }
