@@ -92,6 +92,7 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     private Image healthBarSprite = null;
 
     private int lastStartPointWeaponNumber = 0;
+    private float _target = 1;
 
     //  Initialization  -------------------------------
     public void Initialize(IContext context)
@@ -153,7 +154,11 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
             _coroutine = null;
         }
     }
-    
+
+    private void Update()
+    {
+        healthBarSprite.fillAmount = Mathf.MoveTowards( healthBarSprite.fillAmount,_target,2*Time.deltaTime);
+    }
 
     //  Methods ---------------------------------------
 
@@ -169,7 +174,7 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     
     public void UpdateHealthBar(float currentLife)
     {
-        healthBarSprite.fillAmount = currentLife/droneLife;
+        _target = currentLife/droneLife;
     }
 
     //  Event Handlers --------------------------------
