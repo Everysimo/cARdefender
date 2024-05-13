@@ -36,6 +36,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         private DroneView _droneView;
         private GunView _gunView;
         private PlayerView _playerView;
+        private HandMenuView _handMenuView;
 
         
         //Controller
@@ -46,11 +47,12 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
 
 
         //  Initialization  -------------------------------
-        public DroneMvcsManager(DroneView droneView,GunView gunView, PlayerView playerView)
+        public DroneMvcsManager(DroneView droneView,GunView gunView, PlayerView playerView,HandMenuView handMenuView)
         {
             _droneView = droneView;
             _gunView = gunView;
             _playerView = playerView;
+            _handMenuView = handMenuView;
         }
         
         
@@ -71,16 +73,6 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
    
                 //Service
                 _droneService = new DroneService();
-                
-                //Controller
-                _droneController = new DroneController(
-                    _droneModel,
-                    _gunModel,
-                    _playerModel,
-                    _gunView,
-                    _droneView,
-                    _playerView,
-                    _droneService);
             
                 //Model
                 _droneModel.Initialize(_context);
@@ -91,11 +83,21 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                 _droneView.Initialize(_context);
                 _gunView.Initialize(_context);
                 _gunView.Initialize(_context);
+                _handMenuView.Initialize(_context);
                 
                 //Service
                 _droneService.Initialize(_context);
                 
-              
+                //Controller
+                _droneController = new DroneController(
+                    _droneModel,
+                    _gunModel,
+                    _playerModel,
+                    _gunView,
+                    _droneView,
+                    _playerView,
+                    _handMenuView,
+                    _droneService);
                 
                 //Controller (Init this main controller last)
                 _droneController.Initialize(_context);

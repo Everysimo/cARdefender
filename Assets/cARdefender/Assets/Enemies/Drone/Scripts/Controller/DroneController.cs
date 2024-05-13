@@ -51,6 +51,7 @@ public class DroneController : IController
     private GunView _gunView;
     private DroneView _droneView;
     private PlayerView _playerView;
+    private HandMenuView _handMenuView;
 
     //Controller
     //private AudioController _audioController;
@@ -60,7 +61,7 @@ public class DroneController : IController
 
 
     public DroneController(DroneModel droneModel, GunModel gunModel, PlayerModel playerModel, GunView gunView,
-        DroneView droneView,PlayerView playerView, DroneService droneService)
+        DroneView droneView,PlayerView playerView,HandMenuView handMenuView, DroneService droneService)
     {
         _gunModel = gunModel;
         _droneModel = droneModel;
@@ -69,6 +70,7 @@ public class DroneController : IController
         _gunView = gunView;
         _droneView = droneView;
         _playerView = playerView;
+        _handMenuView = handMenuView;
         
         _droneService = droneService;
     }
@@ -108,6 +110,7 @@ public class DroneController : IController
 
             //View
             _playerView.OnPlayerHitted.AddListener(View_Player_OnPlayerHitted);
+            
 
 
 
@@ -150,6 +153,7 @@ public class DroneController : IController
         RequireIsInitialized();
 
         _droneModel.Life.Value -= damage;
+        
 
         Debug.Log("Vita Drone" + _droneModel.Life.Value);
     }
@@ -167,6 +171,9 @@ public class DroneController : IController
     public void Model_Drone_OnLifeValueChanged(float previousValue, float currentValue)
     {
         RequireIsInitialized();
+        
+        _droneView.ChangeHealthText(currentValue.ToString());
+        _droneView.UpdateHealthBar(currentValue);
 
         if (currentValue <= 0)
         {
@@ -201,11 +208,16 @@ public class DroneController : IController
     {
         RequireIsInitialized();
         
-        Debug.Log("Drone damage " + damage);
 
         _playerModel.Life.Value = _playerModel.Life.Value - damage;
         
-        Debug.Log("Vita Giocatore " + _playerModel.Life.Value);
-        
+        _handMenuView.UpdatePlayerLifeUI(_playerModel.Life.Value);
     }
+    
+    //-----HAND MENU-----
+    
+    //View 
+    
+    
+    
 }

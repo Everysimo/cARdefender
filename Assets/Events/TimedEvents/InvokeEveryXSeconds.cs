@@ -6,10 +6,13 @@ public class InvokeEveryXSeconds : MonoBehaviour
 {
     // Start is called before the first frame update
     public UnityEvent invokeEveryXSeconds;
+    
+    public UnityEvent invokeOnStart;
     public float secondsToWait = 1;
     void Start()
     {
         StartCoroutine(ExecuteEveryXSeconds(secondsToWait));
+        invokeOnStart?.Invoke();
     }
 
     public IEnumerator ExecuteEveryXSeconds(float seconds)

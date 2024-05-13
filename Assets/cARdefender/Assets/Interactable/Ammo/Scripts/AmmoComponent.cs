@@ -16,7 +16,7 @@ namespace cARdefender.Assets.Interactable.Ammo.Scripts
             {
                 Debug.Log("Oggetto Colpito "+objectHittedView.GetType());
                 objectHittedView.OnTakeDamage(ammoDamage);
-                
+                Destroy(gameObject);
             }
         }
         

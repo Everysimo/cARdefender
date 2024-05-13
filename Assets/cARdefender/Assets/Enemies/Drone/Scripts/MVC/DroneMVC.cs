@@ -22,6 +22,9 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         [SerializeField] 
         private PlayerView _playerView;
 
+        [SerializeField] 
+        private HandMenuView _handMenuView;
+
         public DroneMvcsManager droneMvcsManager;
 
 
@@ -30,7 +33,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         protected void Start()
         {
             droneMvcsManager = 
-                new DroneMvcsManager(_droneView,_gunView,_playerView);
+                new DroneMvcsManager(_droneView,_gunView,_playerView,_handMenuView);
             
             droneMvcsManager.Initialize();
         }

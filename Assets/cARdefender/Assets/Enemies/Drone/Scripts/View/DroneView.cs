@@ -83,6 +83,14 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     [Tooltip("The target object to aim to")]
     Transform targetObject = null;
 
+    [SerializeField]
+    [Tooltip("Text to display Health")]
+    private TextMeshProUGUI healthText = null;
+    
+    [SerializeField]
+    [Tooltip("Text to display Health")]
+    private Image healthBarSprite = null;
+
     private int lastStartPointWeaponNumber = 0;
 
     //  Initialization  -------------------------------
@@ -102,6 +110,11 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     }
 
     private void Start()
+    {
+        OnInitializeDroneEvent.Invoke(droneLife,movementSpeed,shootDamage,shootSpeed);
+    }
+
+    public void InitializeDroneOnStart()
     {
         OnInitializeDroneEvent.Invoke(droneLife,movementSpeed,shootDamage,shootSpeed);
     }
@@ -146,7 +159,17 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
 
     public void DestroyDrone()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+    }
+
+    public void ChangeHealthText(string currentLife)
+    {
+        healthText.text = currentLife + "/" + droneLife;
+    }
+    
+    public void UpdateHealthBar(float currentLife)
+    {
+        healthBarSprite.fillAmount = currentLife/droneLife;
     }
 
     //  Event Handlers --------------------------------

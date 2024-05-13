@@ -4,19 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03b65b52-ea69-4514-9ec0-9e690e162805" name="Changes" comment="feat(Drone): now can be hitted + demo scene ZED Camera">
+    <list default="true" id="03b65b52-ea69-4514-9ec0-9e690e162805" name="Changes" comment="feat(demo): add new demo scenes">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.cARdefender/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cARdefender/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Events/TimedEvents/InvokeEveryXSeconds.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Events/TimedEvents/InvokeEveryXSeconds.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Oculus/OculusProjectConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Oculus/OculusProjectConfig.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VRTemplateAssets/Materials/Anchor Materials/Anchor Blue Glow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VRTemplateAssets/Materials/Anchor Materials/Anchor Blue Glow.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XR/Settings/Open XR Package Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XR/Settings/Open XR Package Settings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene/Demo/CD_ShootingSystem.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene/Demo/CD_ShootingSystem.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/VRTemplateAssets/Graphics/Template Lighting Settings.lighting" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VRTemplateAssets/Graphics/Template Lighting Settings.lighting" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ZED/SDK/Helpers/Scripts/ZEDManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ZED/SDK/Helpers/Scripts/ZEDManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Animations/DroneAnimator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Animations/DroneAnimator.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Prefabs/EnemyDrone.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Prefabs/EnemyDrone.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/Controller/DroneController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/Controller/DroneController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/DroneMVC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/DroneMVC.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/DroneMVCSManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/DroneMVCSManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/CompleteTest/PlaceDroneOnBoxes.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/CompleteTest/PlaceDroneOnBoxes.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.learn.iet-framework/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.learn.iet-framework/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/View/DroneView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/View/DroneView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Ammo/Scripts/AmmoComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Ammo/Scripts/AmmoComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Gun/Prefabs/Sci_Fi_Pistol.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Gun/Prefabs/Sci_Fi_Pistol.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Gun/Scripts/Model/GunModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Gun/Scripts/Model/GunModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Gun/Scripts/View/GunView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Gun/Scripts/View/GunView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/CompleteTest/CompleteTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/CompleteTest/CompleteTest.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +30,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b24cc7fa9794ed8ab04312c53e6dedd172c00/0a/dd92d9fd/Transform.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b24cc7fa9794ed8ab04312c53e6dedd172c00/37/0e2770d0/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b24cc7fa9794ed8ab04312c53e6dedd172c00/46/b22bda82/UnityEvent`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/92/a8eded2c/Void.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Events/ButtonsEvents/OculusButtonsEvents/OnOculusMenuOpen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.0/RMC Mini MVCS Examples/Examples/MyExamples/01_Calculator/Commands/CalculateCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.0/RMC Mini MVCS Examples/Examples/MyExamples/01_Calculator/Commands/ClearCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.0/RMC Mini MVCS Examples/Examples/MyExamples/01_Calculator/Controller/CalculatorController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -40,22 +48,16 @@
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/DroneMVC.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Generic Enemies/Scripts/LookAtObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Generic Enemies/Scripts/MoveObjectWithVelocity.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/aurel/Desktop/Glasgow/CarDefender/cARdefender/Assets/cARdefender/Assets/Enemies/Scripts.meta" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Ammo/Scripts/AmmoComponent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Ammo/Scripts/View/AmmoView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Everysimo/Documents/Intellij_Projects/cARdefender/Assets/cARdefender/Assets/Interactable/Gun/Scripts/Model/GunModel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/Model/PlayerModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/View/PlayerView.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/aurel/Desktop/Glasgow/CarDefender/cARdefender/Assets/cARdefender/Assets/Player/Scripts/View/PlayerView.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Utility/Scripts/ReadHealthFromPlayerView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.rmc.rmc-mini-mvcs@9c36e1463a/RMC Mini MVCS/Runtime/RMC/Core/Architectures/Mini/Context/IContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.rmc.rmc-mini-mvcs@9c36e1463a/RMC Mini MVCS/Runtime/RMC/Core/Architectures/Mini/Controller/BaseController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.8.1/InputSystem/Editor/ProjectWideActions/ProjectWideActionsAsset.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.xr.arfoundation@5.1.3/Runtime/VisualScripting/Units/Events/EventUnits/SessionStateChangedEventUnit.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/aurel/Desktop/Glasgow/CarDefender/cARdefender/ProjectSettings/ProjectSettings.asset" root0="SKIP_HIGHLIGHTING" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -87,7 +89,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/Build/pc\cARdefender DEV.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Build/pc/TestCompleto\cARdefender DEV.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Everysimo\Documents\Intellij_Projects\cARdefender\Build" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -106,14 +108,6 @@
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\Everysimo\Documents\Intellij_Projects\cARdefender -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Everysimo\Documents\Intellij_Projects\cARdefender" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <method v="2" />
-    </configuration>
-    <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Unity.exe" />
-      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\aurel\Desktop\Glasgow\CarDefender\cARdefender -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\aurel\Desktop\Glasgow\CarDefender\cARdefender" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
@@ -165,7 +159,8 @@
       <workItem from="1714517096346" duration="484000" />
       <workItem from="1714568745281" duration="10478000" />
       <workItem from="1714664010370" duration="1229000" />
-      <workItem from="1714992174402" duration="1419000" />
+      <workItem from="1714992174402" duration="8135000" />
+      <workItem from="1715616457750" duration="3256000" />
     </task>
     <task id="LOCAL-00001" summary="feat(game): init">
       <option name="closed" value="true" />
@@ -231,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714571785554</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat(demo): add new demo scenes">
+      <option name="closed" value="true" />
+      <created>1714994118524</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1714994118524</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,7 +242,7 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
-  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -261,6 +264,7 @@
     <MESSAGE value="fix(MVCs): example 3" />
     <MESSAGE value="feat(ShootingDemo): MVCs Drone and Gun" />
     <MESSAGE value="feat(Drone): now can be hitted + demo scene ZED Camera" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(Drone): now can be hitted + demo scene ZED Camera" />
+    <MESSAGE value="feat(demo): add new demo scenes" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(demo): add new demo scenes" />
   </component>
 </project>

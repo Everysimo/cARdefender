@@ -309,7 +309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3570250680833162388}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.231, y: 1.008, z: -0.109}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -629,8 +629,8 @@ MonoBehaviour:
   maxAmmo: 0
   actualAmmo: 0
   reloadSpeed: 0
-  shootDamage: 0
-  shootSpeed: 1000
+  shootDamage: 5
+  shootSpeed: 2000
   projectilePrefab: {fileID: 5883795506068179408, guid: dd5130599972e7d41aff9d554fd38169, type: 3}
   startPoint: {fileID: 6331619202016910260}
 --- !u!1 &6975075932966446544

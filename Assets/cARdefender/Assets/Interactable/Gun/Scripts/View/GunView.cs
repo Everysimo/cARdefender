@@ -93,7 +93,11 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
 
         private void Start()
         {
-            
+            OnInitializeGunEvent.Invoke(maxAmmo,reloadSpeed,shootDamage,shootSpeed);
+        }
+
+        public void InitalizeGunEvent()
+        {
             OnInitializeGunEvent.Invoke(maxAmmo,reloadSpeed,shootDamage,shootSpeed);
         }
 
