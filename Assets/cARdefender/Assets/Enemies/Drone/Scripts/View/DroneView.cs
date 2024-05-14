@@ -113,7 +113,10 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     private void Start()
     {
         OnInitializeDroneEvent.Invoke(droneLife,movementSpeed,shootDamage,shootSpeed);
+        
+        
     }
+    
 
     public void InitializeDroneOnStart()
     {
@@ -127,15 +130,19 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
 
     public IEnumerator OnShootProjectile()
     {
-        while (true)
+        if (targetObject != null)
         {
-            yield return new WaitForSeconds(shootSpeed);
+            while (true)
+            {
+                yield return new WaitForSeconds(shootSpeed);
             
-            OnDroneShootProjectile.Invoke(projectileSpeed,projectilePrefab,startPoints[lastStartPointWeaponNumber],targetObject);
-            lastStartPointWeaponNumber = (lastStartPointWeaponNumber + 1 )% (startPoints.Length);
+                OnDroneShootProjectile.Invoke(projectileSpeed,projectilePrefab,startPoints[lastStartPointWeaponNumber],targetObject);
+                lastStartPointWeaponNumber = (lastStartPointWeaponNumber + 1 )% (startPoints.Length);
             
-            //audioSource.PlayOneShot(spitSound);
+                //audioSource.PlayOneShot(spitSound);
+            }
         }
+       
     }
 
 
@@ -143,6 +150,30 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
 
     private void OnEnable()
     {
+       
+        // Elenco degli oggetti in scena
+        GameObject[] objs = FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in objs)
+        {
+            // Controlla se l'oggetto ha lo script PlayerView
+            PlayerView player = obj.GetComponent<PlayerView>();
+            if (player != null)
+            {
+                // Ottieni il Transform dell'oggetto trovato
+                targetObject = obj.transform;
+                break; // Esci dal loop una volta trovato l'oggetto desiderato
+            }
+        }
+
+        if (targetObject == null)
+        {
+            Debug.LogError("Non è stato trovato nessun player.");
+        }
+
+        LookAtObject lookAtObject = GetComponent<LookAtObject>();
+        lookAtObject.objectToLook = targetObject;
+        
         _coroutine = StartCoroutine(OnShootProjectile());
     }
 
@@ -157,6 +188,7 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
 
     private void Update()
     {
+        
         healthBarSprite.fillAmount = Mathf.MoveTowards( healthBarSprite.fillAmount,_target,2*Time.deltaTime);
     }
 

@@ -10,11 +10,9 @@ namespace cARdefender.Assets.Interactable.Ammo.Scripts
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Oggetto Colpito");
             IHittableEnemy objectHittedView = other.transform.GetComponent<IHittableEnemy>();
             if(objectHittedView != null)
             {
-                Debug.Log("Oggetto Colpito "+objectHittedView.GetType());
                 objectHittedView.OnTakeDamage(ammoDamage);
                 Destroy(gameObject);
             }

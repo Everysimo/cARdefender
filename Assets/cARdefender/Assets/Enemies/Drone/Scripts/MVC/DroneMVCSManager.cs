@@ -11,8 +11,11 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         //  Events ----------------------------------------
         //  Properties ------------------------------------
         public bool IsInitialized { get { return _isInitialized;} }
+        
+        public DroneSpawnerModel DroneSpawnerModel { get { return _droneSpawnerModel;} }
         public DroneModel DroneModel { get { return _droneModel;} }
         public GunModel GunModel { get { return _gunModel;} }
+        public PlayerModel PlayerModel { get { return _playerModel;} }
         public DroneView DroneView { get { return _droneView;} }
         public GunView GunView { get { return _gunView;} }
         public DroneController DroneController { get { return _droneController;} }
@@ -26,12 +29,14 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         public IContext Context { get; private set; }
         
         //Model
+        private DroneSpawnerModel _droneSpawnerModel;
         private DroneModel _droneModel;
         private GunModel _gunModel;
-        public PlayerModel _playerModel;
+        private PlayerModel _playerModel;
         
         
         //View
+        private DroneSpawnerView _droneSpawnerView;
         private DroneView _droneView;
         private GunView _gunView;
         private PlayerView _playerView;
@@ -39,6 +44,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
 
         
         //Controller
+        private DroneSpawnerController _droneSpawnerController;
         private DroneController _droneController;
         private GunController _gunController;
         private PlayerController _playerController;
@@ -48,8 +54,9 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
 
 
         //  Initialization  -------------------------------
-        public DroneMvcsManager(IContext context, DroneView droneView,GunView gunView, PlayerView playerView,HandMenuView handMenuView)
+        public DroneMvcsManager(IContext context,DroneSpawnerView droneSpawnerView, DroneView droneView,GunView gunView, PlayerView playerView,HandMenuView handMenuView)
         {
+            _droneSpawnerView = droneSpawnerView;
             _droneView = droneView;
             _gunView = gunView;
             _playerView = playerView;
@@ -69,6 +76,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                 Context = new Context();
                 
                 //Model
+                _droneSpawnerModel = new DroneSpawnerModel();
                 _droneModel = new DroneModel();
                 _gunModel = new GunModel();
                 _playerModel = new PlayerModel();
@@ -77,11 +85,13 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                 _droneService = new DroneService();
             
                 //Model
+                _droneSpawnerModel.Initialize(Context);
                 _droneModel.Initialize(Context);
                 _gunModel.Initialize(Context);
                 _playerModel.Initialize(Context);
                 
                 //View
+                _droneSpawnerView.Initialize(Context);
                 _droneView.Initialize(Context);
                 _gunView.Initialize(Context);
                 _gunView.Initialize(Context);
@@ -91,6 +101,9 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                 _droneService.Initialize(Context);
                 
                 //Controller
+                _droneSpawnerController =
+                    new DroneSpawnerController(_droneSpawnerModel, _droneSpawnerView, _droneView);
+                
                 _droneController = new DroneController(
                     _droneModel,
                     _droneView);
@@ -105,8 +118,10 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                     _handMenuView);
                 
                 //Controller (Init this main controller last)
+                _droneSpawnerController.Initialize(Context);
                 _droneController.Initialize(Context);
                 _gunController.Initialize(Context);
+                _playerController.Initialize(Context);
             }
         }
 

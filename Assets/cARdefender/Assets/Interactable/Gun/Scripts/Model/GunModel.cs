@@ -87,7 +87,6 @@ public class GunModel : IModel
         _shootDamage.Value = shootDamage;
         _shootSpeed.Value = shootSpeed;
         
-        Debug.Log("Gun inizializata: damage "+_shootDamage);
     }
 
     //  Event Handlers --------------------------------
