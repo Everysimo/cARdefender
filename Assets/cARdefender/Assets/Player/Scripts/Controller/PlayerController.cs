@@ -18,7 +18,7 @@ using UnityEngine;
 /// The Controller coordinates everything between
 /// the <see cref="IConcern"/>s and contains the core app logic 
 /// </summary>
-public class DroneController : IController
+public class PlayerController : IController
 {
     //  Events ----------------------------------------
 
@@ -43,21 +43,25 @@ public class DroneController : IController
     //  Fields ----------------------------------------
 
     //Model
-    private DroneModel _droneModel;
+    public PlayerModel _playerModel;
 
     //View
-    private DroneView _droneView;
+    private PlayerView _playerView;
+    private HandMenuView _handMenuView;
 
     //Controller
     //private AudioController _audioController;
-    
+
+    //Service
+    DroneService _droneService;
 
 
-    public DroneController(DroneModel droneModel, DroneView droneView)
+    public PlayerController(PlayerModel playerModel, PlayerView playerView,HandMenuView handMenuView)
     {
-        _droneModel = droneModel;
+        _playerModel = playerModel;
         
-        _droneView = droneView;
+        _playerView = playerView;
+        _handMenuView = handMenuView;
 
     }
 
@@ -68,18 +72,17 @@ public class DroneController : IController
         {
             _isInitialized = true;
             _context = context;
-
-
-            //----DRONE----
+            
+            
+            //----PLAYER----
             //Model
-            _droneModel.Life.OnValueChanged.AddListener(Model_Drone_OnLifeValueChanged);
 
             //View
-            _droneView.OnInitializeDroneEvent.AddListener(View_Drone_OnInitializeDroneEvent);
-            _droneView.OnDroneHitted.AddListener(View_Drone_OnDroneHitted);
-            _droneView.OnDroneShootProjectile.AddListener(View_Drone_OnDroneShootProjectile);
-
+            _playerView.OnPlayerHitted.AddListener(View_Player_OnPlayerHitted);
             
+
+
+
             //Commands
 
             // Demo - Controller may update model DIRECTLY...
@@ -102,52 +105,24 @@ public class DroneController : IController
 
 
     //  Event Handlers --------------------------------
-
-    //-----DRONE-----
-
+    
+    
+    //----PLAYER-----
+    
     //View
-    private void View_Drone_OnInitializeDroneEvent(float droneLife, float movementSpeed, float shootDamage,
-        float shootSpeed)
-    {
-        RequireIsInitialized();
-
-        _droneModel.SetDroneStats(droneLife, movementSpeed, shootDamage, shootSpeed);
-    }
-
-    private void View_Drone_OnDroneHitted(float damage)
-    {
-        RequireIsInitialized();
-
-        _droneModel.Life.Value -= damage;
-        
-
-        Debug.Log("Vita Drone" + _droneModel.Life.Value);
-    }
-
-    private void View_Drone_OnDroneShootProjectile(float projectileSpeed, GameObject projectilePrefab,
-        Transform startPoint, Transform target)
-    {
-        RequireIsInitialized();
-
-        Context.CommandManager.InvokeCommand(
-            new ShootProjectileToTargetCommand(projectileSpeed, projectilePrefab, startPoint, target));
-    }
-
-    //Model
-    public void Model_Drone_OnLifeValueChanged(float previousValue, float currentValue)
+    private void View_Player_OnPlayerHitted(float damage)
     {
         RequireIsInitialized();
         
-        _droneView.ChangeHealthText(currentValue.ToString());
-        _droneView.UpdateHealthBar(currentValue);
 
-        if (currentValue <= 0)
-        {
-            Console.Write("Drone distrutto");
-            _droneView.DestroyDrone();
-        }
+        _playerModel.Life.Value = _playerModel.Life.Value - damage;
+        
+        _handMenuView.UpdatePlayerLifeUI(_playerModel.Life.Value);
     }
     
+    //-----HAND MENU-----
+    
+    //View 
     
     
     
