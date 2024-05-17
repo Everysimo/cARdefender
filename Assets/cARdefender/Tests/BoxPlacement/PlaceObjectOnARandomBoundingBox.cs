@@ -8,7 +8,7 @@ public class PlaceObjectOnARandomBoundingBox : MonoBehaviour
     // Start is called before the first frame update
     public Transform objectToMoveTransform;
     public float heightOffset;
-    public ZED3DObjectVisualizer zed3DObjectVisualizer;
+    public ZED3DObjectVisualizerRemote zed3DObjectVisualizerRemote;
 
     private int currentObject = -1;
     
@@ -18,6 +18,31 @@ public class PlaceObjectOnARandomBoundingBox : MonoBehaviour
         MoveObject();
     }
 
+    private void OnEnable()
+    {
+       
+        // Elenco degli oggetti in scena
+        GameObject[] objs = FindObjectsOfType<GameObject>();
+
+        foreach (GameObject obj in objs)
+        {
+            // Controlla se l'oggetto ha lo script Zed3DObjectVisualizerRemote
+            ZED3DObjectVisualizerRemote objectVisualizerRemote = obj.GetComponent<ZED3DObjectVisualizerRemote>();
+            if (objectVisualizerRemote != null)
+            {
+                // Ottieni il Transform dell'oggetto trovato
+                zed3DObjectVisualizerRemote = objectVisualizerRemote;
+                break; // Esci dal loop una volta trovato l'oggetto desiderato
+            }
+            
+            
+        }
+
+        if (zed3DObjectVisualizerRemote == null)
+        {
+            Debug.LogError("Non è stato trovato nessun 3dObjectVisualizer.");
+        }
+    }
 
     public void MoveObject()
     {
@@ -33,20 +58,20 @@ public class PlaceObjectOnARandomBoundingBox : MonoBehaviour
 
     private Transform ChooseBox()
     {
-        if (zed3DObjectVisualizer.liveBBoxes.ContainsKey(currentObject))
+        if (zed3DObjectVisualizerRemote.liveBBoxes.ContainsKey(currentObject))
         {
-            return zed3DObjectVisualizer.liveBBoxes[currentObject].transform;
+            return zed3DObjectVisualizerRemote.liveBBoxes[currentObject].transform;
         }
 
-        int count = zed3DObjectVisualizer.liveBBoxes.Count;
+        int count = zed3DObjectVisualizerRemote.liveBBoxes.Count;
         if (count == 0)
         {
             return null;
         }
 
         int current = Random.Range(0, count);
-        currentObject = zed3DObjectVisualizer.liveBBoxes.Keys.ToList()[current];
-        return zed3DObjectVisualizer.liveBBoxes[currentObject].transform;
+        currentObject = zed3DObjectVisualizerRemote.liveBBoxes.Keys.ToList()[current];
+        return zed3DObjectVisualizerRemote.liveBBoxes[currentObject].transform;
 
 
     }
