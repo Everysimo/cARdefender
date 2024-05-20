@@ -144,6 +144,8 @@ public class DroneController : IController
         if (currentValue <= 0)
         {
             Console.Write("Drone distrutto");
+            Context.CommandManager.InvokeCommand(
+                new DestroyDroneCommand());
             _droneView.DestroyDrone();
         }
     }

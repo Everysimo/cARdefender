@@ -52,7 +52,10 @@ public class DroneSpawnerController : IController
                 //View
                 _droneSpawnerModel.IdCounter.OnValueChanged.AddListener(Counter_OnValueChanged);
                 _droneSpawnerView.OnSpawn.AddListener(DroneSpawnerView_OnSpawn);
+                _droneSpawnerView.OnDestroyDroneEvent.AddListener(DroneSpawnerView_OnDestroyDrone);
                 Debug.Log("Init Spawner");
+
+                _droneSpawnerModel.IdCounter.Value = 0;
             }
         }
         
@@ -74,9 +77,6 @@ public class DroneSpawnerController : IController
         {
             RequireIsInitialized();
 
-            Debug.Log("Drone Inizializzato prima");
-            
-            
             // Spawn Drone 
             
             DroneView newDroneView = GameObject.Instantiate(_droneViewPrefab).GetComponent<DroneView>();
@@ -99,10 +99,22 @@ public class DroneSpawnerController : IController
         private void Counter_OnValueChanged(int previousValue, int currentValue)
         {
             RequireIsInitialized();
+
+            if (_droneSpawnerModel.IdCounter.Value < 3)
+            {
+                _droneSpawnerView.OnSpawn.Invoke();
+            }
             
             Context.CommandManager.InvokeCommand(
                 new IdCounterChangedCommand(previousValue, currentValue));
             
+        }
+        
+        private void DroneSpawnerView_OnDestroyDrone()
+        {
+            RequireIsInitialized();
+
+            _droneSpawnerModel.IdCounter.Value -= 1;
         }
         
     }

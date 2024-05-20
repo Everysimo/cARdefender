@@ -14,7 +14,7 @@ public class DroneSpawnerView : MonoBehaviour,IView
     {
         //  Events ----------------------------------------
         [HideInInspector] 
-        public readonly UnityEvent OnIncrementCounter = new UnityEvent();
+        public readonly UnityEvent OnDestroyDroneEvent = new UnityEvent();
         
         [HideInInspector] 
         public readonly UnityEvent OnSpawn = new UnityEvent();
@@ -47,6 +47,10 @@ public class DroneSpawnerView : MonoBehaviour,IView
                 Context.CommandManager.AddCommandListener<IdCounterChangedCommand>(
                     OnCounterChangedCommand);
                 
+                //
+                Context.CommandManager.AddCommandListener<DestroyDroneCommand>(
+                    OnDestryDroneCommand);
+                
                 _spawnToggleButton?.onClick.AddListener(
                     SpawnToggleButton_OnClicked);
             }
@@ -63,9 +67,7 @@ public class DroneSpawnerView : MonoBehaviour,IView
         
         
         //  Unity Methods ---------------------------------
-        
 
-        
         //  Methods ---------------------------------------
         
         
@@ -82,6 +84,12 @@ public class DroneSpawnerView : MonoBehaviour,IView
             RequireIsInitialized();
             
             BodyText.text = $"{idCounterChangedCommand.CurrentValue}";
+        }
+        
+        private void OnDestryDroneCommand(DestroyDroneCommand destroyDroneCommand)
+        {
+            RequireIsInitialized();
+            OnDestroyDroneEvent.Invoke();
         }
         
     }
