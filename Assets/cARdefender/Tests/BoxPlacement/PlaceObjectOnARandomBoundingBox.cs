@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlaceObjectOnARandomBoundingBox : MonoBehaviour
 {
+    private static HashSet<int> OccupiedBoxes = new HashSet<int>();
     // Start is called before the first frame update
     public Transform objectToMoveTransform;
     public float heightOffset;
@@ -18,30 +19,20 @@ public class PlaceObjectOnARandomBoundingBox : MonoBehaviour
         MoveObject();
     }
 
-    private void OnEnable()
+    private void Awake()
     {
-       
-        // Elenco degli oggetti in scena
-        GameObject[] objs = FindObjectsOfType<GameObject>();
-
-        foreach (GameObject obj in objs)
+        if (zed3DObjectVisualizerRemote == null)
         {
-            // Controlla se l'oggetto ha lo script Zed3DObjectVisualizerRemote
-            ZED3DObjectVisualizerRemote objectVisualizerRemote = obj.GetComponent<ZED3DObjectVisualizerRemote>();
-            if (objectVisualizerRemote != null)
-            {
-                // Ottieni il Transform dell'oggetto trovato
-                zed3DObjectVisualizerRemote = objectVisualizerRemote;
-                break; // Esci dal loop una volta trovato l'oggetto desiderato
-            }
-            
-            
+            zed3DObjectVisualizerRemote = FindObjectOfType<ZED3DObjectVisualizerRemote>();
         }
 
         if (zed3DObjectVisualizerRemote == null)
         {
             Debug.LogError("Non è stato trovato nessun 3dObjectVisualizer.");
+
         }
+       
+        
     }
 
     public void MoveObject()
@@ -63,14 +54,29 @@ public class PlaceObjectOnARandomBoundingBox : MonoBehaviour
             return zed3DObjectVisualizerRemote.liveBBoxes[currentObject].transform;
         }
 
+        if (currentObject >= 0)
+        {
+            OccupiedBoxes.Remove(currentObject);
+            currentObject = -1;
+        }
+
         int count = zed3DObjectVisualizerRemote.liveBBoxes.Count;
         if (count == 0)
         {
             return null;
         }
 
-        int current = Random.Range(0, count);
-        currentObject = zed3DObjectVisualizerRemote.liveBBoxes.Keys.ToList()[current];
+        HashSet<int> allBoxes = zed3DObjectVisualizerRemote.liveBBoxes.Keys.ToHashSet();
+        allBoxes.ExceptWith(OccupiedBoxes);
+        count = allBoxes.Count;
+        if (count == 0)
+        {
+            return null;
+        }
+
+        int index = Random.Range(0, count);
+        currentObject = allBoxes.ToList()[index];
+        OccupiedBoxes.Add(currentObject);
         return zed3DObjectVisualizerRemote.liveBBoxes[currentObject].transform;
 
 
