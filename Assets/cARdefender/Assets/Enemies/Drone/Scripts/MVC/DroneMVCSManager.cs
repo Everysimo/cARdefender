@@ -11,9 +11,11 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         //  Events ----------------------------------------
         //  Properties ------------------------------------
         public bool IsInitialized { get { return _isInitialized;} }
-        public Context Context { get { return _context;} }
+        
+        public DroneSpawnerModel DroneSpawnerModel { get { return _droneSpawnerModel;} }
         public DroneModel DroneModel { get { return _droneModel;} }
         public GunModel GunModel { get { return _gunModel;} }
+        public PlayerModel PlayerModel { get { return _playerModel;} }
         public DroneView DroneView { get { return _droneView;} }
         public GunView GunView { get { return _gunView;} }
         public DroneController DroneController { get { return _droneController;} }
@@ -24,33 +26,42 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         private bool _isInitialized = false;
         
         //Context
-        private Context _context;
+        public IContext Context { get; private set; }
         
         //Model
+        private DroneSpawnerModel _droneSpawnerModel;
         private DroneModel _droneModel;
         private GunModel _gunModel;
-        public PlayerModel _playerModel;
+        private PlayerModel _playerModel;
         
         
         //View
+        private DroneSpawnerView _droneSpawnerView;
         private DroneView _droneView;
         private GunView _gunView;
         private PlayerView _playerView;
+        private HandMenuView _handMenuView;
 
         
         //Controller
+        private DroneSpawnerController _droneSpawnerController;
         private DroneController _droneController;
+        private GunController _gunController;
+        private PlayerController _playerController;
         
         //Service
         private DroneService _droneService;
 
 
         //  Initialization  -------------------------------
-        public DroneMvcsManager(DroneView droneView,GunView gunView, PlayerView playerView)
+        public DroneMvcsManager(IContext context,DroneSpawnerView droneSpawnerView, DroneView droneView,GunView gunView, PlayerView playerView,HandMenuView handMenuView)
         {
+            _droneSpawnerView = droneSpawnerView;
             _droneView = droneView;
             _gunView = gunView;
             _playerView = playerView;
+            _handMenuView = handMenuView;
+            Context = context;
         }
         
         
@@ -62,43 +73,55 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                 _isInitialized = true;
                 
                 //Context
-                _context = new Context();
+                Context = new Context();
                 
                 //Model
+                _droneSpawnerModel = new DroneSpawnerModel();
                 _droneModel = new DroneModel();
                 _gunModel = new GunModel();
                 _playerModel = new PlayerModel();
    
                 //Service
                 _droneService = new DroneService();
-                
-                //Controller
-                _droneController = new DroneController(
-                    _droneModel,
-                    _gunModel,
-                    _playerModel,
-                    _gunView,
-                    _droneView,
-                    _playerView,
-                    _droneService);
             
                 //Model
-                _droneModel.Initialize(_context);
-                _gunModel.Initialize(_context);
-                _playerModel.Initialize(_context);
+                _droneSpawnerModel.Initialize(Context);
+                _droneModel.Initialize(Context);
+                _gunModel.Initialize(Context);
+                _playerModel.Initialize(Context);
                 
                 //View
-                _droneView.Initialize(_context);
-                _gunView.Initialize(_context);
-                _gunView.Initialize(_context);
+                _droneSpawnerView.Initialize(Context);
+                _droneView.Initialize(Context);
+                _gunView.Initialize(Context);
+                _gunView.Initialize(Context);
+                _handMenuView.Initialize(Context);
                 
                 //Service
-                _droneService.Initialize(_context);
+                _droneService.Initialize(Context);
                 
-              
+                //Controller
+                _droneSpawnerController =
+                    new DroneSpawnerController(_droneSpawnerModel, _droneSpawnerView, _droneView);
+                
+                _droneController = new DroneController(
+                    _droneModel,
+                    _droneView);
+                
+                _gunController = new GunController(
+                    _gunModel,
+                    _gunView);
+                
+                _playerController = new PlayerController(
+                    _playerModel,
+                    _playerView,
+                    _handMenuView);
                 
                 //Controller (Init this main controller last)
-                _droneController.Initialize(_context);
+                _droneSpawnerController.Initialize(Context);
+                _droneController.Initialize(Context);
+                _gunController.Initialize(Context);
+                _playerController.Initialize(Context);
             }
         }
 

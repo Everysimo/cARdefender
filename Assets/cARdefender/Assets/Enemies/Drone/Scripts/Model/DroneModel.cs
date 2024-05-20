@@ -22,6 +22,8 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
     
         public Observable<float> ShootDamage { get { return _shootDamage;} }
         public Observable<float> ShootSpeed { get { return _shootSpeed;} }
+        
+        public Observable<int> id { get { return _id;} }
     
         
         //  Fields ----------------------------------------
@@ -29,6 +31,8 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
         private readonly Observable<float> _movementSpeed = new Observable<float>();
         private readonly Observable<float> _shootDamage = new Observable<float>();
         private readonly Observable<float> _shootSpeed = new Observable<float>();
+        
+        private readonly Observable<int> _id = new Observable<int>();
         
 
         

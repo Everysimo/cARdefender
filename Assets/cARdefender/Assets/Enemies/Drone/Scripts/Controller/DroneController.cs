@@ -43,34 +43,22 @@ public class DroneController : IController
     //  Fields ----------------------------------------
 
     //Model
-    private GunModel _gunModel;
     private DroneModel _droneModel;
-    public PlayerModel _playerModel;
 
     //View
-    private GunView _gunView;
     private DroneView _droneView;
-    private PlayerView _playerView;
 
     //Controller
     //private AudioController _audioController;
-
-    //Service
-    DroneService _droneService;
+    
 
 
-    public DroneController(DroneModel droneModel, GunModel gunModel, PlayerModel playerModel, GunView gunView,
-        DroneView droneView,PlayerView playerView, DroneService droneService)
+    public DroneController(DroneModel droneModel, DroneView droneView)
     {
-        _gunModel = gunModel;
         _droneModel = droneModel;
-        _playerModel = playerModel;
         
-        _gunView = gunView;
         _droneView = droneView;
-        _playerView = playerView;
-        
-        _droneService = droneService;
+
     }
 
     //  Initialization  -------------------------------
@@ -91,26 +79,7 @@ public class DroneController : IController
             _droneView.OnDroneHitted.AddListener(View_Drone_OnDroneHitted);
             _droneView.OnDroneShootProjectile.AddListener(View_Drone_OnDroneShootProjectile);
 
-            //Servie
-            //_service.OnSumCalculatedEvent.AddListener(Service_OnSumCalculated);
-
-            //----GUN----
-            //Model
-
-            //View
-            _gunView.OnShootButtonPressed.AddListener(View_Gun_OnShootButtonPressed);
-            _gunView.OnInitializeGunEvent.AddListener(View_Gun_OnInitializeGunEvent);
-
-            //Servie
             
-            //----PLAYER----
-            //Model
-
-            //View
-            _playerView.OnPlayerHitted.AddListener(View_Player_OnPlayerHitted);
-
-
-
             //Commands
 
             // Demo - Controller may update model DIRECTLY...
@@ -150,6 +119,7 @@ public class DroneController : IController
         RequireIsInitialized();
 
         _droneModel.Life.Value -= damage;
+        
 
         Debug.Log("Vita Drone" + _droneModel.Life.Value);
     }
@@ -167,6 +137,9 @@ public class DroneController : IController
     public void Model_Drone_OnLifeValueChanged(float previousValue, float currentValue)
     {
         RequireIsInitialized();
+        
+        _droneView.ChangeHealthText(currentValue.ToString());
+        _droneView.UpdateHealthBar(currentValue);
 
         if (currentValue <= 0)
         {
@@ -174,38 +147,8 @@ public class DroneController : IController
             _droneView.DestroyDrone();
         }
     }
-
-    //-----GUN-----
-
-    //View
-    private void View_Gun_OnInitializeGunEvent(int maxAmmo, float reloadSpeed, float shootDamage, float shootSpeed)
-    {
-        RequireIsInitialized();
-
-        _gunModel.SetGunStats(maxAmmo, maxAmmo, reloadSpeed, shootDamage, shootSpeed);
-    }
-
-    private void View_Gun_OnShootButtonPressed(float shootSpeed, GameObject projectilePrefab, Transform startPoint)
-    {
-        RequireIsInitialized();
-
-
-        Context.CommandManager.InvokeCommand(
-            new ShootProjectileWithGravity(shootSpeed, projectilePrefab, startPoint, _gunModel.ShootDamage.Value));
-    }
     
-    //----PLAYER-----
     
-    //View
-    private void View_Player_OnPlayerHitted(float damage)
-    {
-        RequireIsInitialized();
-        
-        Debug.Log("Drone damage " + damage);
-
-        _playerModel.Life.Value = _playerModel.Life.Value - damage;
-        
-        Debug.Log("Vita Giocatore " + _playerModel.Life.Value);
-        
-    }
+    
+    
 }

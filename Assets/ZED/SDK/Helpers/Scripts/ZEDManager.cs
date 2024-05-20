@@ -22,7 +22,6 @@ public class ZEDManager : MonoBehaviour
     /// <summary>
     /// Static function to get instance of the ZEDManager with a given camera_ID. See sl.ZED_CAMERA_ID for the available choices.
     /// </summary>
-    public bool noMovement = true;
     public static object grabLock;
     static ZEDManager[] ZEDManagerInstance = null;
     public static ZEDManager GetInstance(sl.ZED_CAMERA_ID _id)
@@ -2826,6 +2825,7 @@ public class ZEDManager : MonoBehaviour
     /// Updates images, collects HMD poses for latency correction, and applies tracking.
     /// Called by Unity each frame.
     /// </summary>
+    public bool noMovement = true;
 	void Update()
     {
         //Check if ZED is disconnected; invoke event and call function if so.
@@ -2840,8 +2840,12 @@ public class ZEDManager : MonoBehaviour
         // Then update all modules
         UpdateImages(); //Image is updated first so we have its timestamp for latency compensation.
 
-        UpdateHmdPose(); //Store the HMD's pose at the current timestamp.
-        UpdateTracking(); //Apply position/rotation changes to zedRigRoot.
+        UpdateHmdPose(); //Store the HMD's pose at the current timestamp.ù
+        if (!noMovement)
+        {
+            Debug.Log($"UpdateTracking {noMovement}");
+            UpdateTracking(); 
+        }
         UpdateObjectDetection(); //Update od if activated
         UpdateBodiesTracking(); // Update bt if actived
         UpdateMapping(); //Update mapping if activated
@@ -2907,8 +2911,11 @@ public class ZEDManager : MonoBehaviour
     /// </summary>
     public void StartSpatialMapping()
     {
-        transform.position = Vector3.zero;
-        transform.rotation = Quaternion.identity;
+        if (!noMovement)
+        {
+            transform.position = Vector3.zero;
+            transform.rotation = Quaternion.identity;
+        }
         spatialMapping.StartStatialMapping(sl.SPATIAL_MAP_TYPE.MESH, mappingResolutionPreset, mappingRangePreset, isMappingTextured);
     }
 

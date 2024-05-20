@@ -1,4 +1,5 @@
 using cARdefender.Assets.Interactable.Gun.Scripts.View;
+using RMC.Core.Architectures.Mini.Context;
 using UnityEngine;
 
 namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
@@ -14,6 +15,9 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         //  Fields ----------------------------------------
         
         [SerializeField] 
+        private DroneSpawnerView _droneSpawnerView;
+        
+        [SerializeField] 
         private DroneView _droneView;
         
         [SerializeField] 
@@ -22,15 +26,23 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         [SerializeField] 
         private PlayerView _playerView;
 
+        [SerializeField] 
+        private HandMenuView _handMenuView;
+        
+
         public DroneMvcsManager droneMvcsManager;
+        
+        private Context _context;
 
 
         
         //  Unity Methods  --------------------------------
         protected void Start()
         {
+            _context = new Context();
+            
             droneMvcsManager = 
-                new DroneMvcsManager(_droneView,_gunView,_playerView);
+                new DroneMvcsManager(_context,_droneSpawnerView, _droneView,_gunView,_playerView,_handMenuView);
             
             droneMvcsManager.Initialize();
         }
