@@ -45,12 +45,19 @@ namespace cARdefender.Tests.RemoteBoundingBoxs
             (like when multiple packets arrive at the same time),
             just process the latest packet and ignore the rest
             */
-            while (Client.Client.Available > 0)
+            int numberOfCycles = 0;
+            while (Client.Available > 0)
             {
                 bytes = Client.Receive(ref RemoteIpEndPoint);
+                Debug.Log($"Number of bytes {bytes.Length}");
+                numberOfCycles++;
             }
-
-            if (bytes == null) return;
+            Debug.Log($"number of cycles: {numberOfCycles}");
+            if (bytes == null)
+            {
+                numOfObjectRecognized = 0;
+                return;
+            };
 
 
             int bytesToWrite = Mathf.Min(bytes.Length, MaxObjects * sizeof(ObjectRecognized));
@@ -70,7 +77,6 @@ namespace cARdefender.Tests.RemoteBoundingBoxs
 
             positionOfCamera = camera.position;
             camRotation = camera.rotation;
-            Debug.Log($"BoxListener: recognized {numOfObjectRecognized} objects");
             OnNewDetection.Invoke();
         }
 
