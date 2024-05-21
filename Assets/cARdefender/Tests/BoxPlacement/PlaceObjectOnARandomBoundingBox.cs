@@ -9,6 +9,7 @@ public class PlaceObjectOnARandomBoundingBox : MonoBehaviour
     // Start is called before the first frame update
     public Transform objectToMoveTransform;
     public float heightOffset;
+    public float speed;
     public ZED3DObjectVisualizerRemote zed3DObjectVisualizerRemote;
 
     private int currentObject = -1;
@@ -42,9 +43,19 @@ public class PlaceObjectOnARandomBoundingBox : MonoBehaviour
         {
             return;
         }
-        
-        objectToMoveTransform.position =
-            boxTransform.position + Vector3.up * (boxTransform.lossyScale.y/2 + heightOffset);
+        Vector3 TargetPosition = boxTransform.position + Vector3.up * (boxTransform.lossyScale.y/2 + heightOffset);
+        Vector3 CurrentPosition = objectToMoveTransform.position;
+        Vector3 Distance = TargetPosition - CurrentPosition;
+        float distanceInMeters = Distance.magnitude;
+        float distanceToMove = speed * Time.deltaTime;
+        if (distanceInMeters <= distanceToMove)
+        {
+            objectToMoveTransform.position = TargetPosition;
+        }
+        else
+        {
+            objectToMoveTransform.position += Distance.normalized * distanceToMove;
+        }
     }
 
     private Transform ChooseBox()
