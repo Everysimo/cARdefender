@@ -17,6 +17,8 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
 
         //  Properties ------------------------------------
         public Observable<float> Life { get { return _life;} }
+        
+        public Observable<float> MaxLife { get { return _maxlife;} }
     
         public Observable<float> MovementSpeed { get { return _movementSpeed;} }
     
@@ -28,6 +30,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
         
         //  Fields ----------------------------------------
         private readonly Observable<float> _life = new Observable<float>();
+        private readonly Observable<float> _maxlife = new Observable<float>();
         private readonly Observable<float> _movementSpeed = new Observable<float>();
         private readonly Observable<float> _shootDamage = new Observable<float>();
         private readonly Observable<float> _shootSpeed = new Observable<float>();
@@ -45,6 +48,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
 
                 // Set Defaults
                 _life.Value = 50f;
+                _maxlife.Value = 50f;
             }
         }
         
@@ -54,6 +58,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
         {
 
             _life.Value = droneLife;
+            _maxlife.Value = droneLife;
             _movementSpeed.Value = movementSpeed;
             _shootDamage.Value = shootDamage;
             _shootSpeed.Value = shootSpeed;

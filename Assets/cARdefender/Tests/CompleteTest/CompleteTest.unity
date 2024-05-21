@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18275428, g: 0.22846201, b: 0.3070545, a: 1}
+  m_IndirectSpecularColor: {r: 0.18275452, g: 0.22846243, b: 0.30705515, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -718,7 +718,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2482363001952073328, guid: e5db301629853dd4a99835fa70099d79, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3356991306335605903, guid: e5db301629853dd4a99835fa70099d79, type: 3}
       propertyPath: m_Text
@@ -5230,11 +5230,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5856827762531454632, guid: 5f2b635bdc3c2c749b82509b83d6fb71, type: 3}
       propertyPath: shootSpeed
-      value: 2000
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5856827762531454632, guid: 5f2b635bdc3c2c749b82509b83d6fb71, type: 3}
       propertyPath: shootDamage
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7812347061039844409, guid: 5f2b635bdc3c2c749b82509b83d6fb71, type: 3}
       propertyPath: m_InteractableSource
@@ -10606,7 +10606,20 @@ MonoBehaviour:
         m_CallState: 2
   invokeOnStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 627303181}
+        m_TargetAssemblyTypeName: cARdefender.Assets.Interactable.Gun.Scripts.View.GunView,
+          Assembly-CSharp
+        m_MethodName: InitalizeGunEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   secondsToWait: 2
 --- !u!4 &1544900830
 Transform:

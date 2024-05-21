@@ -28,7 +28,6 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.Commands
             if (newObject.TryGetComponent(out AmmoComponent ammoComponent))
             {
                 ammoComponent.ammoDamage = gunDamage;
-                Debug.Log("Danno proiettili "+ ammoComponent.ammoDamage);
             }
                 
             if (newObject.TryGetComponent(out Rigidbody rigidBody))

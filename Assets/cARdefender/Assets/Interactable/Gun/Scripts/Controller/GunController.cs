@@ -122,7 +122,7 @@ public class GunController : IController
 
 
         Context.CommandManager.InvokeCommand(
-            new ShootProjectileWithGravity(shootSpeed, projectilePrefab, startPoint, _gunModel.ShootDamage.Value));
+            new ShootProjectileForwardCommand(shootSpeed, projectilePrefab, startPoint, _gunModel.ShootDamage.Value));
     }
     
     //-----HAND MENU-----

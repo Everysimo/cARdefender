@@ -9,6 +9,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 //  Namespace Properties ------------------------------
@@ -90,8 +91,32 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     [SerializeField]
     [Tooltip("Text to display Health")]
     private Image healthBarSprite = null;
+    
+    [SerializeField]
+    [Tooltip("FX for when Drone shoot, match with stat Points")]
+    private ParticleSystem[] muzzleflashfx;
+    
+    [SerializeField]
+    [Tooltip("FX for when we take damage.")]
+    private Transform damagefx;
+    
+    [SerializeField]
+    [Tooltip("The object that gets spawned when the drone dies. Intended to be an explosion.")]
+    private GameObject ExplosionPrefab;
+    
+    
+    [SerializeField]
+    [Tooltip("AudioClips for LaserShooting")]
+    private AudioClip LaserShoot;
+    
+    [SerializeField]
+    private AudioSource _audioSource;
+    
+    [SerializeField]
+    private Animator _animator;
 
     private int lastStartPointWeaponNumber = 0;
+    private bool isAlive;
     private float _target = 1;
 
     //  Initialization  -------------------------------
@@ -101,10 +126,12 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
         {
             _isInitialized = true;
             _context = context;
-            
+
+            isAlive = true;
+            _animator.SetBool("isAlive",isAlive);
             //
 
-            
+
             //
 
         }
@@ -113,8 +140,6 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     private void Start()
     {
         OnInitializeDroneEvent.Invoke(droneLife,movementSpeed,shootDamage,shootSpeed);
-        
-        
     }
     
 
@@ -125,7 +150,11 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
 
     public void OnTakeDamage(float damage)
     {
-       OnDroneHitted.Invoke(damage);
+        if (isAlive)
+        {
+           OnDroneHitted.Invoke(damage); 
+        }
+       
     }
 
     public IEnumerator OnShootProjectile()
@@ -135,11 +164,12 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
             while (true)
             {
                 yield return new WaitForSeconds(shootSpeed);
-            
+                
+                _audioSource.PlayOneShot(LaserShoot);
                 OnDroneShootProjectile.Invoke(projectileSpeed,projectilePrefab,startPoints[lastStartPointWeaponNumber],targetObject);
+                muzzleflashfx[lastStartPointWeaponNumber].Play();
                 lastStartPointWeaponNumber = (lastStartPointWeaponNumber + 1 )% (startPoints.Length);
-            
-                //audioSource.PlayOneShot(spitSound);
+
             }
         }
        
@@ -198,8 +228,15 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
 
     public void DestroyDrone()
     {
+        isAlive = false;
+        _animator.SetBool("isAlive",isAlive);
+        if (ExplosionPrefab)
+        {
+            Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
+    
 
     public void ChangeHealthText(string currentLife)
     {
@@ -209,6 +246,16 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     public void UpdateHealthBar(float currentLife)
     {
         _target = currentLife/droneLife;
+    }
+    
+    public void EnableDamageFX(int idDamageFX)
+    {
+        damagefx.GetChild(idDamageFX).gameObject.SetActive (true);
+    }
+    
+    public void DisableDamageFX(int idDamageFX)
+    {
+        damagefx.GetChild(idDamageFX).gameObject.SetActive(false);
     }
 
     //  Event Handlers --------------------------------

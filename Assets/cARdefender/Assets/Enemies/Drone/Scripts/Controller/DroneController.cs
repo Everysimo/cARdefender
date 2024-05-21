@@ -141,6 +141,34 @@ public class DroneController : IController
         _droneView.ChangeHealthText(currentValue.ToString());
         _droneView.UpdateHealthBar(currentValue);
 
+        if (currentValue <= (_droneModel.MaxLife.Value/100)*80)
+        {
+            _droneView.EnableDamageFX(0);
+            if (currentValue <= (_droneModel.MaxLife.Value/100)*50)
+            {
+                _droneView.EnableDamageFX(1);
+                if (currentValue <= (_droneModel.MaxLife.Value/100)*20)
+                {
+                    _droneView.EnableDamageFX(2);
+                }
+                else
+                {
+                    _droneView.DisableDamageFX(2);
+                }
+            }
+            else
+            {
+                _droneView.DisableDamageFX(1);
+                _droneView.DisableDamageFX(2);
+            }
+        }
+        else
+        {
+            _droneView.DisableDamageFX(0);
+            _droneView.DisableDamageFX(1);
+            _droneView.DisableDamageFX(2);
+        }
+
         if (currentValue <= 0)
         {
             Console.Write("Drone distrutto");

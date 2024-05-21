@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using cARdefender.Assets.Enemies.Drone.Scripts.Model;
 using RMC.Core.Architectures.Mini.Context;
 using RMC.Core.Architectures.Mini.Controller;
@@ -96,18 +97,24 @@ public class DroneSpawnerController : IController
             _droneSpawnerModel.IdCounter.Value += 1;
         }
         
-        private void Counter_OnValueChanged(int previousValue, int currentValue)
+        private async void Counter_OnValueChanged(int previousValue, int currentValue)
         {
             RequireIsInitialized();
 
             if (_droneSpawnerModel.IdCounter.Value < 3)
             {
-                _droneSpawnerView.OnSpawn.Invoke();
+                await SpawnNewDrone();
             }
             
             Context.CommandManager.InvokeCommand(
                 new IdCounterChangedCommand(previousValue, currentValue));
             
+        }
+        
+        private async Task SpawnNewDrone()
+        {
+            await Task.Delay(5000);
+            _droneSpawnerView.OnSpawn.Invoke();
         }
         
         private void DroneSpawnerView_OnDestroyDrone()
