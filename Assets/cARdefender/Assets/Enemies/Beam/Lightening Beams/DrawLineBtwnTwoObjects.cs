@@ -8,19 +8,37 @@ public class DrawLineBtwnTwoObjects : MonoBehaviour
 
     [SerializeField] private LineRenderer LineRenderer;
     [SerializeField] private GameObject StartObject;
-    [SerializeField] private GameObject TargetObject;
+    public GameObject TargetObject;
     
     void Start()
     {
         LineRenderer.positionCount = 2;
         
-        LineRenderer.SetPosition(0,StartObject.transform.position);
-        LineRenderer.SetPosition(1,TargetObject.transform.position);
+        if (TargetObject != null)
+        {
+            LineRenderer.enabled = true;
+            LineRenderer.SetPosition(0,StartObject.transform.position);
+            LineRenderer.SetPosition(1,TargetObject.transform.position);
+        }
+        else
+        {
+            LineRenderer.enabled = false;
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (TargetObject != null)
+        {
+            LineRenderer.enabled = true;
+            LineRenderer.SetPosition(0,StartObject.transform.position);
+            LineRenderer.SetPosition(1,TargetObject.transform.position);
+        }
+        else
+        {
+            LineRenderer.enabled = false;
+        }
     }
 }
