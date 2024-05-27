@@ -41,4 +41,14 @@ public class DrawLineBtwnTwoObjects : MonoBehaviour
             LineRenderer.enabled = false;
         }
     }
+
+    public void SetTarget(GameObject target)
+    {
+        TargetObject = target;
+    }
+
+    public void RemoveTarget()
+    {
+        TargetObject = null;
+    }
 }

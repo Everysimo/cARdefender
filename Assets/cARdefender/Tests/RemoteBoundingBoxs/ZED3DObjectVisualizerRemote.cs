@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using cARdefender.Tests.RemoteBoundingBoxs;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// For the ZED 3D Object Detection sample.
@@ -15,6 +16,7 @@ using UnityEngine;
 public class ZED3DObjectVisualizerRemote : MonoBehaviour
 {
     public BoxListener boxListener;
+    public UnityEvent OnBoundingBoxUpdate;
 
     /// Prefab object that's instantiated to represent detected objects.
     /// This class expects the object to have the default Unity cube as a mesh - otherwise, it may be scaled incorrectly.
@@ -92,15 +94,7 @@ public class ZED3DObjectVisualizerRemote : MonoBehaviour
         boxListener.OnNewDetection.AddListener(Visualize3DBoundingBoxes);
     }
 
-    void ClearBboxes()
-    {
-        List<int> activeids = liveBBoxes.Keys.ToList();
-        //Remove boxes for objects that the ZED can no longer see.
-        foreach (int id in activeids)
-        {
-            ReturnBoxToPool(id, liveBBoxes[id]);
-        }
-    }
+ 
     
 
     /// <summary>
@@ -160,6 +154,7 @@ public class ZED3DObjectVisualizerRemote : MonoBehaviour
         {
             ReturnBoxToPool(id, liveBBoxes[id]);
         }
+        OnBoundingBoxUpdate.Invoke();
     }
 
     /// <summary>

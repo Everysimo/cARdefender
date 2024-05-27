@@ -4,50 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03b65b52-ea69-4514-9ec0-9e690e162805" name="Changes" comment="feat(laserBeam)">
+    <list default="true" id="03b65b52-ea69-4514-9ec0-9e690e162805" name="Changes" comment="feat(laser btwn object)">
+      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/BoxConsumer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/BoxConsumer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/BoxManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/BoxManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/PlaceObjectOnBoundingBox.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/SubscribeLyfeCycle.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/SubscribeLyfeCycle.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/ZedVisualizerBoxManagerSetter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/ZedVisualizerBoxManagerSetter.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.cARdefender/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cARdefender/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/Meta XR Core SDK/65.0.0/Mixed Reality Sample/Materials/MRSceneObjectMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/Meta XR Core SDK/65.0.0/Mixed Reality Sample/Materials/MRSceneObjectMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Advanced/WithMini/Art/Materials/Background.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Advanced/WithMini/Art/Materials/Background.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Advanced/WithMini/Art/Materials/Ground.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Advanced/WithMini/Art/Materials/Ground.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Advanced/WithMini/Art/Materials/Pick Up.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Advanced/WithMini/Art/Materials/Pick Up.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Advanced/WithMini/Art/Materials/Player.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Advanced/WithMini/Art/Materials/Player.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Advanced/WithMini/Art/Materials/Wall.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Advanced/WithMini/Art/Materials/Wall.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithMini/Art/Materials/Background.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithMini/Art/Materials/Background.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithMini/Art/Materials/Ground.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithMini/Art/Materials/Ground.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithMini/Art/Materials/Pick Up.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithMini/Art/Materials/Pick Up.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithMini/Art/Materials/Player.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithMini/Art/Materials/Player.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithMini/Art/Materials/Wall.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithMini/Art/Materials/Wall.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithoutMini/Art/Materials/Background.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithoutMini/Art/Materials/Background.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithoutMini/Art/Materials/Ground.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithoutMini/Art/Materials/Ground.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithoutMini/Art/Materials/PickUp.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithoutMini/Art/Materials/PickUp.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithoutMini/Art/Materials/Player.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithoutMini/Art/Materials/Player.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithoutMini/Art/Materials/Wall.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/Example03_RollABallMini/Basic/WithoutMini/Art/Materials/Wall.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/More/Example06_BouncyBallMini/WithMini/Art/Materials/BouncyBallMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/More/Example06_BouncyBallMini/WithMini/Art/Materials/BouncyBallMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/More/Example06_BouncyBallMini/WithMini/Art/Materials/FloorMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/More/Example06_BouncyBallMini/WithMini/Art/Materials/FloorMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Hands/1.4.1/HandVisualizer/Materials/Blue.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Hands/1.4.1/HandVisualizer/Materials/Blue.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Hands/1.4.1/HandVisualizer/Materials/Green.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Hands/1.4.1/HandVisualizer/Materials/Green.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Hands/1.4.1/HandVisualizer/Materials/HandsDefaultMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Hands/1.4.1/HandVisualizer/Materials/HandsDefaultMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Hands/1.4.1/HandVisualizer/Materials/Red.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Hands/1.4.1/HandVisualizer/Materials/Red.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Hands/1.4.1/HandVisualizer/Materials/White.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Hands/1.4.1/HandVisualizer/Materials/White.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/AR Starter Assets/ARDemoSceneAssets/Materials/InteractableMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/AR Starter Assets/ARDemoSceneAssets/Materials/InteractableMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/AccentButton.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/AccentButton.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/ChessPiece.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/ChessPiece.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/Chrome.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/Chrome.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/Controls_Black.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/Controls_Black.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/FrameOutline.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/FrameOutline.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/PrimitivesBlue.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/PrimitivesBlue.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/PrimitivesCoral.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/PrimitivesCoral.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/PrimitivesYellow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/PrimitivesYellow.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/Table Surface.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/XR Interaction Toolkit/2.5.4/Hands Interaction Demo/HandsDemoSceneAssets/Materials/Table Surface.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene/Demo/CD_ShootingSystem.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene/Demo/CD_ShootingSystem.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XR/Settings/Open XR Package Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XR/Settings/Open XR Package Settings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Beam/Lightening Beams/DrawLineBtwnTwoObjects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Beam/Lightening Beams/DrawLineBtwnTwoObjects.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Prefabs/DroneView.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Prefabs/DroneView.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/DroneOnBoxTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/DroneOnBoxTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/PlaceObjectAtCenterOfBox.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/PlaceObjectAtCenterOfBox.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/PlaceObjectOnARandomBoundingBox.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/PlaceObjectOnARandomBoundingBox.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/PlaceObjectOnBoundingBox.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/RemoteBoundingBoxs/ZED3DObjectVisualizerRemote.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/RemoteBoundingBoxs/ZED3DObjectVisualizerRemote.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +52,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/Controller/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/Model/PlayerModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/View/PlayerView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/test/SetBoxManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Tests/RemoteBoundingBoxs/ObjectRecognized.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.meta.xr.sdk.core@65.0.0/Scripts/OVRManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.rmc.rmc-mini-mvcs@211f18e09b/RMC Mini MVCS/Runtime/RMC/Core/Architectures/Mini/Context/IContext.cs" root0="SKIP_HIGHLIGHTING" />
@@ -326,7 +303,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716833609719</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="feat(laser btwn object)">
+      <option name="closed" value="true" />
+      <created>1716835958873</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1716835958873</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,6 +349,7 @@
     <MESSAGE value="feat(DroneSpawner): now it is possible to spawn more Drones" />
     <MESSAGE value="feat(DroneSpawner): now spawning 3 drones and respawn if less than 3" />
     <MESSAGE value="feat(laserBeam)" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(laserBeam)" />
+    <MESSAGE value="feat(laser btwn object)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(laser btwn object)" />
   </component>
 </project>
