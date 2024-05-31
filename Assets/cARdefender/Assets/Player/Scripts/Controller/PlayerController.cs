@@ -76,10 +76,11 @@ public class PlayerController : IController
             
             //----PLAYER----
             //Model
+            _playerModel.Life.OnValueChanged.AddListener(View_HandMenu_UpdateLife);
 
             //View
             _playerView.OnPlayerHitted.AddListener(View_Player_OnPlayerHitted);
-            
+            _playerView.OnPlayerRecoverLife.AddListener(View_Player_OnRecoverLife);
 
 
 
@@ -115,15 +116,23 @@ public class PlayerController : IController
         RequireIsInitialized();
         
 
-        _playerModel.Life.Value = _playerModel.Life.Value - damage;
+        _playerModel.Life.Value -= damage;
         
-        _handMenuView.UpdatePlayerLifeUI(_playerModel.Life.Value);
     }
-    
+
+    public void View_Player_OnRecoverLife(float lifeToRecover)
+    {
+        RequireIsInitialized();
+
+        _playerModel.Life.Value += lifeToRecover;
+    }
     //-----HAND MENU-----
     
     //View 
-    
-    
+
+    public void View_HandMenu_UpdateLife(float prevValue, float newValue)
+    {
+        _handMenuView.UpdatePlayerLifeUI(newValue);
+    }
     
 }

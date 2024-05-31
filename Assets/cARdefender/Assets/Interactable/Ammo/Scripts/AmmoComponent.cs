@@ -1,4 +1,5 @@
 using System;
+using cARdefender.Assets.Enemies.Generic_Enemies.Scripts;
 using UnityEngine;
 
 namespace cARdefender.Assets.Interactable.Ammo.Scripts
@@ -10,10 +11,17 @@ namespace cARdefender.Assets.Interactable.Ammo.Scripts
 
         private void OnTriggerEnter(Collider other)
         {
-            IHittableEnemy objectHittedView = other.transform.GetComponent<IHittableEnemy>();
+            IHittableEnemy enemyHittedView = other.transform.GetComponent<IHittableEnemy>();
+            if(enemyHittedView != null)
+            {
+                enemyHittedView.OnTakeDamage(ammoDamage);
+                Destroy(gameObject);
+            }
+
+            IHittableObject objectHittedView = other.transform.GetComponent<IHittableObject>();
             if(objectHittedView != null)
             {
-                objectHittedView.OnTakeDamage(ammoDamage);
+                objectHittedView.OnObjectHitted();
                 Destroy(gameObject);
             }
         }
