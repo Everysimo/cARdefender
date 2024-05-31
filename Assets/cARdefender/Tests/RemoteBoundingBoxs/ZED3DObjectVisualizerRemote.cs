@@ -227,7 +227,7 @@ public class ZED3DObjectVisualizerRemote : MonoBehaviour
     /// into the pool for later use.
     /// </summary>
     private void ReturnBoxToPool(int id, GameObject bbox)
-    {
+    { 
         bbox.SetActive(false);
         bbox.name = "Unused";
 
