@@ -9,6 +9,8 @@ namespace cARdefender.Tests.BoxPlacement
         public UnityEvent<BoxInformation> OnBoxObtained;
         public UnityEvent OnBoxLost;
 
+
+
         public void LoseBox()
         {
             boxInformation = null;
@@ -19,6 +21,15 @@ namespace cARdefender.Tests.BoxPlacement
         {
             this.boxInformation = newBoxInformation;
             OnBoxObtained.Invoke(newBoxInformation);
+        }
+
+        public void OnBoxObtainedAddListener(UnityAction<BoxInformation> newAction)
+        {
+            OnBoxObtained.AddListener(newAction);
+            if (boxInformation.HasValue)
+            {
+                newAction.Invoke(boxInformation.Value);
+            }
         }
     }
 }

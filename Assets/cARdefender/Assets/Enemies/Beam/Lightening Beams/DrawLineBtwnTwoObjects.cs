@@ -13,18 +13,7 @@ public class DrawLineBtwnTwoObjects : MonoBehaviour
     void Start()
     {
         LineRenderer.positionCount = 2;
-        
-        if (TargetObject != null)
-        {
-            LineRenderer.enabled = true;
-            LineRenderer.SetPosition(0,StartObject.transform.position);
-            LineRenderer.SetPosition(1,TargetObject.transform.position);
-        }
-        else
-        {
-            LineRenderer.enabled = false;
-        }
-        
+
     }
 
     // Update is called once per frame

@@ -55,5 +55,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxInformation:
     Id: 0
-    typeOfVeichle: 0
-    boxObject: {fileID: 0}
+    label: 0
+    boxObject: {fileID: 1438017172825460}

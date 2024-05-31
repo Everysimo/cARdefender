@@ -4,38 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03b65b52-ea69-4514-9ec0-9e690e162805" name="Changes" comment="feat: added message for reception of zero bounding box">
-      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxInformation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxInformation.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxInformationContainer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxInformationContainer.cs.meta" afterDir="false" />
+    <list default="true" id="03b65b52-ea69-4514-9ec0-9e690e162805" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.cARdefender/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cARdefender/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Blc.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Blc.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Oculus/OculusProjectConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Oculus/OculusProjectConfig.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/XR/Settings/Open XR Package Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/XR/Settings/Open XR Package Settings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxConsumer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxConsumer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/test/DroneOnBoxTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/test/DroneOnBoxTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Beam/Lightening Beams/DrawLineBtwnTwoObjects.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Beam/Lightening Beams/DrawLineBtwnTwoObjects.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Prefabs/DroneView.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Prefabs/DroneView.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/3DofPlaceObjectsRelativeToZed/BoundingBoxDronePlace/3D Bounding Box.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/3DofPlaceObjectsRelativeToZed/BoundingBoxDronePlace/3D Bounding Box.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/3DofPlaceObjectsRelativeToZed/BoundingBoxDronePlace/InvisibleBoundingBox.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/3DofPlaceObjectsRelativeToZed/BoundingBoxDronePlace/InvisibleBoundingBox.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/BoxConsumer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxConsumer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/BoxConsumer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxConsumer.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/BoxManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/BoxManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/DroneOnBoxTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/test/DroneOnBoxTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/DroneOnBoxTest.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/test/DroneOnBoxTest.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/PlaceObjectOnBoundingBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/PlaceObjectOnBoundingBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/PlaceObjectOnBoundingBox.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/PlaceObjectOnBoundingBox.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/SubscribeLyfeCycle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/SubscribeLyfeCycle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/SubscribeLyfeCycle.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/SubscribeLyfeCycle.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/ZedVisualizerBoxManagerSetter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/ZedVisualizerBoxManagerSetter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/ZedVisualizerBoxManagerSetter.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/ZedVisualizerBoxManagerSetter.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/test.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/test.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/test/SetBoxManagerTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/test/SetBoxManagerTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/BoxPlacement/test/SetBoxManagerTest.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/test/SetBoxManagerTest.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/CompleteTest/CompleteTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/CompleteTest/CompleteTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/RemoteBoundingBoxs/ZED3DObjectVisualizerRemote.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/RemoteBoundingBoxs/ZED3DObjectVisualizerRemote.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,10 +26,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Events/ButtonsEvents/OculusButtonsEvents/OnOculusMenuOpen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Hovl Studio/HSFiles/Scripts/Hovl_DemoLasers.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/aurel/Desktop/Glasgow/CarDefender/cARdefender/Assets/Oculus/OculusProjectConfig.asset" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/aurel/Desktop/Glasgow/CarDefender/cARdefender/Assets/Oculus/OculusProjectConfig.asset" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/More/Example12_SpawnerMini/WithMini/Scripts/Runtime/Mini/SpawnerMiniExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZED/Editor/Scripts/RenderingPipelineDefines.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/SetLineTargetOnBoxEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Beam/Lightening Beams/DrawLineBtwnTwoObjects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/Commands/HitCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/DroneMVC.cs" root0="FORCE_HIGHLIGHTING" />
@@ -68,9 +44,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/Controller/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/Model/PlayerModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/View/PlayerView.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/aurel/Desktop/Glasgow/CarDefender/cARdefender/Assets/cARdefender/Tests/RemoteBoundingBoxs/BoxListener.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/aurel/Desktop/Glasgow/CarDefender/cARdefender/Assets/cARdefender/Tests/RemoteBoundingBoxs/BoxListener.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Tests/RemoteBoundingBoxs/ObjectRecognized.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/aurel/Desktop/Glasgow/CarDefender/cARdefender/Assets/cARdefender/Tests/RemoteBoundingBoxs/ZED3DObjectVisualizerRemote.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.meta.xr.sdk.core@65.0.0/Scripts/OVRManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.rmc.rmc-mini-mvcs@211f18e09b/RMC Mini MVCS/Runtime/RMC/Core/Architectures/Mini/Context/IContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.rmc.rmc-mini-mvcs@211f18e09b/RMC Mini MVCS/Runtime/RMC/Core/Architectures/Mini/Context/ModelLocator.cs" root0="SKIP_HIGHLIGHTING" />
@@ -89,25 +64,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Discover.Launch.Via.Unity": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "rider.run.widget.enabled.cache": "false",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Everysimo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Everysimo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Everysimo\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\Everysimo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Everysimo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\Everysimo\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Build/pc/TestCompleto\cARdefender DEV.exe" />
@@ -134,7 +112,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.30f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\aurel\Desktop\Glasgow\CarDefender\cARdefender -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\aurel\Desktop\Glasgow\CarDefender\cARdefender" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -194,6 +172,7 @@
       <workItem from="1715941124527" duration="2000" />
       <workItem from="1715941326382" duration="1564000" />
       <workItem from="1716299196155" duration="10751000" />
+      <workItem from="1717169000446" duration="3271000" />
     </task>
     <task id="LOCAL-00001" summary="feat(game): init">
       <option name="closed" value="true" />
@@ -337,7 +316,21 @@
       <option name="project" value="LOCAL" />
       <updated>1716996421557</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="added information on bounding box event">
+      <created>1717169057381</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1717169057381</updated>
+    </task>
+    <task id="LOCAL-00020" summary="test">
+      <created>1717169375035</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1717169375035</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +338,7 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
-  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -377,6 +370,8 @@
     <MESSAGE value="feat(laserBeam)" />
     <MESSAGE value="feat(laser btwn object)" />
     <MESSAGE value="feat: added message for reception of zero bounding box" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added message for reception of zero bounding box" />
+    <MESSAGE value="added information on bounding box event" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>
