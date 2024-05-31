@@ -19,8 +19,8 @@ public class PlaceObjectOnBoundingBox : MonoBehaviour
 
     public void MoveObject()
     {
-        if(boxConsumer.BoxId == null) return;
-        Transform boxTransform = boxConsumer.Box.transform;
+        if(boxConsumer.boxInformation == null) return;
+        Transform boxTransform = boxConsumer.boxInformation.Value.boxObject.transform;
         Vector3 TargetPosition = boxTransform.position + Vector3.up * (boxTransform.lossyScale.y/2 + heightOffset);
         Vector3 CurrentPosition = objectToMoveTransform.position;
         Vector3 Distance = TargetPosition - CurrentPosition;

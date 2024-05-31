@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4047903173329720}
   - component: {fileID: 33366876335988836}
   - component: {fileID: 23298718721252580}
+  - component: {fileID: 512683411045214464}
   m_Layer: 0
   m_Name: 3D Bounding Box
   m_TagString: Untagged
@@ -83,3 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &512683411045214464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438017172825460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb0a10c3b9e43d7bd6f18fe2680ec9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxInformation:
+    Id: 0
+    typeOfVeichle: 0
+    boxObject: {fileID: 0}

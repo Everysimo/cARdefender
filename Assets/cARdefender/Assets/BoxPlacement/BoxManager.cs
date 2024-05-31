@@ -16,14 +16,14 @@ namespace cARdefender.Tests.BoxPlacement
             //detect if a box of a consumer now does not exit anymore
             foreach (BoxConsumer boxConsumer in consumers)
             {
-                if (boxConsumer.BoxId == null) continue;
-                if(!Boxes.ContainsKey(boxConsumer.BoxId.Value))
+                if (boxConsumer.boxInformation == null) continue;
+                if(!Boxes.ContainsKey(boxConsumer.boxInformation.Value.Id))
                 {
                     boxConsumer.LoseBox();
                 }
                 else
                 {
-                    OccupiedBoxes.Add(boxConsumer.BoxId.Value);
+                    OccupiedBoxes.Add(boxConsumer.boxInformation.Value.Id);
                 }
             }
 
@@ -34,9 +34,9 @@ namespace cARdefender.Tests.BoxPlacement
             foreach (BoxConsumer boxConsumer in consumers)
             {
                 if(freeBoxesQueue.Count == 0) break;
-                if (boxConsumer.BoxId != null) continue;
+                if (boxConsumer.boxInformation != null) continue;
                 int boxId = freeBoxesQueue.Dequeue();
-                boxConsumer.ObtainBox(boxId,Boxes[boxId]);
+                boxConsumer.ObtainBox(Boxes[boxId].GetComponent<BoxInformationContainer>().boxInformation);
             }
             
             

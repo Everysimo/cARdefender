@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using cARdefender.Tests.BoxPlacement;
 using cARdefender.Tests.RemoteBoundingBoxs;
 using UnityEngine;
 using UnityEngine.Events;
@@ -27,7 +28,7 @@ public class ZED3DObjectVisualizerRemote : MonoBehaviour
     [Tooltip("Prefab object that's instantiated to represent detected objects. " +
              "This class expects the object to have the default Unity cube as a mesh - otherwise, it may be scaled incorrectly.\r\n" +
              "It also expects a BBox3DHandler component in the root object, but you won't have errors if it lacks one. ")]
-    public GameObject boundingBoxPrefab;
+    public BoxInformationContainer boundingBoxPrefab;
 
 
     /// <summary>
@@ -127,7 +128,10 @@ public class ZED3DObjectVisualizerRemote : MonoBehaviour
             if (activeids.Contains(objectRecognized.id)) activeids.Remove(objectRecognized.id);
 
             //Get the box and update its distance value.
-            GameObject bbox = GetBBoxForObject(objectRecognized.id);
+            BoxInformationContainer bbox = GetBBoxForObject(objectRecognized.id);
+            bbox.boxInformation.Id = objectRecognized.id;
+            bbox.boxInformation.label = (int)objectRecognized.label;
+            bbox.boxInformation.boxObject = bbox.gameObject;
 
             Vector3 obj_position =
                 objectRecognized.Get3DWorldPosition(boxListener.positionOfCamera, boxListener.camRotation);
@@ -145,6 +149,7 @@ public class ZED3DObjectVisualizerRemote : MonoBehaviour
 
                 bbox.transform.localScale = objbounds.size;
             }
+            
             
             
         }
@@ -169,7 +174,7 @@ public class ZED3DObjectVisualizerRemote : MonoBehaviour
     /// If none exists, it retrieves one from the pool (or instantiates a new one if none is available) and
     /// sets it up with the proper ID and colors.
     /// </summary>
-    private GameObject GetBBoxForObject(int id)
+    private BoxInformationContainer GetBBoxForObject(int id)
     {
         if (!liveBBoxes.ContainsKey(id))
         {
@@ -191,9 +196,9 @@ public class ZED3DObjectVisualizerRemote : MonoBehaviour
             
 
             liveBBoxes[id] = newbox;
-            return newbox;
+            return newbox.GetComponent<BoxInformationContainer>();
         }
-        else return liveBBoxes[id];
+        else return liveBBoxes[id].GetComponent<BoxInformationContainer>();
     }
 
    
@@ -207,9 +212,8 @@ public class ZED3DObjectVisualizerRemote : MonoBehaviour
     {
         if (bboxPool.Count == 0)
         {
-            GameObject newbbox = Instantiate(boundingBoxPrefab);
-            newbbox.transform.SetParent(transform, false);
-            bboxPool.Push(newbbox);
+            BoxInformationContainer newbbox = Instantiate(boundingBoxPrefab, transform, false);
+            bboxPool.Push(newbbox.gameObject);
         }
 
         GameObject bbox = bboxPool.Pop();

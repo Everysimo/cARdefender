@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18275452, g: 0.22846243, b: 0.30705515, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6723,7 +6722,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxListener: {fileID: 502581420}
-  boundingBoxPrefab: {fileID: 1438017172825460, guid: 239504691a0e38e4ab13a4785c6ff271, type: 3}
+  OnBoundingBoxUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  boundingBoxPrefab: {fileID: 512683411045214464, guid: 239504691a0e38e4ab13a4785c6ff271, type: 3}
   boxColors:
   - {r: 0.231, g: 0.909, b: 0.69, a: 1}
   - {r: 0.098, g: 0.686, b: 0.816, a: 1}
@@ -10203,12 +10205,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1518300282
 GameObject:
   m_ObjectHideFlags: 0
@@ -12087,12 +12089,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1734180678
 GameObject:
   m_ObjectHideFlags: 0
@@ -12411,12 +12413,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1787450099
 GameObject:
   m_ObjectHideFlags: 0
