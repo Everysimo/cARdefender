@@ -4,28 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03b65b52-ea69-4514-9ec0-9e690e162805" name="Changes" comment="test">
+    <list default="true" id="03b65b52-ea69-4514-9ec0-9e690e162805" name="Changes" comment="feat: added system to obtain boxes left over">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.cARdefender/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.cARdefender/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Oculus/OculusProjectConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Oculus/OculusProjectConfig.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/PlaceObjectOnBoundingBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/PlaceObjectOnBoundingBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/SubscribeLyfeCycle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/SubscribeLyfeCycle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/ZedVisualizerBoxManagerSetter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/ZedVisualizerBoxManagerSetter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/test/DroneOnBoxTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/test/DroneOnBoxTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/test/SetBoxManagerTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/test/SetBoxManagerTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/Controller/DroneController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/Controller/DroneController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/DroneMVC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/CarDefenderMVC.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/DroneMVC.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/CarDefenderMVC.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/DroneMVCSManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/CarDefenderMvcsManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/DroneMVCSManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/CarDefenderMvcsManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/View/DroneView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/View/DroneView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/DroneSpawner/Scripts/Controller/DroneSpawnerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/DroneSpawner/Scripts/Controller/DroneSpawnerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Ammo/Scripts/AmmoComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Ammo/Scripts/AmmoComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Hand_Glove_FBX.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Hand_Glove_FBX.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/Controller/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/Controller/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/View/PlayerView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Assets/Player/Scripts/View/PlayerView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/cARdefender/Tests/CompleteTest/CompleteTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/cARdefender/Tests/CompleteTest/CompleteTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,16 +15,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/IL/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/07/e8dfe4b5/02000021pdb.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b24cc7fa9794ed8ab04312c53e6dedd172c00/61/2e2d0fb4/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b24cc7fa9794ed8ab04312c53e6dedd172c00/f1/c02910be/Bounds.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ArionDigital/CrashCrate/Scripts/CrashCrate.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Events/ButtonsEvents/OculusButtonsEvents/OnOculusMenuOpen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Hovl Studio/HSFiles/Scripts/Hovl_DemoLasers.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Everysimo/Documents/Intellij_Projects/cARdefender/Assets/Oculus/OculusProjectConfig.asset" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Everysimo/Documents/Intellij_Projects/cARdefender/Assets/Oculus/OculusProjectConfig.asset" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Everysimo/Documents/Intellij_Projects/cARdefender/Assets/Oculus/OculusProjectConfig.asset" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Samples/RMC Mini MVCS/2.3.1/RMC Mini MVCS Examples/Examples/More/Example12_SpawnerMini/WithMini/Scripts/Runtime/Mini/SpawnerMiniExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/ZED/Editor/Scripts/RenderingPipelineDefines.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/aurel/Desktop/Glasgow/CarDefender/cARdefender/Assets/cARdefender/Assets/BoxPlacement/BoxConsumer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/BoxConsumerHandle.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/HandleCreator/AllLabelCreator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/aurel/Desktop/Glasgow/CarDefender/cARdefender/Assets/cARdefender/Assets/BoxPlacement/PlaceObjectOnBoundingBox.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/aurel/Desktop/Glasgow/CarDefender/cARdefender/Assets/cARdefender/Assets/BoxPlacement/PlaceObjectOnBoundingBox.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/SetLineTargetOnBoxEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/BoxPlacement/SpawnBoxConsumer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Beam/Lightening Beams/DrawLineBtwnTwoObjects.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/Commands/HitCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Drone/Scripts/MVC/CarDefenderMVC.cs" root0="FORCE_HIGHLIGHTING" />
@@ -54,7 +41,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Generic Enemies/Scripts/LookAtObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Enemies/Generic Enemies/Scripts/MoveObjectWithVelocity.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Ammo/Scripts/AmmoComponent.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Everysimo/Documents/Intellij_Projects/cARdefender/Assets/cARdefender/Assets/Interactable/Ammo/Scripts/AmmoComponent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Ammo/Scripts/View/AmmoView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Boxes/Scripts/Commands/PlayerRecoverLifeCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/cARdefender/Assets/Interactable/Gun/Scripts/Controller/GunController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -67,6 +53,8 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.rmc.rmc-mini-mvcs@211f18e09b/RMC Mini MVCS/Runtime/RMC/Core/Architectures/Mini/Context/ModelLocator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.8.1/InputSystem/Editor/ProjectWideActions/ProjectWideActionsAsset.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -346,7 +334,14 @@
       <option name="project" value="LOCAL" />
       <updated>1717169375035</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="feat: added system to obtain boxes left over">
+      <created>1717256128343</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1717256128343</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,6 +383,7 @@
     <MESSAGE value="feat: added message for reception of zero bounding box" />
     <MESSAGE value="added information on bounding box event" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="feat: added system to obtain boxes left over" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added system to obtain boxes left over" />
   </component>
 </project>

@@ -48,6 +48,7 @@ namespace cARdefender.Tests.BoxPlacement
                         break;
                     }
                 }
+                if(!isLeftover) continue;
 
                 foreach (BoxObtainer boxObtainer in BoxObtainers)
                 {
