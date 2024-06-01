@@ -1,7 +1,7 @@
-using System;
+using cARdefender.Tests.BoxPlacement;
 using UnityEngine;
 
-namespace cARdefender.Tests.BoxPlacement
+namespace cARdefender.Assets.BoxPlacement
 {
     public class SubscribeLyfeCycle : MonoBehaviour
     {

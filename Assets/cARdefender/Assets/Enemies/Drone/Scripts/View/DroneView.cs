@@ -194,8 +194,6 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
                 targetObject = obj.transform;
                 break; // Esci dal loop una volta trovato l'oggetto desiderato
             }
-            
-            
         }
 
         if (targetObject == null)

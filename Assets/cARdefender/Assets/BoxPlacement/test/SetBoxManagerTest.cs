@@ -1,24 +1,26 @@
-using System.Collections;
 using System.Collections.Generic;
 using cARdefender.Tests.BoxPlacement;
 using UnityEngine;
 
-public class SetBoxManagerTest : MonoBehaviour
+namespace cARdefender.Assets.BoxPlacement.test
 {
-    // Start is called before the first frame update
-    public GameObject[] boxes;
-    public BoxManager boxManager;
-    void Start()
+    public class SetBoxManagerTest : MonoBehaviour
     {
-        Dictionary<int, GameObject> dictionary = new Dictionary<int, GameObject>();
-        for (int i = 0; i < boxes.Length; i++)
+        // Start is called before the first frame update
+        public GameObject[] boxes;
+        public BoxManager boxManager;
+        void Start()
         {
-            dictionary.Add(i,boxes[i]);
+            Dictionary<int, GameObject> dictionary = new Dictionary<int, GameObject>();
+            for (int i = 0; i < boxes.Length; i++)
+            {
+                dictionary.Add(i,boxes[i]);
+            }
+
+            boxManager.Boxes = dictionary;
+            boxManager.UpdateBoxes();
         }
 
-        boxManager.Boxes = dictionary;
-        boxManager.UpdateBoxes();
-    }
-
     
+    }
 }
