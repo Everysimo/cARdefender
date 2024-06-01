@@ -5,30 +5,48 @@ namespace cARdefender.Tests.BoxPlacement
 {
     public class BoxConsumer : MonoBehaviour
     {
-        public BoxInformation? boxInformation;
+        
         public UnityEvent<BoxInformation> OnBoxObtained;
         public UnityEvent OnBoxLost;
 
+        public BoxConsumerHandle ConsumerHandle = null;
 
-
-        public void LoseBox()
+        public BoxInformation? GetBoxInformation()
         {
-            boxInformation = null;
-            OnBoxLost.Invoke();
+            return ConsumerHandle.BoxInformation;
         }
 
-        public void ObtainBox(BoxInformation newBoxInformation)
+        public void SubscribeToHandle(BoxConsumerHandle boxConsumerHandle)
         {
-            this.boxInformation = newBoxInformation;
-            OnBoxObtained.Invoke(newBoxInformation);
+            ConsumerHandle?.Unsubscribe(this);
+
+            boxConsumerHandle.Subscribe(this);
+            ConsumerHandle = boxConsumerHandle;
+            if (boxConsumerHandle.BoxInformation.HasValue)
+            {
+                OnBoxObtained.Invoke(boxConsumerHandle.BoxInformation.Value);
+            }
         }
+
+        public void UnsubscribeToHandle()
+        {
+            if (ConsumerHandle != null)
+            {
+                ConsumerHandle.Unsubscribe(this);
+                ConsumerHandle = null;
+            }
+        }
+
+        
+
+        
 
         public void OnBoxObtainedAddListener(UnityAction<BoxInformation> newAction)
         {
             OnBoxObtained.AddListener(newAction);
-            if (boxInformation.HasValue)
+            if (ConsumerHandle != null && ConsumerHandle.BoxInformation.HasValue)
             {
-                newAction.Invoke(boxInformation.Value);
+                newAction.Invoke(ConsumerHandle.BoxInformation.Value);
             }
         }
     }

@@ -7,24 +7,25 @@ namespace cARdefender.Tests.BoxPlacement
     public class BoxManager : MonoBehaviour
     {
         public Dictionary<int, GameObject> Boxes;
-        public HashSet<BoxConsumer> consumers = new HashSet<BoxConsumer>();
+        public HashSet<BoxConsumerHandle> consumers = new HashSet<BoxConsumerHandle>();
+        public HashSet<BoxObtainer> BoxObtainers = new HashSet<BoxObtainer>();
 
-       
+
         public void UpdateBoxes()
         {
             if(Boxes ==  null)return;
             HashSet<int> OccupiedBoxes = new HashSet<int>();
             //detect if a box of a consumer now does not exit anymore
-            foreach (BoxConsumer boxConsumer in consumers)
+            foreach (BoxConsumerHandle boxHandle in consumers)
             {
-                if (boxConsumer.boxInformation == null) continue;
-                if(!Boxes.ContainsKey(boxConsumer.boxInformation.Value.Id))
+                if (boxHandle.BoxInformation == null) continue;
+                if(!Boxes.ContainsKey(boxHandle.BoxInformation.Value.Id))
                 {
-                    boxConsumer.LoseBox();
+                    boxHandle.BoxLost();
                 }
                 else
                 {
-                    OccupiedBoxes.Add(boxConsumer.boxInformation.Value.Id);
+                    OccupiedBoxes.Add(boxHandle.BoxInformation.Value.Id);
                 }
             }
 
@@ -32,28 +33,57 @@ namespace cARdefender.Tests.BoxPlacement
             HashSet<int> freeBoxes = new HashSet<int>(Boxes.Keys);
             freeBoxes.ExceptWith(OccupiedBoxes);
             Queue<int> freeBoxesQueue = new Queue<int>(freeBoxes);
-            foreach (BoxConsumer boxConsumer in consumers)
+            while (freeBoxesQueue.Count > 0)
             {
-                if(freeBoxesQueue.Count == 0) break;
-                if (boxConsumer.boxInformation != null) continue;
                 int boxId = freeBoxesQueue.Dequeue();
-                boxConsumer.ObtainBox(Boxes[boxId].GetComponent<BoxInformationContainer>().boxInformation);
+                BoxInformation boxInformation = Boxes[boxId].GetComponent<BoxInformationContainer>().boxInformation;
+                bool isLeftover = true;
+                foreach (BoxConsumerHandle boxConsumerHandle in consumers)
+                {
+                    if (boxConsumerHandle.BoxInformation != null) continue;
+                    if (boxConsumerHandle.AcceptedLabels.Contains((VeichleTypes)boxInformation.label))
+                    {
+                        isLeftover = false;
+                        boxConsumerHandle.ObtainBox(boxInformation);
+                        break;
+                    }
+                }
+
+                foreach (BoxObtainer boxObtainer in BoxObtainers)
+                {
+                    if (boxObtainer.AcceptedTypes.Contains((VeichleTypes)boxInformation.label))
+                    {
+                        BoxConsumerHandle boxConsumerHandle = new BoxConsumerHandle();
+                        consumers.Add(boxConsumerHandle);
+                        boxObtainer.OnObtainedBox.Invoke(boxConsumerHandle);
+                        boxConsumerHandle.ObtainBox(boxInformation);
+                        break;
+                    }
+                }
             }
-            
-            
         }
 
-        public void Subscribe(BoxConsumer boxConsumer)
+        public void Subscribe(BoxConsumerHandle boxConsumer)
         {
             
             consumers.Add(boxConsumer);
             UpdateBoxes();
         }
 
-        public void Unsubscribe(BoxConsumer boxConsumer)
+        public void Unsubscribe(BoxConsumerHandle boxConsumer)
         {
             consumers.Remove(boxConsumer);
             UpdateBoxes();
+        }
+
+        public void SubscribeObtainer(BoxObtainer boxObtainer)
+        {
+            BoxObtainers.Add(boxObtainer);
+        }
+
+        public void UnsubscribeObtainer(BoxObtainer boxObtainer)
+        {
+            BoxObtainers.Remove(boxObtainer);
         }
         
         

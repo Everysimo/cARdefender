@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9027437806158242302}
-  - component: {fileID: 3947384130555130894}
-  - component: {fileID: 2302439310428904395}
   m_Layer: 0
   m_Name: BoundingBoxLogic
   m_TagString: Untagged
@@ -33,37 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8306443778881394025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3947384130555130894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4989996760362129927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9521d38c383e42209eef54f3e5081b3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnBoxObtained:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBoxLost:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2302439310428904395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4989996760362129927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4c32fedbc654dd3913275f4be4a56d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxConsumer: {fileID: 3947384130555130894}
 --- !u!1 &8100040651112470464
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +45,7 @@ GameObject:
   - component: {fileID: 7640087513458572557}
   - component: {fileID: 4545196021604566538}
   - component: {fileID: 6261769061416963548}
+  - component: {fileID: 8412954118070981041}
   m_Layer: 0
   m_Name: HealthBoxView
   m_TagString: Untagged
@@ -200,4 +168,22 @@ MonoBehaviour:
   objectToMoveTransform: {fileID: 8306443778881394025}
   heightOffset: 0.2
   speed: 1
-  boxConsumer: {fileID: 3947384130555130894}
+  boxConsumer: {fileID: 8412954118070981041}
+--- !u!114 &8412954118070981041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8100040651112470464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9521d38c383e42209eef54f3e5081b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBoxObtained:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBoxLost:
+    m_PersistentCalls:
+      m_Calls: []
