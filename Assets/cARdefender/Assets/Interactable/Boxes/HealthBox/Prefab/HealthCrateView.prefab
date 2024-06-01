@@ -44,10 +44,10 @@ GameObject:
   - component: {fileID: 5955791693723774493}
   - component: {fileID: 7640087513458572557}
   - component: {fileID: 4545196021604566538}
-  - component: {fileID: 6261769061416963548}
   - component: {fileID: 8412954118070981041}
+  - component: {fileID: 1945111819838436572}
   m_Layer: 0
-  m_Name: HealthBoxView
+  m_Name: HealthCrateView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,8 +63,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0.843}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9027437806158242302}
   m_Father: {fileID: 0}
@@ -153,22 +153,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.052576046, y: 0.020000005, z: 0.05098615}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6261769061416963548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8100040651112470464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27d57410d33fbcd4ba5b22b2c1346a94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToMoveTransform: {fileID: 8306443778881394025}
-  heightOffset: 0.2
-  speed: 1
-  boxConsumer: {fileID: 8412954118070981041}
 --- !u!114 &8412954118070981041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,3 +171,18 @@ MonoBehaviour:
   OnBoxLost:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1945111819838436572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8100040651112470464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cee8229a34471c9ae807eab9e1e395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToMoveTransform: {fileID: 8306443778881394025}
+  heightOffset: 0.2
+  boxConsumer: {fileID: 8412954118070981041}

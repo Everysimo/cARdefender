@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using cARdefender.Assets.Enemies.Drone.Scripts.Model;
 using cARdefender.Assets.Interactable.Boxes.Scripts;
+using cARdefender.Tests.BoxPlacement;
 using RMC.Core.Architectures.Mini.Context;
 using RMC.Core.Architectures.Mini.Controller;
 using RMC.Core.Architectures.Mini.Samples.SpawnerMini.WithMini.Mini.Controller.Commands;
 using UnityEngine;
 
-public class BoxSpawnerController : IController
+public class CrateSpawnerController : IController
     {
     
         //  Events ----------------------------------------
@@ -20,21 +21,23 @@ public class BoxSpawnerController : IController
         
         
         //  Fields ----------------------------------------
-        private readonly BoxSpawnerView _boxSpawnerView;
+        private readonly CrateSpawnerView crateSpawnerView;
         
         private readonly BoxView _healthBoxViewPrefab;
+
+        private BoxManager _boxManager;
         
         DroneController _spawnedDroneController;
         
         
         //  Initialization  -------------------------------
-        public BoxSpawnerController(
-            BoxSpawnerView boxSpawnerView, BoxView healthBoxViewPrefab)
+        public CrateSpawnerController(
+            CrateSpawnerView crateSpawnerView, BoxView healthBoxViewPrefab)
         {
             //MODEL
             
             //VIEW
-            _boxSpawnerView = boxSpawnerView;
+            this.crateSpawnerView = crateSpawnerView;
             _healthBoxViewPrefab = healthBoxViewPrefab;
         }
         
@@ -47,7 +50,9 @@ public class BoxSpawnerController : IController
                 Context = context;
                 
                 //View
-                _boxSpawnerView.OnBusDetectedEvent.AddListener(View_OnSpawnHealthBox);
+                crateSpawnerView.OnBusDetectedEvent.AddListener(View_OnSpawnHealthBox);
+
+                _boxManager = crateSpawnerView.boxManager;
             }
         }
         
@@ -65,19 +70,28 @@ public class BoxSpawnerController : IController
   
 
         //  Event Handlers --------------------------------
-        private void View_OnSpawnHealthBox()
+        private void View_OnSpawnHealthBox(BoxConsumerHandle boxConsumerHandle)
         {
             RequireIsInitialized();
 
-            // Spawn Drone 
+            // Spawn Box 
             
             BoxView newBoxView = GameObject.Instantiate(_healthBoxViewPrefab).GetComponent<BoxView>();
             newBoxView.Initialize(Context);
 
-             BoxModel boxModel = new BoxModel();
+            BoxModel boxModel = new BoxModel();
             
-             BoxController spawnedBoxController = new BoxController(boxModel, newBoxView);
+            BoxController spawnedBoxController = new BoxController(boxModel, newBoxView);
             spawnedBoxController.Initialize(Context);
+            
+            BoxConsumer boxConsumer = newBoxView.GetComponent<BoxConsumer>();
+            
+            boxConsumer.OnBoxLost.AddListener(() =>
+            {
+                _boxManager.Unsubscribe(boxConsumerHandle);
+                newBoxView.DestryBox();
+            });
+            boxConsumer.SubscribeToHandle(boxConsumerHandle);
             
             newBoxView.gameObject.SetActive(true);
             

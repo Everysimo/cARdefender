@@ -71,7 +71,7 @@ public class PlayerView : MonoBehaviour, IView, IHittableEnemy
             
             //
 
-            Context.CommandManager.AddCommandListener<PlayerRecoverLifeCommand>(
+            context.CommandManager.AddCommandListener<PlayerRecoverLifeCommand>(
                 OnRecoverLife);
             
             //

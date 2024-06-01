@@ -1,7 +1,7 @@
 using cARdefender.Tests.BoxPlacement;
 using UnityEngine;
 
-public class PlaceObjectOnBoundingBox : MonoBehaviour
+public class MoveObjectOnBoundingBox : MonoBehaviour
 {
     public Transform objectToMoveTransform;
     public float heightOffset;

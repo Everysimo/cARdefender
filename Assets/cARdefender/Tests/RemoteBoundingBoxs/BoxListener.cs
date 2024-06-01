@@ -45,9 +45,12 @@ namespace cARdefender.Tests.RemoteBoundingBoxs
             (like when multiple packets arrive at the same time),
             just process the latest packet and ignore the rest
             */
+            
+            Debug.Log("Listening");
             while (Client.Available > 0)
             {
                 bytes = Client.Receive(ref RemoteIpEndPoint);
+                Debug.Log($"Received {bytes.Length}");
             }
             if (bytes == null)
             {

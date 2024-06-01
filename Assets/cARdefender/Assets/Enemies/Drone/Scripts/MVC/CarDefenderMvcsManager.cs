@@ -45,9 +45,9 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
             get { return _gunView; }
         }
 
-        public BoxSpawnerView BoxSpawnerView
+        public CrateSpawnerView CrateSpawnerView
         {
-            get { return _boxSpawnerView; }
+            get { return crateSpawnerView; }
         }
         
         public BoxView BoxView
@@ -85,7 +85,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         private GunView _gunView;
         private PlayerView _playerView;
         private HandMenuView _handMenuView;
-        private BoxSpawnerView _boxSpawnerView;
+        private CrateSpawnerView crateSpawnerView;
         private BoxView _boxViewPrefab;
 
 
@@ -94,7 +94,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         private DroneController _droneController;
         private GunController _gunController;
         private PlayerController _playerController;
-        private BoxSpawnerController _boxSpawnerController;
+        private CrateSpawnerController crateSpawnerController;
       
         //Service
         private DroneService _droneService;
@@ -102,14 +102,14 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
 
         //  Initialization  -------------------------------
         public CarDefenderMvcsManager(IContext context, DroneSpawnerView droneSpawnerView, DroneView droneView,
-            GunView gunView, PlayerView playerView, HandMenuView handMenuView, BoxSpawnerView boxSpawnerView,BoxView boxViewPrefab)
+            GunView gunView, PlayerView playerView, HandMenuView handMenuView, CrateSpawnerView crateSpawnerView,BoxView boxViewPrefab)
         {
             _droneSpawnerView = droneSpawnerView;
             _droneView = droneView;
             _gunView = gunView;
             _playerView = playerView;
             _handMenuView = handMenuView;
-            _boxSpawnerView = boxSpawnerView;
+            this.crateSpawnerView = crateSpawnerView;
             _boxViewPrefab = boxViewPrefab;
             Context = context;
         }
@@ -146,7 +146,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                 _gunView.Initialize(Context);
                 _gunView.Initialize(Context);
                 _handMenuView.Initialize(Context);
-                _boxSpawnerView.Initialize(Context);
+                crateSpawnerView.Initialize(Context);
 
                 //Service
                 _droneService.Initialize(Context);
@@ -168,14 +168,14 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                     _playerView,
                     _handMenuView);
 
-                _boxSpawnerController = new BoxSpawnerController(_boxSpawnerView,_boxViewPrefab);
+                crateSpawnerController = new CrateSpawnerController(crateSpawnerView,_boxViewPrefab);
 
                 //Controller (Init this main controller last)
                 _droneSpawnerController.Initialize(Context);
                 _droneController.Initialize(Context);
                 _gunController.Initialize(Context);
                 _playerController.Initialize(Context);
-                _boxSpawnerController.Initialize(Context);
+                crateSpawnerController.Initialize(Context);
             }
         }
 

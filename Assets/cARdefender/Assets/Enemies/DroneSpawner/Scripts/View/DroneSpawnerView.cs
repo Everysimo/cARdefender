@@ -75,7 +75,6 @@ public class DroneSpawnerView : MonoBehaviour,IView
 
         public void SpawnToggleButton_OnClicked()
         {
-            Debug.Log("ButtonClicked");
             OnSpawn.Invoke();
         }
         

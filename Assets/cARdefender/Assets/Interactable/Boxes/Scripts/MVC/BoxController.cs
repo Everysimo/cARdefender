@@ -87,14 +87,13 @@ namespace cARdefender.Assets.Interactable.Boxes.Scripts
 
         public void View_OnLifeBoxHitted(float lifeToRecover)
         {
-            Debug.Log("BoxColpita "+ lifeToRecover);
             Context.CommandManager.InvokeCommand(
                 new PlayerRecoverLifeCommand(lifeToRecover));
 
             PlayerModel playerModel = Context.ModelLocator.GetItem<PlayerModel>();
             playerModel.Life.Value += lifeToRecover;
         
-            _boxView.DestryBox();
+            _boxView.DisableBox();
         }
 
         //  Event Handlers --------------------------------

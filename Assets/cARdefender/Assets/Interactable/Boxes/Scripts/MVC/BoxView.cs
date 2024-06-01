@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using cARdefender.Assets.Enemies.Generic_Enemies.Scripts;
+using cARdefender.Tests.BoxPlacement;
 using RMC.Core.Architectures.Mini.Context;
 using RMC.Core.Architectures.Mini.View;
 using UnityEngine;
@@ -74,6 +75,12 @@ public class BoxView : MonoBehaviour,IView,IHittableObject
     {
         Destroy(gameObject);
     }
+    
+    public void DisableBox()
+    {
+        gameObject.SetActive(false);
+    }
+
 
     //  Event Handlers --------------------------------
     

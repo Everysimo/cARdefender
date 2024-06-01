@@ -1,6 +1,7 @@
 using cARdefender.Assets.Interactable.Gun.Scripts.View;
 using RMC.Core.Architectures.Mini.Context;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
 {
@@ -29,8 +30,8 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         [SerializeField] 
         private HandMenuView _handMenuView;
         
-        [SerializeField] 
-        private BoxSpawnerView _boxSpawnerView;
+        [FormerlySerializedAs("_boxSpawnerView")] [SerializeField] 
+        private CrateSpawnerView crateSpawnerView;
 
         [SerializeField] 
         private BoxView _boxViewPrefab;
@@ -47,7 +48,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
             _context = new Context();
             
             CarDefenderMvcsManager = 
-                new CarDefenderMvcsManager(_context,_droneSpawnerView, _droneViewPrefab,_gunView,_playerView,_handMenuView,_boxSpawnerView,_boxViewPrefab);
+                new CarDefenderMvcsManager(_context,_droneSpawnerView, _droneViewPrefab,_gunView,_playerView,_handMenuView,crateSpawnerView,_boxViewPrefab);
             
             CarDefenderMvcsManager.Initialize();
         }

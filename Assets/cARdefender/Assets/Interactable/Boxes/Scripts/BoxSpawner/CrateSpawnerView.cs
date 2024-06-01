@@ -1,19 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using cARdefender.Tests.BoxPlacement;
 using RMC.Core.Architectures.Mini.Context;
 using RMC.Core.Architectures.Mini.View;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BusDetectedEvent : UnityEvent{}
+public class BusDetectedEvent : UnityEvent<BoxConsumerHandle>{}
 
-public class BoxSpawnerView : MonoBehaviour, IView
+public class CrateSpawnerView : MonoBehaviour, IView
 {
     //  Events ----------------------------------------
     [HideInInspector] public readonly BusDetectedEvent OnBusDetectedEvent = new BusDetectedEvent();
     
     private Coroutine _coroutine;
+
+    [SerializeField]
+    public BoxManager boxManager;
 
     //  Properties ------------------------------------
     public void RequireIsInitialized()
@@ -64,11 +68,10 @@ public class BoxSpawnerView : MonoBehaviour, IView
     //  Methods ---------------------------------------
 
 
-    public void OnBusDected()
+    public void OnBusDected(BoxConsumerHandle boxConsumerHandle)
     {
         RequireIsInitialized();
-        
-        OnBusDetectedEvent.Invoke();
+        OnBusDetectedEvent.Invoke(boxConsumerHandle);
     }
 
     //  Event Handlers --------------------------------
