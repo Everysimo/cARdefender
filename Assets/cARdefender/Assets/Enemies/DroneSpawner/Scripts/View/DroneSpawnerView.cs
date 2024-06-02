@@ -23,15 +23,13 @@ public class DroneSpawnerView : MonoBehaviour,IView
         public bool IsInitialized { get; private set; }
         public IContext Context { get; private set; }
 
-        private Text BodyText { get { return _bodyText;}}
+        //private Text BodyText { get { return _bodyText;}}
         
         //  Fields ----------------------------------------
 
-        [SerializeField] 
-        private Button _spawnToggleButton;
+        //[SerializeField]  private Button _spawnToggleButton;
         
-        [SerializeField] 
-        private Text _bodyText;
+        //[SerializeField] private Text _bodyText;
         
 
         
@@ -51,8 +49,7 @@ public class DroneSpawnerView : MonoBehaviour,IView
                 Context.CommandManager.AddCommandListener<DestroyDroneCommand>(
                     OnDestryDroneCommand);
                 
-                _spawnToggleButton?.onClick.AddListener(
-                    SpawnToggleButton_OnClicked);
+                //_spawnToggleButton?.onClick.AddListener(SpawnToggleButton_OnClicked);
             }
         }
 
@@ -82,7 +79,7 @@ public class DroneSpawnerView : MonoBehaviour,IView
         {
             RequireIsInitialized();
             
-            BodyText.text = $"{idCounterChangedCommand.CurrentValue}";
+            //BodyText.text = $"{idCounterChangedCommand.CurrentValue}";
         }
         
         private void OnDestryDroneCommand(DestroyDroneCommand destroyDroneCommand)
