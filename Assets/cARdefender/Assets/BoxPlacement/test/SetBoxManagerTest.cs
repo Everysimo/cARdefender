@@ -14,7 +14,8 @@ namespace cARdefender.Assets.BoxPlacement.test
             Dictionary<int, GameObject> dictionary = new Dictionary<int, GameObject>();
             for (int i = 0; i < boxes.Length; i++)
             {
-                dictionary.Add(i,boxes[i]);
+                BoxInformationContainer boxInformationContainer = boxes[i].GetComponent<BoxInformationContainer>();
+                dictionary.Add(boxInformationContainer.boxInformation.Id,boxInformationContainer.boxInformation.boxObject);
             }
 
             boxManager.Boxes = dictionary;

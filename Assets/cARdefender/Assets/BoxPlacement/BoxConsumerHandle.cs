@@ -6,7 +6,7 @@ namespace cARdefender.Tests.BoxPlacement
     {
 
         public HashSet<BoxConsumer> BoxConsumers;
-        public BoxInformation? BoxInformation;
+        public BoxInformation? BoxInformation = null;
         public HashSet<VeichleTypes> AcceptedLabels;
 
         public BoxConsumerHandle(HashSet<VeichleTypes> acceptedLabels)

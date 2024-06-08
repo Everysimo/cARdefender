@@ -30,11 +30,14 @@ namespace cARdefender.Tests.BoxPlacement
                 }
             }
 
-            
+
             HashSet<int> freeBoxes = new HashSet<int>(Boxes.Keys);
             freeBoxes.ExceptWith(OccupiedBoxes);
             
+
+            
             Queue<int> freeBoxesQueue = SortByDistance(freeBoxes);
+
             
             while (freeBoxesQueue.Count > 0)
             {
@@ -96,14 +99,15 @@ namespace cARdefender.Tests.BoxPlacement
         private Queue<int> SortByDistance(HashSet<int> boundingBoxes)
         {
             Queue<int> boxesQueque = new Queue<int>();
-            for (int i = 0; i < boundingBoxes.Count; i++)
+            int count = boundingBoxes.Count;
+            for (int i = 0; i < count; i++)
             {
                 float distance = Single.NegativeInfinity;
                 int elementToAdd = -1;
                 foreach (int boundingBox in boundingBoxes)
                 {
                     BoxInformation boxInformation = Boxes[boundingBox].GetComponent<BoxInformationContainer>().boxInformation;
-                    float boxDistance = boxInformation.boxObject.transform.position.magnitude;
+                    float boxDistance = boxInformation.boxObject.transform.position.sqrMagnitude;
                     if (boxDistance > distance)
                     {
                         elementToAdd = boundingBox;
