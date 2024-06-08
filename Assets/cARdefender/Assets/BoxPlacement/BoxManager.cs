@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,7 +33,9 @@ namespace cARdefender.Tests.BoxPlacement
             
             HashSet<int> freeBoxes = new HashSet<int>(Boxes.Keys);
             freeBoxes.ExceptWith(OccupiedBoxes);
-            Queue<int> freeBoxesQueue = new Queue<int>(freeBoxes);
+            
+            Queue<int> freeBoxesQueue = SortByDistance(freeBoxes);
+            
             while (freeBoxesQueue.Count > 0)
             {
                 int boxId = freeBoxesQueue.Dequeue();
@@ -86,8 +89,36 @@ namespace cARdefender.Tests.BoxPlacement
         {
             BoxObtainers.Remove(boxObtainer);
         }
-        
-        
+
+
+
+
+        private Queue<int> SortByDistance(HashSet<int> boundingBoxes)
+        {
+            Queue<int> boxesQueque = new Queue<int>();
+            for (int i = 0; i < boundingBoxes.Count; i++)
+            {
+                float distance = Single.NegativeInfinity;
+                int elementToAdd = -1;
+                foreach (int boundingBox in boundingBoxes)
+                {
+                    BoxInformation boxInformation = Boxes[boundingBox].GetComponent<BoxInformationContainer>().boxInformation;
+                    float boxDistance = boxInformation.boxObject.transform.position.magnitude;
+                    if (boxDistance > distance)
+                    {
+                        elementToAdd = boundingBox;
+                        distance = boxDistance;
+                    }
+                    
+                }
+                boxesQueque.Enqueue(elementToAdd);
+                boundingBoxes.Remove(elementToAdd);
+
+            }
+
+            return boxesQueque;
+
+        }
 
 
 
