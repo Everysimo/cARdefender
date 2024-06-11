@@ -7,6 +7,7 @@ namespace cARdefender.Assets.Interactable.Ammo.Scripts
     public class AmmoComponent : MonoBehaviour
     {
         [SerializeField] public float ammoDamage;
+        [SerializeField] public bool isPlayerShooting;
 
 
         private void OnTriggerEnter(Collider other)
@@ -21,7 +22,8 @@ namespace cARdefender.Assets.Interactable.Ammo.Scripts
             IHittableObject objectHittedView = other.transform.GetComponent<IHittableObject>();
             if(objectHittedView != null)
             {
-                objectHittedView.OnObjectHitted();
+                if(isPlayerShooting)
+                    objectHittedView.OnObjectHitted();
                 Destroy(gameObject);
             }
         }

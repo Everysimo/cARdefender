@@ -17,13 +17,14 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
 
         //  Properties ------------------------------------
         public Observable<float> Life { get { return _life;} }
+        public Observable<float> MaxLife { get { return _maxLife;} }
         
     
         
         //  Fields ----------------------------------------
         private readonly Observable<float> _life = new Observable<float>();
         
-
+        private readonly Observable<float> _maxLife = new Observable<float>();
         
         //  Initialization  -------------------------------
         public override void Initialize(IContext context) 
@@ -33,7 +34,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
                 base.Initialize(context);
 
                 // Set Defaults
-                _life.Value = 100f;
+                SetPlayerStats(100);
             }
         }
         
@@ -43,6 +44,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
         {
 
             _life.Value = droneLife;
+            _maxLife.Value = droneLife;
         }
 
         //  Event Handlers --------------------------------

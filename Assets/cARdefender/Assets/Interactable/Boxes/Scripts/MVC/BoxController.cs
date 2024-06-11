@@ -62,8 +62,8 @@ namespace cARdefender.Assets.Interactable.Boxes.Scripts
 
 
                 //View
-                _boxView.OnBoxHittedEvent.AddListener(View_OnLifeBoxHitted);
-
+                _boxView.OnHealthBoxHittedEvent.AddListener(HealthBoxView_OnLifeBoxHitted);
+                _boxView.OnDoubleGunBoxHittedEvent.AddListener(DoubleGunBoxView_OnBoxHitted);
             
                 //Commands
 
@@ -85,17 +85,19 @@ namespace cARdefender.Assets.Interactable.Boxes.Scripts
 
         //  Methods ---------------------------------------
 
-        public void View_OnLifeBoxHitted(float lifeToRecover)
+        public void HealthBoxView_OnLifeBoxHitted(float lifeToRecover)
         {
             Context.CommandManager.InvokeCommand(
                 new PlayerRecoverLifeCommand(lifeToRecover));
-
-            PlayerModel playerModel = Context.ModelLocator.GetItem<PlayerModel>();
-            playerModel.Life.Value += lifeToRecover;
         
             _boxView.DisableBox();
         }
 
+        public void DoubleGunBoxView_OnBoxHitted(int duration)
+        {
+            Context.CommandManager.InvokeCommand(new ActiveDoubleGunCommand(duration));
+            _boxView.DisableBox();
+        }
         //  Event Handlers --------------------------------
 
         //-----DRONE-----

@@ -6,7 +6,7 @@ namespace cARdefender.Tests.BoxPlacement
     public struct BoxInformation
     {
         public int Id;
-        public int label;
+        public VeichleTypes label;
         public GameObject boxObject;
     }
 }

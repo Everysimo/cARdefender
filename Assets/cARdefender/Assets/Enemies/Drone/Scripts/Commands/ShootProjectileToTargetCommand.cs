@@ -1,3 +1,4 @@
+using cARdefender.Assets.Interactable.Ammo.Scripts;
 using RMC.Core.Architectures.Mini.Controller.Commands;
 using UnityEngine;
 
@@ -18,7 +19,25 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.Commands
         private Transform _startPoint;
         private Transform _target;
 
-        
+        public ShootProjectileToTargetCommand(float shootSpeed,float shootDamage, GameObject projectilePrefab, Transform startPoint,Transform target)
+        {
+            _shootSpeed = shootSpeed;
+            _projectilePrefab = projectilePrefab;
+            _startPoint = startPoint;
+            _target = target;
+            
+            GameObject shootProjectile = Instantiate(_projectilePrefab,_startPoint.position,Quaternion.identity);
+            if (shootProjectile.TryGetComponent(out AmmoComponent ammoComponent))
+            {
+                ammoComponent.ammoDamage = shootSpeed;
+            }
+            
+            shootProjectile.transform.LookAt(_target);
+            shootProjectile.transform.Rotate( -90, -90, 0 );
+            MoveObjectWithVelocity moveObjectWithVelocity = shootProjectile.GetComponent<MoveObjectWithVelocity>();
+            Vector3 direction = (_target.position - _startPoint.position).normalized;
+            moveObjectWithVelocity.velocity = direction * shootSpeed;
+        }
         
         public ShootProjectileToTargetCommand(float shootSpeed, GameObject projectilePrefab, Transform startPoint,Transform target)
         {
@@ -27,7 +46,7 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.Commands
             _startPoint = startPoint;
             _target = target;
             
-            GameObject shootProjectile = GameObject.Instantiate(_projectilePrefab,_startPoint.position,Quaternion.identity);
+            GameObject shootProjectile = Instantiate(_projectilePrefab,_startPoint.position,Quaternion.identity);
             shootProjectile.transform.LookAt(_target);
             shootProjectile.transform.Rotate( -90, -90, 0 );
             MoveObjectWithVelocity moveObjectWithVelocity = shootProjectile.GetComponent<MoveObjectWithVelocity>();

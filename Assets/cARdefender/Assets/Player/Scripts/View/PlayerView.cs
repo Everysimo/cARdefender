@@ -14,10 +14,17 @@ using UnityEngine.UI;
 //  Namespace Properties ------------------------------
 
 //  Class Attributes ----------------------------------
-public class PlayerHittedUnityEvent : UnityEvent<float>{}
+public class PlayerHittedUnityEvent : UnityEvent<float>
+{
+}
 
-public class PlayerRecoverLifeUnityEvent : UnityEvent<float>{}
-public class InitializePlayerEvent : UnityEvent<float>{}
+public class PlayerRecoverLifeUnityEvent : UnityEvent<float>
+{
+}
+
+public class InitializePlayerEvent : UnityEvent<float>
+{
+}
 
 
 /// <summary>
@@ -27,9 +34,12 @@ public class PlayerView : MonoBehaviour, IView, IHittableEnemy
 {
     //  Events ----------------------------------------
     [HideInInspector] public readonly PlayerHittedUnityEvent OnPlayerHitted = new PlayerHittedUnityEvent();
-    [HideInInspector] public readonly PlayerRecoverLifeUnityEvent OnPlayerRecoverLife = new PlayerRecoverLifeUnityEvent();
+
+    [HideInInspector]
+    public readonly PlayerRecoverLifeUnityEvent OnPlayerRecoverLife = new PlayerRecoverLifeUnityEvent();
+
     [HideInInspector] public readonly InitializePlayerEvent OnInitializePlayerEvent = new InitializePlayerEvent();
-    
+
     private Coroutine _coroutine;
 
     //  Properties ------------------------------------
@@ -55,10 +65,12 @@ public class PlayerView : MonoBehaviour, IView, IHittableEnemy
     //  Fields ----------------------------------------
     private bool _isInitialized = false;
     private IContext _context;
-    
-    [SerializeField] 
-    private float playerLife;
-    
+
+    [SerializeField] private float playerLife;
+
+    public bool isInvulnerable = false;
+
+    private Coroutine powerUpActive;
 
 
     //  Initialization  -------------------------------
@@ -68,14 +80,14 @@ public class PlayerView : MonoBehaviour, IView, IHittableEnemy
         {
             _isInitialized = true;
             _context = context;
-            
+
             //
 
-            context.CommandManager.AddCommandListener<PlayerRecoverLifeCommand>(
-                OnRecoverLife);
-            
-            //
+            Context.CommandManager.AddCommandListener<PlayerRecoverLifeCommand>(OnRecoverLife);
 
+            Context.CommandManager.AddCommandListener<ActiveDoubleGunCommand>(ActiveDoubleGunPowerUp);
+
+            //
         }
     }
 
@@ -83,8 +95,6 @@ public class PlayerView : MonoBehaviour, IView, IHittableEnemy
     {
         OnInitializePlayerEvent.Invoke(playerLife);
     }
-    
-    
 
 
     //  Unity Methods ---------------------------------
@@ -93,18 +103,32 @@ public class PlayerView : MonoBehaviour, IView, IHittableEnemy
 
     public void OnTakeDamage(float damage)
     {
+        if (isInvulnerable)
+            return;
         OnPlayerHitted.Invoke(damage);
     }
 
     public void OnRecoverLife(PlayerRecoverLifeCommand playerRecoverLifeCommand)
     {
-        Debug.Log("Comando Recover Ricevuto");
         RequireIsInitialized();
         
-        Debug.Log("Comando Recover Ricevuto");
         OnPlayerRecoverLife.Invoke(playerRecoverLifeCommand.LifeToRecover);
     }
 
+    public void ActiveDoubleGunPowerUp(ActiveDoubleGunCommand activeDoubleGunCommand)
+    {
+        StopAllCoroutines();
+        powerUpActive = StartCoroutine(ActivateDoubleGunPowerUp(activeDoubleGunCommand._duration));
+    }
+
+    public IEnumerator ActivateDoubleGunPowerUp(float seconds)
+    {
+        isInvulnerable = true;
+        yield return new WaitForSeconds(seconds);
+        isInvulnerable = false;
+        StopCoroutine(powerUpActive);
+    }
+
+
     //  Event Handlers --------------------------------
-    
 }

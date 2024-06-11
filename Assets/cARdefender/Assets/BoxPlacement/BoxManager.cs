@@ -7,7 +7,7 @@ namespace cARdefender.Tests.BoxPlacement
 {
     public class BoxManager : MonoBehaviour
     {
-        public Dictionary<int, GameObject> Boxes;
+        public Dictionary<int, GameObject> Boxes = new Dictionary<int, GameObject>();
         public HashSet<BoxConsumerHandle> consumers = new HashSet<BoxConsumerHandle>();
         public HashSet<BoxObtainer> BoxObtainers = new HashSet<BoxObtainer>();
 

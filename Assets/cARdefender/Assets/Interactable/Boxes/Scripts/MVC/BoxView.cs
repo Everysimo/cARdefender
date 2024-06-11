@@ -9,12 +9,17 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class BoxHittedUnityEvent : UnityEvent<float>{}
+public class HealthBoxHittedUnityEvent : UnityEvent<float>{}
+public class DoubleGunBoxHittedUnityEvent : UnityEvent<int>{}
 public class BoxView : MonoBehaviour,IView,IHittableObject
 {
      private Coroutine _coroutine;
      
-     [HideInInspector] public readonly BoxHittedUnityEvent OnBoxHittedEvent = new BoxHittedUnityEvent();
+     [HideInInspector] public readonly HealthBoxHittedUnityEvent OnHealthBoxHittedEvent = new HealthBoxHittedUnityEvent();
+     [HideInInspector] public readonly DoubleGunBoxHittedUnityEvent OnDoubleGunBoxHittedEvent = new DoubleGunBoxHittedUnityEvent();
+
+     [SerializeField] private AudioSource audioSource;
+     [SerializeField] private AudioClip pickUpSound;
 
      //  Properties ------------------------------------
      public void RequireIsInitialized()
@@ -39,9 +44,6 @@ public class BoxView : MonoBehaviour,IView,IHittableObject
     //  Fields ----------------------------------------
     private bool _isInitialized = false;
     private IContext _context;
-
-    [SerializeField]
-    private float lifeToRecover;
     
 
     //  Initialization  -------------------------------
@@ -51,13 +53,8 @@ public class BoxView : MonoBehaviour,IView,IHittableObject
         {
             _isInitialized = true;
             _context = context;
-            
             //
-            
-
-
             //
-
         }
     }
 
@@ -66,9 +63,11 @@ public class BoxView : MonoBehaviour,IView,IHittableObject
 
     //  Methods ---------------------------------------
 
-    public void OnObjectHitted()
+    public virtual void OnObjectHitted()
     {
-        OnBoxHittedEvent.Invoke(lifeToRecover);
+        if(pickUpSound != null){
+            audioSource.PlayOneShot(pickUpSound);
+        }
     }
 
     public void DestryBox()

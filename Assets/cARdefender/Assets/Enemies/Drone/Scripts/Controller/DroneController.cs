@@ -78,6 +78,9 @@ public class DroneController : IController
             _droneView.OnInitializeDroneEvent.AddListener(View_Drone_OnInitializeDroneEvent);
             _droneView.OnDroneHitted.AddListener(View_Drone_OnDroneHitted);
             _droneView.OnDroneShootProjectile.AddListener(View_Drone_OnDroneShootProjectile);
+            _droneView.OnDronePowerUpGainedEvent.AddListener(View_Drone_OnPowerUpGained);
+            _droneView.OnDronePowerUpLostEvent.AddListener(View_Drone_OnPowerUpLost);
+
 
             
             //Commands
@@ -111,7 +114,7 @@ public class DroneController : IController
     {
         RequireIsInitialized();
 
-        _droneModel.SetDroneStats(droneLife, movementSpeed, shootDamage, shootSpeed);
+        _droneModel.SetDroneStats(droneLife, movementSpeed, shootDamage, shootSpeed,_droneView.points);
     }
 
     private void View_Drone_OnDroneHitted(float damage)
@@ -120,8 +123,6 @@ public class DroneController : IController
 
         _droneModel.Life.Value -= damage;
         
-
-        Debug.Log("Vita Drone" + _droneModel.Life.Value);
     }
 
     private void View_Drone_OnDroneShootProjectile(float projectileSpeed, GameObject projectilePrefab,
@@ -130,9 +131,18 @@ public class DroneController : IController
         RequireIsInitialized();
 
         Context.CommandManager.InvokeCommand(
-            new ShootProjectileToTargetCommand(projectileSpeed, projectilePrefab, startPoint, target));
+            new ShootProjectileToTargetCommand(projectileSpeed,_droneModel.ShootDamage.Value, projectilePrefab, startPoint, target));
     }
 
+    private void View_Drone_OnPowerUpGained(int multyplayer)
+    {
+        _droneModel.ShootDamage.Value *= multyplayer;
+    }
+    
+    private void View_Drone_OnPowerUpLost()
+    {
+        _droneModel.ShootDamage.Value = _droneModel.DefaultShootDamage.Value;
+    }
     //Model
     public void Model_Drone_OnLifeValueChanged(float previousValue, float currentValue)
     {
@@ -172,12 +182,8 @@ public class DroneController : IController
         if (currentValue <= 0)
         {
             Context.CommandManager.InvokeCommand(
-                new DestroyDroneCommand());
+                new DestroyDroneCommand(_droneModel.points.Value));
             _droneView.DestroyDrone();
         }
     }
-    
-    
-    
-    
 }

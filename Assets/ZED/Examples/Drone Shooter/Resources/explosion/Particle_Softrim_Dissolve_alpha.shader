@@ -33,6 +33,10 @@ Category {
 
 			#include "UnityCG.cginc"
 
+			// DepthAPI Environment Occlusion
+                #include "Packages/com.meta.xr.depthapi/Runtime/BiRP/EnvironmentOcclusionBiRP.cginc"
+                #pragma multi_compile _ HARD_OCCLUSION SOFT_OCCLUSION
+
 			sampler2D _MainTex;
 			#if EDGE_ON
 			sampler2D _EdgeRamp;
@@ -51,6 +55,7 @@ Category {
 				fixed4 vertex : SV_POSITION;
 				fixed4 color : COLOR;
 				fixed2 texcoord : TEXCOORD0;
+				META_DEPTH_VERTEX_OUTPUT(1)
 			};
 			
 			fixed4 _MainTex_ST;
@@ -94,6 +99,8 @@ Category {
 				o.color = v.color;
 				#endif
 				o.texcoord = TRANSFORM_TEX(v.texcoord,_MainTex);
+				// v.vertex (object space coordinate) might have a different name in your vert shader
+                    META_DEPTH_INITIALIZE_VERTEX_OUTPUT(o, v.vertex);
 				return o;
 			}
 			
@@ -132,7 +139,17 @@ Category {
 				
 				#if OPACITYSLIDER_ON
 				clip(sf*tex.a*_Opacity);
-				return fixed4(tex.rgb*i.color.rgb,sf*tex.a*_Opacity);
+
+				fixed4 col = fixed4(tex.rgb*i.color.rgb,sf*tex.a*_Opacity);
+
+				// this is something your shader will return without occlusions
+				half4 fragmentShaderResult = col;
+
+				// Third field is for environment depth bias. 0.0 means the occlusion will be calculated with depths as they are.
+				META_DEPTH_OCCLUDE_OUTPUT_PREMULTIPLY(i, fragmentShaderResult, 0.0);
+
+				return fragmentShaderResult;
+				
 				#else
 				clip(sf*tex.a);
 				return fixed4(tex.rgb*i.color.rgb,sf*tex.a);

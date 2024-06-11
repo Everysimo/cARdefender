@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using cARdefender.Tests.BoxPlacement;
 using RMC.Core.Architectures.Mini.Context;
 using RMC.Core.Architectures.Mini.Samples.RollABall.WithMini.Components;
 using RMC.Core.Architectures.Mini.Samples.RollABall.WithMini.Mini.Controller.Commands;
@@ -11,11 +12,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = System.Random;
 
 //  Namespace Properties ------------------------------
 
 //  Class Attributes ----------------------------------
 public class DroneHittedUnityEvent : UnityEvent<float>{}
+
+public class DronePowerUpGainedUnityEvent : UnityEvent<int>{}
+public class DronePowerUpLostUnityEvent : UnityEvent{}
 
 public class DroneShootProjectileUnityEvent : UnityEvent<float,GameObject,Transform,Transform>{}
 public class InitializeDroneEvent : UnityEvent<float,float,float,float>{}
@@ -30,6 +35,8 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     [HideInInspector] public readonly DroneHittedUnityEvent OnDroneHitted = new DroneHittedUnityEvent();
     [HideInInspector] public readonly DroneShootProjectileUnityEvent OnDroneShootProjectile = new DroneShootProjectileUnityEvent();
     [HideInInspector] public readonly InitializeDroneEvent OnInitializeDroneEvent = new InitializeDroneEvent();
+    [HideInInspector] public readonly DronePowerUpGainedUnityEvent OnDronePowerUpGainedEvent = new DronePowerUpGainedUnityEvent();
+    [HideInInspector] public readonly DronePowerUpLostUnityEvent OnDronePowerUpLostEvent = new DronePowerUpLostUnityEvent();
     
     private Coroutine _coroutine;
 
@@ -67,7 +74,10 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     private float shootDamage;
     
     [SerializeField] 
-    private float shootSpeed;
+    private float MinShootSpeed;
+    
+    [SerializeField] 
+    private float MaxShootSpeed;
     
     [SerializeField] 
     private float projectileSpeed;
@@ -99,6 +109,8 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     [SerializeField]
     [Tooltip("FX for when we take damage.")]
     private Transform damagefx;
+
+    public int points;
     
     [SerializeField]
     [Tooltip("The object that gets spawned when the drone dies. Intended to be an explosion.")]
@@ -115,9 +127,13 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     [SerializeField]
     private Animator _animator;
 
+    public LineRenderer vehicleLaser;
+
     private int lastStartPointWeaponNumber = 0;
     private bool isAlive;
     private float _target = 1;
+    
+    Random random = new Random();
 
     //  Initialization  -------------------------------
     public void Initialize(IContext context)
@@ -139,13 +155,13 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
 
     private void Start()
     {
-        OnInitializeDroneEvent.Invoke(droneLife,movementSpeed,shootDamage,shootSpeed);
+        OnInitializeDroneEvent.Invoke(droneLife,movementSpeed,shootDamage,MaxShootSpeed);
     }
     
 
     public void InitializeDroneOnStart()
     {
-        OnInitializeDroneEvent.Invoke(droneLife,movementSpeed,shootDamage,shootSpeed);
+        OnInitializeDroneEvent.Invoke(droneLife,movementSpeed,shootDamage,MaxShootSpeed);
     }
 
     public void OnTakeDamage(float damage)
@@ -163,7 +179,9 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
         {
             while (true)
             {
-                yield return new WaitForSeconds(shootSpeed);
+
+                float randomSpeed = generateRandomFloat(MinShootSpeed,MaxShootSpeed);
+                yield return new WaitForSeconds(randomSpeed);
                 
                 _audioSource.PlayOneShot(LaserShoot);
                 OnDroneShootProjectile.Invoke(projectileSpeed,projectilePrefab,startPoints[lastStartPointWeaponNumber],targetObject);
@@ -222,6 +240,26 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
         healthBarSprite.fillAmount = Mathf.MoveTowards( healthBarSprite.fillAmount,_target,2*Time.deltaTime);
     }
 
+    public void GainPowerUpDroneOnVehicleAttach(VeichleTypes veichle)
+    {
+        switch (veichle)
+        {
+                case VeichleTypes.TRUCK:
+                OnDronePowerUpGainedEvent.Invoke(2);
+                vehicleLaser.startColor = Color.red;
+                vehicleLaser.endColor = Color.red;
+                break;
+        }
+    }
+
+    public void LosePowerUpOnVehicleDetach()
+    {
+        vehicleLaser.startColor = Color.green;
+        vehicleLaser.endColor = Color.green;
+        OnDronePowerUpLostEvent.Invoke();
+    }
+    
+
     //  Methods ---------------------------------------
 
     public void DestroyDrone()
@@ -256,6 +294,13 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
         damagefx.GetChild(idDamageFX).gameObject.SetActive(false);
     }
 
+    public float generateRandomFloat(float a, float b)
+    {
+        float min = a; 
+        float max = b; 
+
+        return (float)(random.NextDouble() * (max - min) + min);
+    }
     //  Event Handlers --------------------------------
     
 }

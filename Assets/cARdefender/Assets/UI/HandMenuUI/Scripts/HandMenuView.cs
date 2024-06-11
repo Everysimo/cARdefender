@@ -50,7 +50,11 @@ public class HandMenuView : MonoBehaviour, IView
     [SerializeField] 
     private TMP_Text playerLifeText;
     
+    [SerializeField]
+    [Tooltip("Health Sprite")]
+    private Image healthBarSprite = null;
 
+    private float _target = 1;
 
     //  Initialization  -------------------------------
     public void Initialize(IContext context)
@@ -72,15 +76,24 @@ public class HandMenuView : MonoBehaviour, IView
     
     
 
-    public void UpdatePlayerLifeUI(float life)
+    public void UpdatePlayerLifeUI(float life,float maxLife)
     {
-        playerLifeText.text = "HEALTH: " + life;
+        playerLifeText.text = life+"/"+maxLife;
     }
     
+    private void Update()
+    {
+        
+        healthBarSprite.fillAmount = Mathf.MoveTowards( healthBarSprite.fillAmount,_target,2*Time.deltaTime);
+    }
+
 
     //  Methods ---------------------------------------
-
-
+    
+    public void UpdateHealthBar(float currentLife,float maxLife)
+    {
+        _target = currentLife/maxLife;
+    }
 
     //  Event Handlers --------------------------------
     

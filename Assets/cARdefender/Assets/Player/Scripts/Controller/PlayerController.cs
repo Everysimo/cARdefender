@@ -85,6 +85,7 @@ public class PlayerController : IController
 
 
             //Commands
+            
 
             // Demo - Controller may update model DIRECTLY...
 
@@ -115,7 +116,6 @@ public class PlayerController : IController
     {
         RequireIsInitialized();
         
-
         _playerModel.Life.Value -= damage;
         
     }
@@ -132,7 +132,13 @@ public class PlayerController : IController
 
     public void View_HandMenu_UpdateLife(float prevValue, float newValue)
     {
-        _handMenuView.UpdatePlayerLifeUI(newValue);
+        if (newValue <= 0)
+        {
+            Context.CommandManager.InvokeCommand(new PlayerLifeLostCommand());
+            _playerModel.Life.Value = _playerModel.MaxLife.Value;
+        }
+        _handMenuView.UpdatePlayerLifeUI(newValue,_playerModel.MaxLife.Value);
+        _handMenuView.UpdateHealthBar(newValue,_playerModel.MaxLife.Value);
     }
     
 }

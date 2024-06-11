@@ -13,7 +13,7 @@ namespace cARdefender.Tests.BoxPlacement
 
         public BoxInformation? GetBoxInformation()
         {
-            return ConsumerHandle.BoxInformation;
+            return ConsumerHandle?.BoxInformation;
         }
 
         public void SubscribeToHandle(BoxConsumerHandle boxConsumerHandle)

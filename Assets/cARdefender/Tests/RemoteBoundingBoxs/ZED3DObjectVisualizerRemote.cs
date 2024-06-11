@@ -130,7 +130,7 @@ public class ZED3DObjectVisualizerRemote : MonoBehaviour
             //Get the box and update its distance value.
             BoxInformationContainer bbox = GetBBoxForObject(objectRecognized.id);
             bbox.boxInformation.Id = objectRecognized.id;
-            bbox.boxInformation.label = (int)objectRecognized.label;
+            bbox.boxInformation.label = (VeichleTypes)objectRecognized.label;
             bbox.boxInformation.boxObject = bbox.gameObject;
 
             Vector3 obj_position =
