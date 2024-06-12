@@ -17,7 +17,7 @@ namespace cARdefender.Tests.BoxPlacement
             if(Boxes ==  null)return;
             HashSet<int> OccupiedBoxes = new HashSet<int>();
             //detect if a box of a consumer now does not exit anymore
-            foreach (BoxConsumerHandle boxHandle in consumers)
+            foreach (BoxConsumerHandle boxHandle in new HashSet<BoxConsumerHandle>(consumers))
             {
                 if (boxHandle.BoxInformation == null) continue;
                 if(!Boxes.ContainsKey(boxHandle.BoxInformation.Value.Id))

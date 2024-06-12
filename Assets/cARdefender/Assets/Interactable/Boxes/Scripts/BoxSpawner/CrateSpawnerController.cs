@@ -88,7 +88,15 @@ public class CrateSpawnerController : IController
             BoxController spawnedBoxController = new BoxController(boxModel, newBoxView);
             spawnedBoxController.Initialize(Context);
 
-            BoxConsumer boxConsumer = newBoxView.GetComponent<BoxConsumer>();
+            BoxConsumer boxConsumer;
+            if (newBoxView.TryGetComponent<BoxConsumer>(out BoxConsumer boxConsumerReturn))
+            {
+                boxConsumer =  boxConsumerReturn;
+            }
+            else
+            {
+                boxConsumer = newBoxView.GetComponentInChildren<BoxConsumer>();
+            }
 
             boxConsumer.OnBoxLost.AddListener(() =>
             {
@@ -116,8 +124,8 @@ public class CrateSpawnerController : IController
             RequireIsInitialized();
 
             // Spawn Box 
-            //DoubleGunBoxView newBoxView = GameObject.Instantiate(_doubleGunBoxViewPrefab).GetComponent<DoubleGunBoxView>();
-            HealthBoxView newBoxView = GameObject.Instantiate(_healthBoxViewPrefab).GetComponent<HealthBoxView>();
+            DoubleGunBoxView newBoxView = GameObject.Instantiate(_doubleGunBoxViewPrefab).GetComponent<DoubleGunBoxView>();
+            //HealthBoxView newBoxView = GameObject.Instantiate(_healthBoxViewPrefab).GetComponent<HealthBoxView>();
             newBoxView.Initialize(Context);
 
             BoxModel boxModel = new BoxModel();

@@ -15,7 +15,8 @@ namespace cARdefender.Assets.BoxPlacement
         private void Awake()
         {
             boxManager.SubscribeObtainer(boxObtainer);
-            boxObtainer.AcceptedTypes.Add(VeichleTypes.BUS);
+            boxObtainer.AcceptedTypes.Add(VeichleTypes.STOP_SIGN);
+            boxObtainer.AcceptedTypes.Add(VeichleTypes.TRAFFIC_LIGHT);
             boxObtainer.OnObtainedBox.AddListener(SpawnCrate);
         }
 

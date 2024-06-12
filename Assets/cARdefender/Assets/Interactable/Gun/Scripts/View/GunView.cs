@@ -87,8 +87,7 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
         public bool canShoot = false;
         public bool isDoubleGunActive = false;
         public bool isPrimary = false;
-        
-        // Start is called before the first frame update
+
         public float shootSpeed = 1;
         
         public float PowerUpShootSpeed = 1;
@@ -157,7 +156,6 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
 
         public void ActiveDoubleGunPowerUp(ActiveDoubleGunCommand activeDoubleGunCommand)
         {
-            isDoubleGunActive = true;
             if (_basicShootingCoroutine != null)
             {
                  StopCoroutine(_basicShootingCoroutine);
@@ -168,6 +166,7 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
                 StopCoroutine(_powerUpShootingCoroutine);
                 _powerUpShootingCoroutine = null;
             }
+            isDoubleGunActive = true;
             StopAllCoroutines();
             _powerUpShootingCoroutine = StartCoroutine(ActivateDoubleGunPowerUp(activeDoubleGunCommand._duration));
         }

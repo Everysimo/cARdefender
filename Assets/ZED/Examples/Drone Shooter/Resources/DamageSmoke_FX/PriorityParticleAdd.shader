@@ -81,8 +81,9 @@ Shader "Particles/Priority Additive"
                     o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
 
                     UNITY_SETUP_INSTANCE_ID(v);
-                    #ifdef UNITY_SINGLE_PASS_STEREO
-                    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+                    
+                    #if defined(UNITY_SINGLE_PASS_STEREO) || defined(STEREO_INSTANCING_ON)
+                        UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
                     #endif
 
 

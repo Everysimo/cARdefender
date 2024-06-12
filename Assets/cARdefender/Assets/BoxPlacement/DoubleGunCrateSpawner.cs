@@ -16,6 +16,7 @@ namespace cARdefender.Assets.BoxPlacement
         {
             boxManager.SubscribeObtainer(boxObtainer);
             boxObtainer.AcceptedTypes.Add(VeichleTypes.BICYCLE);
+            boxObtainer.AcceptedTypes.Add(VeichleTypes.MOTORCYCLE);
             boxObtainer.OnObtainedBox.AddListener(SpawnCrate);
         }
 

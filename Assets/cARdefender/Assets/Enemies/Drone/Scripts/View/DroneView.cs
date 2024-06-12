@@ -249,6 +249,12 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
                 vehicleLaser.startColor = Color.red;
                 vehicleLaser.endColor = Color.red;
                 break;
+                
+                case VeichleTypes.BUS:
+                    OnDronePowerUpGainedEvent.Invoke(3);
+                    vehicleLaser.startColor = Color.red;
+                    vehicleLaser.endColor = Color.red;
+                    break;
         }
     }
 
