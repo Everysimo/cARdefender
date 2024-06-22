@@ -14,16 +14,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: DRON_MATERIAL_gun heat_
     second: {fileID: 2100000, guid: 2abc871949772ec459d56939d5a7ac91, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: _FIRE_BLUE_
-    second: {fileID: 2100000, guid: 9a7d937c7c83d4e4aa0543a68cac5f52, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: _FIRE_WHITE_
-    second: {fileID: 2100000, guid: b741561c3b4fe2844b7f57c7c28ad0aa, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

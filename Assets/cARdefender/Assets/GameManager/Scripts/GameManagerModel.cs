@@ -20,12 +20,19 @@ public class GameManagerModel : BaseModel
     {
         get { return _livesLost; }
     }
+    
+    public Observable<int> gameLevel
+    {
+        get { return _gameLevel; }
+    }
 
     //  Fields ----------------------------------------
 
     private readonly Observable<int> _score = new Observable<int>();
     
     private readonly Observable<int> _livesLost = new Observable<int>();
+    
+    private readonly Observable<int> _gameLevel = new Observable<int>();
 
 
     //  Initialization  -------------------------------
@@ -38,6 +45,7 @@ public class GameManagerModel : BaseModel
             // Set Defaults
             _score.Value = 0;
             _livesLost.Value = 0;
+            _gameLevel.Value = 1;
         }
     }
 

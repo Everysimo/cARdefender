@@ -63,7 +63,6 @@ public class GunModel : IModel
             _context = context;
 
             // Set Defaults
-            _maxAmmo.Value = 40;
         }
     }
 

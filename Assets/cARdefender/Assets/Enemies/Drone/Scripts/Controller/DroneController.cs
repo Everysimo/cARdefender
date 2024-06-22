@@ -115,6 +115,8 @@ public class DroneController : IController
         RequireIsInitialized();
 
         _droneModel.SetDroneStats(droneLife, movementSpeed, shootDamage, shootSpeed,_droneView.points);
+
+        _droneModel.ammoReward.Value = _droneView.ammoRewards;
     }
 
     private void View_Drone_OnDroneHitted(float damage)
@@ -183,6 +185,10 @@ public class DroneController : IController
         {
             Context.CommandManager.InvokeCommand(
                 new DestroyDroneCommand(_droneModel.points.Value));
+            
+            Context.CommandManager.InvokeCommand(
+                new ReloadGunAmmoCommand(_droneModel.ammoReward.Value));
+            
             _droneView.DestroyDrone();
         }
     }

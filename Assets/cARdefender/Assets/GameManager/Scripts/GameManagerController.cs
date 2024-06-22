@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using cARdefender.Assets.Enemies.Drone.Scripts.Model;
 using RMC.Core.Architectures.Mini.Context;
 using RMC.Core.Architectures.Mini.Controller;
+using RMC.Core.Architectures.Mini.Samples.SpawnerMini.WithMini.Mini.Controller.Commands;
 using UnityEngine;
 
 public class GameManagerController : IController
@@ -39,6 +40,7 @@ public class GameManagerController : IController
     //Controller
     //private AudioController _audioController;
     
+    
 
 
     public GameManagerController(GameManagerModel gameManagerModel, GameManagerView gameManagerView)
@@ -62,8 +64,11 @@ public class GameManagerController : IController
             _gameManagerModel.score.OnValueChanged.AddListener(OnScoreValueChanged);
             
             _gameManagerModel.livesLost.OnValueChanged.AddListener(OnLivesLostValueChanged);
+            
+            _gameManagerModel.gameLevel.OnValueChanged.AddListener(OnGameLevelValueChanged);
             //View
             
+            _gameManagerView.OnGameStartEvent.AddListener(OnGameStart);
             
             //Commands
             Context.CommandManager.AddCommandListener<DestroyDroneCommand>(
@@ -71,8 +76,9 @@ public class GameManagerController : IController
             
             Context.CommandManager.AddCommandListener<PlayerLifeLostCommand>(
                 OnPlayerLifeLost);
+            
+            Context.CommandManager.AddCommandListener<LevelChangeRequestCommand>(OnGameLevelChangeRequest);
             // Demo - Controller may update model DIRECTLY...
-
 
             // Clear
         }
@@ -86,6 +92,10 @@ public class GameManagerController : IController
         }
     }
 
+    public void OnGameStart()
+    {
+        _gameManagerModel.gameLevel.Value = 1;
+    }
 
     //  Methods ---------------------------------------
     public void OnDroneDestroyed(DestroyDroneCommand destroyDroneCommand)
@@ -98,7 +108,11 @@ public class GameManagerController : IController
         
         _gameManagerModel.score.Value /= 2;
     }
-    
+
+    public void OnGameLevelChangeRequest(LevelChangeRequestCommand levelChangeRequestCommand)
+    {
+        _gameManagerModel.gameLevel.Value += 1;
+    }
 
     //  Event Handlers --------------------------------
 
@@ -112,6 +126,25 @@ public class GameManagerController : IController
         _gameManagerView.UpdateLivesLostView(newValue);
     }
 
+    public void OnGameLevelValueChanged(int oldValue, int newValue)
+    {
+        int dronesToSpawn = newValue;
+        if (dronesToSpawn < 3)
+        {
+            dronesToSpawn = 1;
+        }
+        else
+        {
+            dronesToSpawn /= 3;
+        }
+        if (dronesToSpawn > 7)
+        {
+            dronesToSpawn = 7;
+        }
+        Context.CommandManager.InvokeCommand(new GameLevelChangedCommand(dronesToSpawn));
+        _gameManagerView.UpdateLevelView(_gameManagerModel.gameLevel.Value);
+    }
+    
     //-----DRONE-----
 
     //View

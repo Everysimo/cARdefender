@@ -17,7 +17,7 @@ public class DroneSpawnerView : MonoBehaviour,IView
         public readonly UnityEvent OnDestroyDroneEvent = new UnityEvent();
         
         [HideInInspector] 
-        public readonly UnityEvent OnSpawn = new UnityEvent();
+        public readonly UnityEvent<Transform> OnSpawn = new ();
         
         //  Properties ------------------------------------
         public bool IsInitialized { get; private set; }
@@ -26,6 +26,7 @@ public class DroneSpawnerView : MonoBehaviour,IView
         //private Text BodyText { get { return _bodyText;}}
         
         //  Fields ----------------------------------------
+        public Transform spawnPosition;
 
         //[SerializeField]  private Button _spawnToggleButton;
         
@@ -70,9 +71,9 @@ public class DroneSpawnerView : MonoBehaviour,IView
         
         //  Event Handlers --------------------------------
 
-        public void SpawnToggleButton_OnClicked()
+        public void SpawnToggleButton_OnClicked(Transform spawnPosition)
         {
-            OnSpawn.Invoke();
+            OnSpawn.Invoke(spawnPosition);
         }
         
         private void OnCounterChangedCommand(IdCounterChangedCommand idCounterChangedCommand)

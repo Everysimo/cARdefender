@@ -101,7 +101,7 @@ public class CrateSpawnerController : IController
             boxConsumer.OnBoxLost.AddListener(() =>
             {
                 _boxManager.Unsubscribe(boxConsumerHandle);
-                newBoxView.DestryBox();
+                newBoxView.DestroyBox();
             });
             boxConsumer.SubscribeToHandle(boxConsumerHandle);
 

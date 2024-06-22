@@ -5,18 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 55daccc09a3b69647bbab145b54a3ab3
-  - enabled: 0
-    path: Assets/ZED/Examples/Object Detection/Scenes/3D Object Detection.unity
-    guid: efeaf06729c047145af41b28c33b8b26
-  - enabled: 0
-    path: Assets/Scenes/ZedTesting/MixedReality/MixedReality.unity
-    guid: 7e002f75673e2b4439a52658ddf7a040
-  - enabled: 0
-    path: Assets/cARdefender/Tests/RemoteBoundingBoxs/RemoteBoundingBoxes.unity
-    guid: 90213ea55986f89419f821c3cc33a115
+  - enabled: 1
+    path: Assets/cARdefender/Tests/CompleteTest/Start Menu.unity
+    guid: d283aacbd7ad88147a0c051a2e236cea
   - enabled: 1
     path: Assets/cARdefender/Tests/CompleteTest/CompleteTest.unity
     guid: 7b077dc620c1d4f409a7b00922c4503f

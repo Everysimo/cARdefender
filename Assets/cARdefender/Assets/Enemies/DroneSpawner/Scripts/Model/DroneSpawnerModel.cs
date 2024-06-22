@@ -10,11 +10,15 @@ public class DroneSpawnerModel : BaseModel // Extending 'base' is optional
 
 
     //  Properties ------------------------------------
-    public Observable<int> IdCounter { get { return _idCounter;} }
+    public Observable<int> AliveDronesCounter { get { return _aliveDronesCounter;} }
+    
+    public Observable<int> MaxAliveDrones { get { return _maxAliveDrones;} }
     
         
     //  Fields ----------------------------------------
-    private readonly Observable<int> _idCounter = new Observable<int>();
+    private readonly Observable<int> _aliveDronesCounter = new Observable<int>();
+    
+    private readonly Observable<int> _maxAliveDrones = new Observable<int>();
         
     //  Initialization  -------------------------------
     public override void Initialize(IContext context) 
@@ -24,7 +28,8 @@ public class DroneSpawnerModel : BaseModel // Extending 'base' is optional
             base.Initialize(context);
 
             // Set Defaults
-            _idCounter.Value = 0;
+            _aliveDronesCounter.Value = 0;
+            _maxAliveDrones.Value = 1;
         }
     }
         

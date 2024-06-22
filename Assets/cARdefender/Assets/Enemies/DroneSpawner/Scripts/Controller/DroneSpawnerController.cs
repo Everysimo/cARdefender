@@ -18,6 +18,7 @@ public class DroneSpawnerController : IController
         //  Properties ------------------------------------
         public bool IsInitialized { get; private set; }
         public IContext Context { get; private set; }
+
         
         
         //  Fields ----------------------------------------
@@ -51,11 +52,13 @@ public class DroneSpawnerController : IController
                 Context = context;
                 
                 //View
-                _droneSpawnerModel.IdCounter.OnValueChanged.AddListener(Counter_OnValueChanged);
+                _droneSpawnerModel.AliveDronesCounter.OnValueChanged.AddListener(Counter_OnValueChanged);
                 _droneSpawnerView.OnSpawn.AddListener(DroneSpawnerView_OnSpawn);
                 _droneSpawnerView.OnDestroyDroneEvent.AddListener(DroneSpawnerView_OnDestroyDrone);
+                
+                Context.CommandManager.AddCommandListener<GameLevelChangedCommand>(OnGameLevelChanged);
 
-                _droneSpawnerModel.IdCounter.Value = 0;
+                _droneSpawnerModel.AliveDronesCounter.Value = 0;
             }
         }
         
@@ -73,13 +76,13 @@ public class DroneSpawnerController : IController
   
 
         //  Event Handlers --------------------------------
-        private void DroneSpawnerView_OnSpawn()
+        private void DroneSpawnerView_OnSpawn(Transform spawnPosition)
         {
             RequireIsInitialized();
 
             // Spawn Drone 
             
-            DroneView newDroneView = GameObject.Instantiate(_droneViewPrefab).GetComponent<DroneView>();
+            DroneView newDroneView = GameObject.Instantiate(_droneViewPrefab,spawnPosition.position,spawnPosition.rotation).GetComponent<DroneView>();
             newDroneView.Initialize(Context);
 
             DroneModel newDroneModel = new DroneModel();
@@ -89,34 +92,47 @@ public class DroneSpawnerController : IController
             
             newDroneView.gameObject.SetActive(true);
 
-            _droneSpawnerModel.IdCounter.Value += 1;
+            _droneSpawnerModel.AliveDronesCounter.Value += 1;
         }
         
-        private async void Counter_OnValueChanged(int previousValue, int currentValue)
+        private void Counter_OnValueChanged(int previousValue, int currentValue)
         {
             RequireIsInitialized();
 
-            if (_droneSpawnerModel.IdCounter.Value < 3)
+            if (_droneSpawnerModel.AliveDronesCounter.Value <= 0)
             {
-                await SpawnNewDrone();
+                Context.CommandManager.InvokeCommand(new LevelChangeRequestCommand());
             }
-            
-            Context.CommandManager.InvokeCommand(
-                new IdCounterChangedCommand(previousValue, currentValue));
             
         }
         
         private async Task SpawnNewDrone()
         {
-            await Task.Delay(5000);
-            _droneSpawnerView.OnSpawn.Invoke();
+            await Task.Delay(1000);
+            _droneSpawnerView.OnSpawn.Invoke(_droneSpawnerView.spawnPosition);
         }
         
         private void DroneSpawnerView_OnDestroyDrone()
         {
             RequireIsInitialized();
 
-            _droneSpawnerModel.IdCounter.Value -= 1;
+            _droneSpawnerModel.AliveDronesCounter.Value -= 1;
+        }
+
+        private async void SpawnDronesOnLevelChanged()
+        {
+            while (_droneSpawnerModel.AliveDronesCounter.Value < _droneSpawnerModel.MaxAliveDrones.Value)
+            {
+                await SpawnNewDrone();
+            }
+            
+        }
+        
+        private void OnGameLevelChanged(GameLevelChangedCommand gameLevelChangedCommand)
+        {
+            _droneSpawnerModel.MaxAliveDrones.Value = gameLevelChangedCommand.Level;
+            
+            SpawnDronesOnLevelChanged();
         }
         
     }

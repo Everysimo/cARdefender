@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace cARdefender.Tests.BoxPlacement
 {
@@ -17,7 +18,7 @@ namespace cARdefender.Tests.BoxPlacement
             if(Boxes ==  null)return;
             HashSet<int> OccupiedBoxes = new HashSet<int>();
             //detect if a box of a consumer now does not exit anymore
-            foreach (BoxConsumerHandle boxHandle in new HashSet<BoxConsumerHandle>(consumers))
+            foreach (BoxConsumerHandle boxHandle in Shuffle(consumers))
             {
                 if (boxHandle.BoxInformation == null) continue;
                 if(!Boxes.ContainsKey(boxHandle.BoxInformation.Value.Id))
@@ -55,10 +56,11 @@ namespace cARdefender.Tests.BoxPlacement
                     }
                 }
                 if(!isLeftover) continue;
+                var shuffledSet = Shuffle(BoxObtainers);
 
-                foreach (BoxObtainer boxObtainer in BoxObtainers)
+                foreach (BoxObtainer boxObtainer in shuffledSet)
                 {
-                    if (boxObtainer.AcceptedTypes.Contains((VeichleTypes)boxInformation.label))
+                    if (boxObtainer.AcceptedTypes.Contains(boxInformation.label))
                     {
                         BoxConsumerHandle boxConsumerHandle = new BoxConsumerHandle();
                         consumers.Add(boxConsumerHandle);
@@ -122,6 +124,23 @@ namespace cARdefender.Tests.BoxPlacement
 
             return boxesQueque;
 
+        }
+        
+        
+        public static HashSet<T> Shuffle<T>(HashSet<T> set)
+        {
+            List<T> list = new List<T>(set);
+            
+            int n = list.Count;
+        
+            while (n > 1)
+            {
+                n--;
+                int k = Random.Range(0,n + 1);
+                (list[k], list[n]) = (list[n], list[k]);
+            }
+        
+            return new HashSet<T>(list);
         }
 
 

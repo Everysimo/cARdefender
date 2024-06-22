@@ -29,6 +29,8 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
         
         public Observable<int> points { get { return _points;} }
         
+        public Observable<int> ammoReward { get { return _ammoReward;} }
+        
         public Observable<int> id { get { return _id;} }
     
         
@@ -43,6 +45,8 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.Model
         private readonly Observable<float> _shootSpeed = new Observable<float>();
         
         private readonly Observable<int> _id = new Observable<int>();
+        private readonly Observable<int> _ammoReward = new Observable<int>();
+        
         private readonly Observable<int> _points = new Observable<int>();
 
         

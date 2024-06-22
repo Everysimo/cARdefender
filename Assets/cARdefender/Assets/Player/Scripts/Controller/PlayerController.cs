@@ -124,7 +124,10 @@ public class PlayerController : IController
     {
         RequireIsInitialized();
 
-        _playerModel.Life.Value += lifeToRecover;
+        float newLife = _playerModel.Life.Value + lifeToRecover;
+
+        _playerModel.Life.Value = newLife > _playerModel.MaxLife.Value 
+            ? _playerModel.MaxLife.Value : newLife;
     }
     //-----HAND MENU-----
     

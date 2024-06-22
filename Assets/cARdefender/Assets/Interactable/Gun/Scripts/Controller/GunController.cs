@@ -73,7 +73,9 @@ public class GunController : IController
             
             //----GUN----
             //Model
-
+            _gunModel.ActualAmmo.OnValueChanged.AddListener(OnActualAmmoValueChanged);
+            
+            
             //View
             _gunView.OnShootButtonPressed.AddListener(View_Gun_OnShootButtonPressed);
             _gunView.OnInitializeGunEvent.AddListener(View_Gun_OnInitializeGunEvent);
@@ -83,6 +85,7 @@ public class GunController : IController
 
 
             //Commands
+            Context.CommandManager.AddCommandListener<ReloadGunAmmoCommand>(OnReloadAmmoCommand);
 
             // Demo - Controller may update model DIRECTLY...
 
@@ -120,15 +123,35 @@ public class GunController : IController
     {
         RequireIsInitialized();
 
+        if (_gunModel.ActualAmmo.Value <= 0 && !_gunView.isDoubleGunActive)
+        {
+            return;
+        }
+
+        if (!_gunView.isDoubleGunActive)
+        {
+            _gunModel.ActualAmmo.Value -= 1;
+        }
+        
 
         Context.CommandManager.InvokeCommand(
             new ShootProjectileForwardCommand(shootSpeed, projectilePrefab, startPoint, _gunModel.ShootDamage.Value));
     }
-    
-    //-----HAND MENU-----
-    
-    //View 
-    
-    
-    
+
+    private void OnActualAmmoValueChanged(int oldValue, int newValue)
+    {
+        _gunView.OnAcutalAmmoChangeUI(newValue,_gunModel.MaxAmmo.Value);
+    }
+
+    private void OnReloadAmmoCommand(ReloadGunAmmoCommand reloadGunAmmoCommand)
+    {
+        ReloadAmmo(reloadGunAmmoCommand.amount);
+    }
+
+    private void ReloadAmmo(int amount)
+    {
+        _gunModel.ActualAmmo.Value += amount;
+    }
+
+
 }

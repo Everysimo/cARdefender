@@ -18,8 +18,7 @@ public class BoxView : MonoBehaviour,IView,IHittableObject
      [HideInInspector] public readonly HealthBoxHittedUnityEvent OnHealthBoxHittedEvent = new HealthBoxHittedUnityEvent();
      [HideInInspector] public readonly DoubleGunBoxHittedUnityEvent OnDoubleGunBoxHittedEvent = new DoubleGunBoxHittedUnityEvent();
 
-     [SerializeField] private AudioSource audioSource;
-     [SerializeField] private AudioClip pickUpSound;
+     [SerializeField] private GameObject PickupPrefab;
 
      //  Properties ------------------------------------
      public void RequireIsInitialized()
@@ -65,12 +64,13 @@ public class BoxView : MonoBehaviour,IView,IHittableObject
 
     public virtual void OnObjectHitted()
     {
-        if(pickUpSound != null){
-            audioSource.PlayOneShot(pickUpSound);
+        if (PickupPrefab)
+        {
+            Instantiate(PickupPrefab, transform.position, Quaternion.identity);
         }
     }
 
-    public void DestryBox()
+    public void DestroyBox()
     {
         Destroy(gameObject);
     }

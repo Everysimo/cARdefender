@@ -67,6 +67,8 @@ public class PlayerView : MonoBehaviour, IView, IHittableEnemy
     private IContext _context;
 
     [SerializeField] private float playerLife;
+    
+    [SerializeField] private float MaxPlayerLife;
 
     public bool isInvulnerable = false;
 
@@ -93,7 +95,7 @@ public class PlayerView : MonoBehaviour, IView, IHittableEnemy
 
     private void Start()
     {
-        OnInitializePlayerEvent.Invoke(playerLife);
+        OnInitializePlayerEvent.Invoke(MaxPlayerLife);
     }
 
 

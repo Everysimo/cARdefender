@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using RMC.Core.Architectures.Mini.Context;
 using RMC.Core.Architectures.Mini.View;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -50,10 +51,10 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
         private IContext _context;
     
         [SerializeField] 
-        private int maxAmmo;
+        public int maxAmmo;
     
         [SerializeField] 
-        private int actualAmmo;
+        public int actualAmmo;
     
         [SerializeField] 
         private float reloadSpeed;
@@ -71,6 +72,8 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
         [SerializeField]
         [Tooltip("The point that the project is created")]
         Transform startPoint = null;
+
+        [SerializeField] private TextMeshProUGUI ammoUI;
         
         [SerializeField] 
         private AudioClip _shootSound;
@@ -78,6 +81,8 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
         private AudioClip _gunOnSound;
         [SerializeField] 
         private AudioClip _gunOffSound;
+        [SerializeField] 
+        private AudioClip _gunEmptySound;
         
         [SerializeField] 
         private AudioSource _audioSource;
@@ -92,16 +97,9 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
         
         public float PowerUpShootSpeed = 1;
 
-        public IEnumerator ShootEveryXSeconds(float seconds)
-        {
-            while (true)
-            {
-                ShootButtonPressed();
-                yield return new WaitForSeconds(seconds); 
-            }
-        }
-
-        private Coroutine _basicShootingCoroutine, _powerUpShootingCoroutine;
+        private Coroutine _shootingCoroutine;
+        
+        private bool _isGameFrozen;
 
 
         //  Initialization  -------------------------------
@@ -117,7 +115,11 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
                 isDoubleGunActive = false;
                 
                 Context.CommandManager.AddCommandListener<ActiveDoubleGunCommand>(ActiveDoubleGunPowerUp);
+                
+                Context.CommandManager.AddCommandListener<ActivateGameFreezeCommand>(ActivateGameFreezeStatus);
+                Context.CommandManager.AddCommandListener<DeactivateGameFreezeCommand>(DeactivateGameFreezeStatus);
 
+                
                 //
 
 
@@ -138,6 +140,15 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
 
         public void ShootButtonPressed()
         {
+            if (_isGameFrozen)
+            {
+                return;
+            }
+            if (actualAmmo <= 0)
+            {
+                _audioSource.PlayOneShot(_gunEmptySound);
+                return;
+            }
             if (canShoot || isDoubleGunActive)
             {
                 if (!isDoubleGunActive && !isPrimary)
@@ -156,49 +167,55 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
 
         public void ActiveDoubleGunPowerUp(ActiveDoubleGunCommand activeDoubleGunCommand)
         {
-            if (_basicShootingCoroutine != null)
+            if (_shootingCoroutine != null)
             {
-                 StopCoroutine(_basicShootingCoroutine);
-                 _basicShootingCoroutine = null;
-            }
-            if (_powerUpShootingCoroutine != null)
-            {
-                StopCoroutine(_powerUpShootingCoroutine);
-                _powerUpShootingCoroutine = null;
+                StopCoroutine(_shootingCoroutine);
+                _shootingCoroutine = null;
             }
             isDoubleGunActive = true;
-            StopAllCoroutines();
-            _powerUpShootingCoroutine = StartCoroutine(ActivateDoubleGunPowerUp(activeDoubleGunCommand._duration));
+            _shootingCoroutine = StartCoroutine(ShootEveryXSeconds(activeDoubleGunCommand._duration));
         }
-        
-        public IEnumerator ActivateDoubleGunPowerUp(float seconds)
+
+        public IEnumerator ShootEveryXSeconds(float powerUpDuration)
         {
-            ActivateGun();
-            yield return new WaitForSeconds(seconds); 
-            DeactivateDoubleGunPowerUp();
+            float elapsedTime = 0f;
+            while (true)
+            {
+                ShootButtonPressed();
+
+                float waitTime = isDoubleGunActive ? PowerUpShootSpeed : shootSpeed;
+                yield return new WaitForSeconds(waitTime);
+
+                if (isDoubleGunActive)
+                {
+                    elapsedTime += waitTime;
+                    if (elapsedTime >= powerUpDuration)
+                    {
+                        isDoubleGunActive = false;
+                        DeactivateDoubleGunPowerUp();
+                    }
+                }
+            }
         }
 
         public void DeactivateDoubleGunPowerUp()
         {
-            if (_powerUpShootingCoroutine != null)
+            if (_shootingCoroutine != null)
             {
-                StopCoroutine(_powerUpShootingCoroutine);
-                _powerUpShootingCoroutine = null;
+                StopCoroutine(_shootingCoroutine);
+                _shootingCoroutine = null;
             }
             isDoubleGunActive = false;
             DeactivateGun();
         }
 
-
         //  Unity Methods ---------------------------------
-        
-
 
         //  Methods ---------------------------------------
 
         public void ActivateGun()
         {
-            if (!isDoubleGunActive && !isPrimary || _powerUpShootingCoroutine != null || _basicShootingCoroutine != null)
+            if (!isDoubleGunActive && !isPrimary || _shootingCoroutine != null)
             {
                 return;
             }
@@ -208,17 +225,12 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
             {
                 visual.gameObject.SetActive(true);
             }
-            if (isDoubleGunActive && _powerUpShootingCoroutine == null)
+            if (_shootingCoroutine == null)
             {
-                _powerUpShootingCoroutine = StartCoroutine(ShootEveryXSeconds(PowerUpShootSpeed));
+                _shootingCoroutine = StartCoroutine(ShootEveryXSeconds(float.MaxValue));
             }
-            if(_basicShootingCoroutine == null)
-            {
-                _basicShootingCoroutine = StartCoroutine(ShootEveryXSeconds(shootSpeed));
-            }
-            
         }
-        
+
         public void DeactivateGun()
         {
             if (isDoubleGunActive)
@@ -231,22 +243,16 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
             }
             _audioSource.PlayOneShot(_gunOffSound);
             ToggleCanShootFalse();
-            
+
             foreach (GameObject visual in visuals)
             {
                 visual.gameObject.SetActive(false);
             }
-            if (_powerUpShootingCoroutine != null)
+            if (_shootingCoroutine != null)
             {
-                StopCoroutine(_powerUpShootingCoroutine);
-                _powerUpShootingCoroutine = null;
+                StopCoroutine(_shootingCoroutine);
+                _shootingCoroutine = null;
             }
-            if (_basicShootingCoroutine != null)
-            {
-                StopCoroutine(_basicShootingCoroutine);
-                _basicShootingCoroutine = null;
-            }
-            StopAllCoroutines();
         }
 
         public void ToggleCanShootTrue()
@@ -258,6 +264,26 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
         {
             canShoot = false;
         }
+        
+        public void ActivateGameFreezeStatus(ActivateGameFreezeCommand activateGameFreezeCommand)
+        {
+            _isGameFrozen = true;
+            DeactivateGun();
+        }
+    
+        public void DeactivateGameFreezeStatus(DeactivateGameFreezeCommand deactivateGameFreezeCommand)
+        {
+            _isGameFrozen = false;
+        }
+
+        public void OnAcutalAmmoChangeUI(int newValue,int newMaxAmmo)
+        {
+            actualAmmo = newValue;
+            maxAmmo = newMaxAmmo;
+            
+            ammoUI.text = ""+actualAmmo;
+        }
+
         //  Event Handlers --------------------------------
         
 

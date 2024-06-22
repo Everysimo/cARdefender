@@ -111,11 +111,12 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     private Transform damagefx;
 
     public int points;
+
+    public int ammoRewards;
     
     [SerializeField]
     [Tooltip("The object that gets spawned when the drone dies. Intended to be an explosion.")]
     private GameObject ExplosionPrefab;
-    
     
     [SerializeField]
     [Tooltip("AudioClips for LaserShooting")]
@@ -126,6 +127,8 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
     
     [SerializeField]
     private Animator _animator;
+
+    public bool isAttachedToVehicle;
 
     public LineRenderer vehicleLaser;
 
@@ -179,7 +182,12 @@ public class DroneView : MonoBehaviour, IView, IHittableEnemy
         {
             while (true)
             {
-
+                if (!isAttachedToVehicle)
+                {
+                    yield return null;
+                    continue;
+                }
+                
                 float randomSpeed = generateRandomFloat(MinShootSpeed,MaxShootSpeed);
                 yield return new WaitForSeconds(randomSpeed);
                 
