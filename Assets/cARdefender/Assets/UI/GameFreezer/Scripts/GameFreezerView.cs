@@ -126,13 +126,11 @@ public class GameFreezerView : MonoBehaviour,IView
         if (_leftInputValue == _leftPassword)
         {
             leftImage.color = Color.green;
-            leftIcon.color = Color.green;
             CheckInputOnPassword();
         }
         else
         {
             leftImage.color = Color.red;
-            leftIcon.color = Color.red;
         }
     }
     
@@ -144,13 +142,11 @@ public class GameFreezerView : MonoBehaviour,IView
         if (_rightInputValue == _rightPassword)
         {
             rightImage.color = Color.green;
-            rightIcon.color = Color.green;
             CheckInputOnPassword();
         }
         else
         {
             rightImage.color = Color.red;
-            rightIcon.color = Color.red;
         }
     }
 
@@ -185,11 +181,9 @@ public class GameFreezerView : MonoBehaviour,IView
     {
         _rightInputValue = -1;
         _leftInputValue = -1;
-        rightImage.color = Color.red;
-        rightIcon.color = Color.red;
+        rightImage.color = Color.white;
         
-        leftImage.color = Color.red;
-        leftIcon.color = Color.red;
+        leftImage.color = Color.white;
     }
     
 

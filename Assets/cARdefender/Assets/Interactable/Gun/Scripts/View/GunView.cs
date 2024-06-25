@@ -92,10 +92,14 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
         public bool canShoot = false;
         public bool isDoubleGunActive = false;
         public bool isPrimary = false;
+        public bool isAutoAimActive = false;
 
+        
         public float shootSpeed = 1;
         
         public float PowerUpShootSpeed = 1;
+
+        public GameObject AutoAimTarget;
 
         private Coroutine _shootingCoroutine;
         
@@ -113,6 +117,7 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
 
                 canShoot = false;
                 isDoubleGunActive = false;
+                isAutoAimActive = false;
                 
                 Context.CommandManager.AddCommandListener<ActiveDoubleGunCommand>(ActiveDoubleGunPowerUp);
                 
@@ -154,6 +159,27 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.View
                 if (!isDoubleGunActive && !isPrimary)
                 {
                     return;
+                }
+
+                if (isAutoAimActive)
+                {
+                    GameObject[] objs = FindObjectsOfType<GameObject>();
+
+                    foreach (GameObject obj in objs)
+                    {
+                        // Controlla se l'oggetto ha lo script DroneView
+                        DroneView targetObject = obj.GetComponent<DroneView>();
+                        if (targetObject != null)
+                        {
+                            // Ottieni il Transform dell'oggetto trovato
+                            AutoAimTarget = targetObject.gameObject;
+                            break; // Esci dal loop una volta trovato l'oggetto desiderato
+                        }
+                        else
+                        {
+                            AutoAimTarget = null;
+                        }
+                    }
                 }
                 _audioSource.PlayOneShot(_shootSound);
                 OnShootButtonPressed.Invoke(ammoSpeed,projectilePrefab,startPoint);

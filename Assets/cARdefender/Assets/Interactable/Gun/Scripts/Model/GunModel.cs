@@ -40,6 +40,8 @@ public class GunModel : IModel
 
     public Observable<Transform> StartPoint { get { return _startPoint;} }
     
+    public Observable<bool> IsAutoAimActive { get { return _isAutoAimActive;} }
+    
         
     //  Fields ----------------------------------------
     private readonly Observable<float> _reloadSpeed = new Observable<float>();
@@ -48,6 +50,8 @@ public class GunModel : IModel
     
     private readonly Observable<int> _maxAmmo = new Observable<int>();
     private readonly Observable<int> _actualAmmo = new Observable<int>();
+    
+    private readonly Observable<bool> _isAutoAimActive = new Observable<bool>();
     
     private readonly Observable<GameObject> _projectilePrefab = new Observable<GameObject>();
     
@@ -61,7 +65,7 @@ public class GunModel : IModel
         {
             _isInitialized = true;
             _context = context;
-
+            
             // Set Defaults
         }
     }

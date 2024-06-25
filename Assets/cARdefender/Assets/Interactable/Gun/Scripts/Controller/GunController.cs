@@ -48,6 +48,7 @@ public class GunController : IController
     //View
     private GunView _gunView;
 
+
     //Controller
     //private AudioController _audioController;
 
@@ -58,9 +59,8 @@ public class GunController : IController
     public GunController(GunModel gunModel, GunView gunView)
     {
         _gunModel = gunModel;
-        
-        _gunView = gunView;
 
+        _gunView = gunView;
     }
 
     //  Initialization  -------------------------------
@@ -70,18 +70,17 @@ public class GunController : IController
         {
             _isInitialized = true;
             _context = context;
-            
+
             //----GUN----
             //Model
             _gunModel.ActualAmmo.OnValueChanged.AddListener(OnActualAmmoValueChanged);
-            
-            
+
+
             //View
             _gunView.OnShootButtonPressed.AddListener(View_Gun_OnShootButtonPressed);
             _gunView.OnInitializeGunEvent.AddListener(View_Gun_OnInitializeGunEvent);
 
             //Servie
-            
 
 
             //Commands
@@ -108,7 +107,7 @@ public class GunController : IController
 
     //  Event Handlers --------------------------------
 
-   
+
     //-----GUN-----
 
     //View
@@ -132,15 +131,25 @@ public class GunController : IController
         {
             _gunModel.ActualAmmo.Value -= 1;
         }
-        
 
-        Context.CommandManager.InvokeCommand(
-            new ShootProjectileForwardCommand(shootSpeed, projectilePrefab, startPoint, _gunModel.ShootDamage.Value));
+        if (_gunView.isAutoAimActive && _gunView.AutoAimTarget!=null)
+        {
+            Context.CommandManager.InvokeCommand(new ShootProjectileToTargetCommand(shootSpeed/2,
+                _gunModel.ShootDamage.Value, projectilePrefab, startPoint, _gunView.AutoAimTarget.transform));
+
+            _gunView.AutoAimTarget = null;
+        }
+        else
+        {
+            Context.CommandManager.InvokeCommand(
+                new ShootProjectileForwardCommand(shootSpeed, projectilePrefab, startPoint,
+                    _gunModel.ShootDamage.Value));
+        }
     }
 
     private void OnActualAmmoValueChanged(int oldValue, int newValue)
     {
-        _gunView.OnAcutalAmmoChangeUI(newValue,_gunModel.MaxAmmo.Value);
+        _gunView.OnAcutalAmmoChangeUI(newValue, _gunModel.MaxAmmo.Value);
     }
 
     private void OnReloadAmmoCommand(ReloadGunAmmoCommand reloadGunAmmoCommand)
@@ -152,6 +161,4 @@ public class GunController : IController
     {
         _gunModel.ActualAmmo.Value += amount;
     }
-
-
 }

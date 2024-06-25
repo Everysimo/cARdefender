@@ -8,6 +8,7 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.Commands
 
     {
         public float ShootSpeed { get { return _shootSpeed;}  }
+        public float ShoottDamage { get { return _shootDamage;}  }
         public GameObject ProjectilePrefab { get { return _projectilePrefab;} }
         
         public Transform StartPoint { get { return _startPoint;} }
@@ -15,6 +16,7 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.Commands
         public Transform Target { get { return _target;} }
       
         private float _shootSpeed;
+        private float _shootDamage;
         private GameObject _projectilePrefab;
         private Transform _startPoint;
         private Transform _target;
@@ -22,6 +24,7 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.Commands
         public ShootProjectileToTargetCommand(float shootSpeed,float shootDamage, GameObject projectilePrefab, Transform startPoint,Transform target)
         {
             _shootSpeed = shootSpeed;
+            _shootDamage = shootDamage;
             _projectilePrefab = projectilePrefab;
             _startPoint = startPoint;
             _target = target;
@@ -29,7 +32,7 @@ namespace cARdefender.Assets.Interactable.Gun.Scripts.Commands
             GameObject shootProjectile = Instantiate(_projectilePrefab,_startPoint.position,Quaternion.identity);
             if (shootProjectile.TryGetComponent(out AmmoComponent ammoComponent))
             {
-                ammoComponent.ammoDamage = shootSpeed;
+                ammoComponent.ammoDamage = shootDamage;
             }
             
             shootProjectile.transform.LookAt(_target);

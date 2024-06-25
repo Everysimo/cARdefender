@@ -155,7 +155,7 @@ public class ShieldController : IController
     {
         Debug.Log("Shield Hitted Controller");
         Context.CommandManager.InvokeCommand(
-            new ReloadGunAmmoCommand(1));
+            new ReloadGunAmmoCommand(5));
     }
     
     
