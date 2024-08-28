@@ -23,7 +23,7 @@ namespace cARdefender.Assets.BoxPlacement
 
         public void SpawnCrate(BoxConsumerHandle boxConsumerHandle)
         {
-            crateSpawnerView.HealthBoxSpawnRequest(boxConsumerHandle);
+            crateSpawnerView.HealthCrateSpawnRequest(boxConsumerHandle);
         }
 
     }

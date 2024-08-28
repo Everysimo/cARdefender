@@ -691,7 +691,8 @@ MonoBehaviour:
     XR_FB_passthrough_keyboard_hands XR_OCULUS_audio_device_guid XR_FB_common_events
     XR_FB_hand_tracking_capsules XR_FB_hand_tracking_mesh XR_FB_hand_tracking_aim
     XR_FB_touch_controller_pro XR_FB_touch_controller_proximity XR_FB_composition_layer_depth_test
-    XR_META_spatial_entity_persistence XR_META_spatial_entity_discovery '
+    XR_FB_haptic_amplitude_envelope XR_FB_haptic_pcm XR_META_spatial_entity_persistence
+    XR_META_spatial_entity_discovery XR_META_boundary_visibility XR_META_headset_id '
   company: Meta
   priority: 0
   required: 0
@@ -1932,7 +1933,8 @@ MonoBehaviour:
     XR_FB_passthrough_keyboard_hands XR_OCULUS_audio_device_guid XR_FB_common_events
     XR_FB_hand_tracking_capsules XR_FB_hand_tracking_mesh XR_FB_hand_tracking_aim
     XR_FB_touch_controller_pro XR_FB_touch_controller_proximity XR_FB_composition_layer_depth_test
-    XR_META_spatial_entity_persistence XR_META_spatial_entity_discovery '
+    XR_FB_haptic_amplitude_envelope XR_FB_haptic_pcm XR_META_spatial_entity_persistence
+    XR_META_spatial_entity_discovery XR_META_boundary_visibility XR_META_headset_id '
   company: Meta
   priority: 0
   required: 0

@@ -85,8 +85,9 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         private PlayerView _playerView;
         private HandMenuView _handMenuView;
         private CrateSpawnerView _crateSpawnerView;
-        private HealthBoxView _healthBoxViewPrefab;
-        private DoubleGunBoxView _doubleGunBoxViewPrefab;
+        private HealthCrateView healthCrateViewPrefab;
+        private DoubleGunCrateView doubleGunCrateViewPrefab;
+        private AutoAimCrateView _autoAimCrateViewPrefab;
         private ShieldView _shieldViewRight, _shieldViewLeft;
         private GameManagerView _gameManagerView;
         private GameFreezerView _gameFreezerView;
@@ -109,7 +110,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         public CarDefenderMvcsManager(IContext context, DroneSpawnerView droneSpawnerView, DroneView droneView,
             GunView gunViewRight, GunView gunViewLeft, PlayerView playerView, HandMenuView handMenuView,
             CrateSpawnerView crateSpawnerView,
-            HealthBoxView healthBoxViewPrefab, DoubleGunBoxView doubleGunBoxViewPrefab, ShieldView shieldViewRight,
+            HealthCrateView healthCrateViewPrefab, DoubleGunCrateView doubleGunCrateViewPrefab,AutoAimCrateView autoAimCrateView, ShieldView shieldViewRight,
             ShieldView shieldViewLeft, GameManagerView gameManagerView, GameFreezerView gameFreezerView)
         {
             _droneSpawnerView = droneSpawnerView;
@@ -119,8 +120,9 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
             _playerView = playerView;
             _handMenuView = handMenuView;
             _crateSpawnerView = crateSpawnerView;
-            _healthBoxViewPrefab = healthBoxViewPrefab;
-            _doubleGunBoxViewPrefab = doubleGunBoxViewPrefab;
+            this.healthCrateViewPrefab = healthCrateViewPrefab;
+            this.doubleGunCrateViewPrefab = doubleGunCrateViewPrefab;
+            _autoAimCrateViewPrefab = autoAimCrateView;
             _shieldViewRight = shieldViewRight;
             _shieldViewLeft = shieldViewLeft;
             _gameManagerView = gameManagerView;
@@ -177,6 +179,10 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                 _playerView.Initialize(Context);
                 _gameFreezerView.Initialize(Context);
                 
+                healthCrateViewPrefab.Initialize(Context);
+                doubleGunCrateViewPrefab.Initialize(Context);
+                _autoAimCrateViewPrefab.Initialize(Context);
+                
                 //Service
                 _droneService.Initialize(Context);
 
@@ -202,7 +208,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
                     _handMenuView);
 
                 _crateSpawnerController =
-                    new CrateSpawnerController(_crateSpawnerView, _healthBoxViewPrefab, _doubleGunBoxViewPrefab);
+                    new CrateSpawnerController(_crateSpawnerView, healthCrateViewPrefab, doubleGunCrateViewPrefab,_autoAimCrateViewPrefab);
 
                 _gameManagerController = new GameManagerController(_gameManagerModel, _gameManagerView);
 

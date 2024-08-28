@@ -20,7 +20,6 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
         [SerializeField] private DroneView _droneViewPrefab;
 
         [SerializeField] private GunView _gunViewLeft;
-        
         [SerializeField] private GunView _gunViewRight;
 
         [SerializeField] private PlayerView _playerView;
@@ -32,9 +31,9 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
 
         [SerializeField] private CrateSpawnerView crateSpawnerView;
 
-        [SerializeField] private HealthBoxView _healthBoxViewPrefab;
-
-        [SerializeField] private DoubleGunBoxView _doubleGunBoxViewPrefab;
+        [SerializeField] private HealthCrateView healthCrateViewPrefab;
+        [SerializeField] private DoubleGunCrateView doubleGunCrateViewPrefab;
+        [SerializeField] private AutoAimCrateView autoAimCrateViewPrefab;
 
         [SerializeField] private GameManagerView _gameManagerView;
 
@@ -53,7 +52,7 @@ namespace cARdefender.Assets.Enemies.Drone.Scripts.MVC
 
             CarDefenderMvcsManager =
                 new CarDefenderMvcsManager(_context, _droneSpawnerView, _droneViewPrefab, _gunViewRight,_gunViewLeft, _playerView,
-                    _handMenuView, crateSpawnerView, _healthBoxViewPrefab, _doubleGunBoxViewPrefab, _shieldViewRight,_shieldViewLeft,
+                    _handMenuView, crateSpawnerView, healthCrateViewPrefab, doubleGunCrateViewPrefab,autoAimCrateViewPrefab, _shieldViewRight,_shieldViewLeft,
                     _gameManagerView,_gameFreezerView);
 
             CarDefenderMvcsManager.Initialize();

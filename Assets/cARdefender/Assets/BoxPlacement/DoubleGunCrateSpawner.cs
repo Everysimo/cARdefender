@@ -23,7 +23,7 @@ namespace cARdefender.Assets.BoxPlacement
 
         public void SpawnCrate(BoxConsumerHandle boxConsumerHandle)
         {
-            crateSpawnerView.DoubleGunBoxSpawnRequest(boxConsumerHandle);
+            crateSpawnerView.DoubleGunCrateSpawnRequest(boxConsumerHandle);
         }
 
     }
